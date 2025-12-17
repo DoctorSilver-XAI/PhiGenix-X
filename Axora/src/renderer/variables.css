@@ -1,0 +1,104 @@
+:root {
+    /* ============================================================
+     VARIABLES & BASE - Axora Premium Glass
+     ============================================================ */
+
+    /* Fond verre technique */
+    --glass-bg: transparent;
+    --glass-brd: rgba(255, 255, 255, 0.12);
+    --glass-bg-dark: rgba(10, 10, 15, 0.75);
+
+    /* Typo */
+    --text: #e8eef4;
+    --text-dim: #b8c2cc;
+    --text-primary: #ffffff;
+    --text-secondary: #94a3b8;
+
+    /* Accents */
+    --dot: #5eead4;
+    --brand1: #36D1DC;
+    --brand2: #5B86E5;
+    --accent: #2ee4c6;
+    --neon-cyan: #00f2ff;
+    --neon-violet: #bc13fe;
+    --neon-alert: #ff0055;
+
+    /* Palette étendue */
+    --bg-deep: #0b1220;
+    --iris: #5B86E5;
+    --cyan: #36D1DC;
+    --mint: #2EE4C6;
+    --amber: #F7C65C;
+
+    --panel-border: rgba(255, 255, 255, 0.14);
+    --panel-glow: rgba(80, 140, 255, 0.20);
+    --panel-bg1: rgba(255, 255, 255, 0.08);
+    --panel-bg2: rgba(255, 255, 255, 0.02);
+
+    /* --- Animations & Effects --- */
+    --backdrop-blur: blur(20px);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    --card-shadow: 0 12px 30px -20px rgba(0, 0, 0, 0.65);
+    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- Global Utilities --- */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px) saturate(1.1) brightness(1.05);
+    -webkit-backdrop-filter: blur(12px) saturate(1.1) brightness(1.05);
+    border: 1px solid var(--glass-brd);
+    box-shadow: var(--glass-shadow);
+}
+
+.text-gradient-brand {
+    background: linear-gradient(90deg, #C9B8FF 0%, #A98CFF 22%, #8B5CF6 50%, #6D5DFE 78%, #43D7E2 100%);
+    background-size: 240% 240%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: genixSpectrum 14s ease-in-out infinite;
+}
+
+/* === GLobal Animations === */
+@keyframes genixSpectrum {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+
+    50% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+}
+
+@keyframes underlineFlow {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 100% 0;
+    }
+}

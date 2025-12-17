@@ -1,0 +1,12 @@
+rappels:
+  - condition: "produit ~= 'DOLIPRANE' && dose_mg == 500"
+    conseils:
+      - "Posologie enfant: 15 mg/kg/prise, ≥6 h, max 60 mg/kg/j."
+      - "Hydratation + suivi T° ; éviter doublons paracétamol."
+      - "Solution orale si <6 ans."
+    alerte:
+      - "Hépatique/alcool/poids <50 kg → prudence / avis."
+    ctas:
+      - { id: "fiche-poso", label: "Fiche posologie", url: "phigenix://poso_paracetamol" }
+      - { id: "conseil-fievre", label: "Conseils fièvre", url: "phigenix://fievre_enfant" }
+      - { id: "add-thermo", label: "+ Thermomètre" }

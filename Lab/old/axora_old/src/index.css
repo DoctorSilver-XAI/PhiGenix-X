@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    /* Colors - Modern Dark Palette */
+    --bg-app: #0f1115;
+    --bg-panel: #1a1d23;
+    --primary: #6366f1;
+    /* Indigo */
+    --primary-glow: rgba(99, 102, 241, 0.4);
+    --text-main: #e2e8f0;
+    --text-muted: #94a3b8;
+    --border: #2d323b;
+
+    /* Glassmorphism */
+    --glass-bg: rgba(26, 29, 35, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --backdrop-blur: 12px;
+
+    /* Typography */
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-app);
+    color: var(--text-main);
+    font-family: var(--font-sans);
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+#root {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Utilities */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--backdrop-blur));
+    -webkit-backdrop-filter: blur(var(--backdrop-blur));
+    border: 1px solid var(--glass-border);
+}
+
+.glow-text {
+    text-shadow: 0 0 20px var(--primary-glow);
+}

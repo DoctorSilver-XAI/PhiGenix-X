@@ -1,0 +1,22 @@
+{
+    "name": "axora-card-reader-agent",
+    "version": "1.0.0",
+    "description": "Local agent to bridge PC/SC card readers to Axora Web App",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js",
+        "dev": "nodemon server.js"
+    },
+    "dependencies": {
+        "ws": "^8.16.0",
+        "smartcard": "^1.0.4"
+    },
+    "optionalDependencies": {
+        "@pokusew/pcsclite": "latest"
+    },
+    "keywords": [
+        "pcsc",
+        "smartcard",
+        "carte-vitale"
+    ]
+}

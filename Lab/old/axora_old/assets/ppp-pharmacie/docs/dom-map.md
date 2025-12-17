@@ -1,0 +1,12 @@
+# Cartographie DOM utile
+- `#pharmacien` (select) → synchronisé vers `#pharmacienPrint`.
+- `#ageRange` (select) → alimenté par `populateAgeSelect`, pilote le thème (évènement `change`) et le bucket IA.
+- `#fillExample` / `#clearExample` → templates d’exemple (thèmes, colonnes).
+- `#printButton` → impression (`window.print()`).
+- `#toggleInputSection` / `#inputSection` → volet assistant (upload/notes/prompt).
+- Upload : `#uploadZone`, `#imageInput`, `#imagePreview`.
+- Notes : `#notesTextarea`.
+- Prompt : `#promptToggle`, `#promptPanel`, `#promptTextarea`, `#promptSave`, `#promptReset`, `#promptClose`.
+- Génération : `#generateBtn`, `#loadingIndicator`, `#loadingProgressFill`.
+- Identité patient : `.id-value[aria-label='Nom et prénom du patient']`.
+- Grille PPP : `.grid .column .lines li` (contenteditable), suivi : `.follow-line`.

@@ -1,0 +1,79 @@
+{
+  "name": "phigenix-bar",
+  "version": "0.4.0",
+  "description": "PhiGenix 5.2 — Barre augmentée pour pharmacien",
+  "author": "Pierre Gil <pierre@example.com>",
+  "license": "Proprietary",
+  "homepage": "https://phigenix.app",
+  "main": "main.js",
+  "scripts": {
+    "dev": "electron .",
+    "start": "electron .",
+    "build:dir": "CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --dir -c.mac.identity=null -c.mac.gatekeeperAssess=false",
+    "build:mac": "electron-builder --mac dmg",
+    "build:mac:unsigned": "CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --mac dmg -c.mac.identity=null -c.mac.gatekeeperAssess=false",
+    "build:mac:universal": "electron-builder --mac universal",
+    "build:win": "electron-builder --win nsis",
+    "dist": "electron-builder"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.56.0"
+  },
+  "devDependencies": {
+    "electron": "^31.2.0",
+    "electron-builder": "^24.13.3",
+    "@electron/notarize": "^2.1.0"
+  },
+  "build": {
+    "appId": "com.phigenix.bar",
+    "productName": "PhiGenix 5.2",
+    "asar": true,
+    "files": [
+      "**/*",
+      "!node_modules/.cache/**"
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "mac": {
+      "category": "public.app-category.medical",
+      "icon": "build/icon.icns",
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "entitlements": "build/entitlements.mac.plist",
+      "entitlementsInherit": "build/entitlements.mac.plist",
+      "target": [
+        "dmg",
+        "zip"
+      ]
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "build/icon.ico"
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "dmg": {
+      "backgroundColor": "#0b1220",
+      "iconSize": 128,
+      "window": { "width": 540, "height": 380 },
+      "contents": [
+        { "x": 140, "y": 180, "type": "file" },
+        { "x": 400, "y": 180, "type": "link", "path": "/Applications" },
+        { "x": 140, "y": 320, "type": "file", "path": "build/EULA.txt" }
+      ]
+    },
+    "afterSign": "build/afterSign.js",
+    "publish": null,
+    "extraMetadata": {
+      "copyright": "© 2025 Pierre Gil. All rights reserved."
+    },
+    "artifactName": "${productName}-${version}-${os}-${arch}.${ext}"
+  }
+}

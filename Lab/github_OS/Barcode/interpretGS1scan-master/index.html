@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width">
+    <title>Is it a GS1 Digital Link URI? What does it contain?</title>
+    <script src="https://gs1.github.io/GS1DigitalLinkCompressionPrototype/src/GS1DigitalLinkToolkit.js"></script>
+    <script src="https://gs1.github.io/interpretGS1scan/interpretGS1Scan.js"></script>
+    <script src="https://gs1.github.io/interpretGS1scan/plausibleGS1DL.js"></script>
+    <link rel="stylesheet" href="https://gs1.github.io/interpretGS1scan/interpretGS1ScanStyles.css" />
+  </head>
+  <style type="text/css">
+    body {font-family: sans-serif}
+    h1, h2 {color:#235EA4}
+
+    #titleSelector, #interpretation {
+      margin:1em;
+      padding: 1em;
+      border: thin solid gray;
+    }
+
+    #titleSelector p#urlEntry label {
+      width:7em;
+      display: inline-block;
+    }
+
+    #titleSelector p#options {
+      padding-left: 7em;
+    }
+
+
+    #footnotes {
+      margin-top:2em;
+    }
+  </style>
+  <body>
+<h1>Is it a GS1 Digital Link URI? What does it contain?</h1>
+<main>
+<p>This demo is designed to show that it is simple to determine whether a given URL could plausibly be a GS1 Digital Link URI
+and therefore whether it is worth continuing to process as such. If so, it then interprets the URI and shows what
+GS1 identifiers are present and their values. </p>
+<p>It does this by using <a href="plausibleGS1DL.js">plausibleGS1DL.js</a>, which uses the regular expressions
+included in section 6 of the <a href="https://ref.gs1.org/standards/digital-link/uri-syntax/">GS1 Digital
+Link URI Syntax</a> standard and <a href="interpretGS1Scan.js">interpretGS1Scan.js</a></p>
+
+<section id="titleSelector">
+  <p id="urlEntry"><label for="url">URL to test <span id="egSpan"><a href="javascript:void(0);" id="egA">sample 1</a> <a href="javascript:void(0);" id="egB">sample 2</a></span></label> <input type="text" size="53" id="url" /></p>
+  <p style="padding-left:7.3em"><button id="test">Test</button></p>
+</section>
+<section id="plausibilityCheck"></section>
+
+<section id="interpretation"></section>
+
+</main>
+</body>
+<script>
+
+// #############################################
+// Just a few bits to make the demo Web page work
+
+  window.onload=init;
+
+  function init() {
+    document.getElementById("test").addEventListener('click', showDetails);
+    document.getElementById("egA").addEventListener('click', function() {document.getElementById('url').value='https://example.com/01/9506000134352/10/ABC/21/123456'});
+    document.getElementById("egB").addEventListener('click', function() {document.getElementById('url').value='https://example.com/ARFKk4XBoCCHV4Qgw8SA'});
+  }
+
+  function showDetails() {
+    let result = []; let url;
+    if (url = document.getElementById("url").value) {result = urlCheck(url)}
+    let r = document.getElementById('plausibilityCheck');
+    r.innerHTML = '';
+    let interpretationSection = document.getElementById('interpretation');
+    interpretationSection.innerHTML = '';
+    let p = document.createElement('p');
+    p.id = 'givenURL';
+    p.appendChild(document.createTextNode(url));
+    r.appendChild(p);
+    let ul = document.createElement('ul');
+    if (result.isURL) {
+      let li = document.createElement('li');
+      li.id = 'isValidURL';
+      li.appendChild(document.createTextNode('Is a valid URL'));
+      ul.appendChild(li);
+      if (result.uncompressed) {
+        li = document.createElement('li');
+        li.appendChild(document.createTextNode('Is plausibly an uncompressed GS1 Digital Link URI'));
+        ul.appendChild(li);
+      } else if (result.uncompressedWithAlphas) {
+        li = document.createElement('li');
+        li.appendChild(document.createTextNode('Is plausibly an uncompressed GS1 Digital Link URI, but uses "convenience alphas" which have been deprecated.'));
+        ul.appendChild(li);
+      } else if (result.compressed) {
+        li = document.createElement('li');
+        li.appendChild(document.createTextNode('Is plausibly a compressed GS1 Digital Link URI.'));
+        ul.appendChild(li);
+      } else {
+        li = document.createElement('li');
+        li.appendChild(document.createTextNode('Is not a GS1 Digital Link URI.'));
+        ul.appendChild(li);
+      }
+    } else {
+      let li = document.createElement('li');
+      li.appendChild(document.createTextNode('Is not valid URL'));
+      ul.appendChild(li);
+    }
+    r.appendChild(ul);
+    if (result.any) { // We have a DL URI of some kind. We can pass this to the interpret scan function.
+      displayInterpretation(url, interpretationSection);
+    }
+  }
+
+
+function urlCheck(url) {
+  //  ##############################################
+  // Here's a basic regex we can use to test whether the input is any kind of URI
+  //  /^(([^:\/?#]+):)?(\/\/((([^\/?#]*)@)?([^\/?#:]*)(:([^\/?#]*))?))?([^?#]*)(\?([^#]*))?(#(.*))?/;
+  // However, we know that for DL it MUST be http or https so we can simplify it a little
+  // This test is not strictly necessary, it doesn't affect the plausibility, but it helps us provide
+  // info in this specific demo
+
+  const genericHttpURIre = /^https?:(\/\/((([^\/?#]*)@)?([^\/?#:]*)(:([^\/?#]*))?))?([^?#]*)(\?([^#]*))?(#(.*))?/;
+
+  if (genericHttpURIre.test(url)) {   // We have an HTTP URI
+    let plausibleDL = isPlausibleGs1DlUri(url);
+    plausibleDL.isURL = true;
+    return plausibleDL;
+  } else {
+    return {'isURL': false};
+  }
+}
+
+
+</script>
+
+</html>

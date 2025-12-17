@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="ZXing for JS">
+
+  <title>GS1 scanner demo using ZXing TypeScript | Decoding from camera stream</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic"/>
+  <link rel="stylesheet" href="https://unpkg.com/normalize.css@8.0.0/normalize.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/milligram@1.3.0/dist/milligram.min.css"/>
+  <link rel="stylesheet" href="https://gs1.github.io/interpretGS1scan/interpretGS1ScanStyles.css" />
+  <script src="https://gs1.github.io/GS1DigitalLinkCompressionPrototype/src/GS1DigitalLinkToolkit.js"></script>
+  <script src="https://gs1.github.io/interpretGS1scan/interpretGS1Scan.js"></script>
+  <script src="https://gs1.github.io/interpretGS1scan/plausibleGS1DL.js"></script>
+  <script src="https://gs1.github.io/interpretGS1scan/beep.js"></script>
+  <style>
+    h1.title {
+      font-size:1.5em;
+    }
+
+    footer {
+      margin-top: 2em;;
+      padding-top:1em;
+      border-top: thin solid #999;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <main class="wrapper" style="padding-top:2em">
+
+    <section class="container" id="demo-content">
+      <h1 class="title">Scan a GS1 1D/2D Code from your device's video Camera</h1>
+
+      <div>
+        <a class="button" id="startButton">Start</a>
+        <a class="button" id="resetButton">Reset</a>
+      </div>
+
+      <div>
+        <video id="video" width="300" height="200" style="border: 1px solid gray"></video>
+      </div>
+
+      <div id="sourceSelectPanel" style="display:none">
+        <label for="sourceSelect">Change video source:</label>
+        <select id="sourceSelect" style="max-width:400px">
+        </select>
+      </div>
+
+      <label for="result">Result:</label>
+      <pre><span style="margin: 0.5em">Raw output:</span><code id="result"></code></pre>
+      <label for="interpretation">Interpretation:</label>
+      <div id="interpretation"></div>
+
+    </section>
+
+    <footer class="footer">
+      <section class="container">
+        <p>This is a modified version of the <a href="https://zxing-js.github.io/library/examples/multi-camera/">ZXing TypeScript Demo</a> which is licensed under the <a href="https://github.com/zxing-js/library#license" title="MIT">MIT</a> (see the <a href="https://github.com/zxing-js/library/tree/master/docs/examples/multi-camera/">source code</a>). Note that this demo calls the <a href="https://github.com/gs1/GS1DigitalLinkToolkit.js">GS1 Digital Link Toolkit</a>, on which the <a href="https://github.com/gs1/interpretGS1scan">interpretGS1scan library</a> depends.</p>
+      <p>Please report bugs and problems, or make suggestions for improvement, by raising an <a href="https://github.com/gs1/interpretGS1scan">issue on GitHub</a>.</p>
+      </section>
+    </footer>
+
+  </main>
+
+
+  <script type="text/javascript" src="https://unpkg.com/@zxing/library@0.15.0"></script>
+<!--   <script type="text/javascript" src="https://unpkg.com/@zxing/library@latest"></script> -->
+  <script type="text/javascript">
+    window.addEventListener('load', function () {
+      let selectedDeviceId;
+      const codeReader = new ZXing.BrowserMultiFormatReader()
+      console.log('ZXing code reader initialized')
+      codeReader.getVideoInputDevices()
+        .then((videoInputDevices) => {
+          const sourceSelect = document.getElementById('sourceSelect')
+          selectedDeviceId = videoInputDevices[0].deviceId
+          if (videoInputDevices.length >= 1) {
+            let i=0;
+            let s=null;
+            videoInputDevices.forEach((element) => {
+              const sourceOption = document.createElement('option')
+              sourceOption.text = element.label
+              if ((element.label.indexOf("rear") > -1) || (element.label.indexOf("back") > -1)) {
+                  s=i;
+              }
+              sourceOption.value = element.deviceId
+              sourceSelect.appendChild(sourceOption)
+              i++;
+            })
+            if (s !== null) {
+                sourceSelect.selectedIndex  = s;
+                selectedDeviceId = sourceSelect.value;
+            }
+
+            sourceSelect.onchange = () => {
+              selectedDeviceId = sourceSelect.value;
+            };
+
+            const sourceSelectPanel = document.getElementById('sourceSelectPanel')
+            sourceSelectPanel.style.display = 'block'
+          }
+
+          document.getElementById('startButton').addEventListener('click', () => {
+            codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', (result, err) => {
+              if (result) {
+                console.log(result)
+                let re = new RegExp(String.fromCharCode(29),"g");
+                document.getElementById('result').textContent = result.text.replace(re, "<GS>");
+                beep.play();
+                displayInterpretation(result.text, document.getElementById('interpretation'));
+              }
+              if (err && !(err instanceof ZXing.NotFoundException)) {
+                console.error(err)
+                document.getElementById('result').textContent = err
+              }
+            })
+            console.log(`Started continous decode from camera with id ${selectedDeviceId}`)
+          })
+
+          document.getElementById('resetButton').addEventListener('click', () => {
+            codeReader.reset()
+            document.getElementById('result').textContent = '';
+            document.getElementById('interpretation').innerHTML = '';
+            console.log('Reset.')
+          })
+
+        })
+        .catch((err) => {
+          console.error(err)
+        })
+    })
+
+  </script>
+
+</body>
+
+</html>
