@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StatusDot } from './ui/StatusDot';
 import { AxoraLogo } from './AxoraLogo';
+import { SidecarConfig } from '../../config/sidecar.config';
 
 const Sidecar: React.FC = () => {
     const switchMode = (mode: 'hub' | 'compact') => {
@@ -11,6 +12,16 @@ const Sidecar: React.FC = () => {
     React.useEffect(() => {
         window.axora?.setIgnoreMouse(false);
     }, []);
+
+    // Drag style if enabled
+    const dragStyle = SidecarConfig.behavior.isDraggable ? {
+        WebkitAppRegion: 'drag',
+    } as React.CSSProperties : {};
+
+    // No-drag style for interactive elements
+    const noDragStyle = {
+        WebkitAppRegion: 'no-drag',
+    } as React.CSSProperties;
 
     return (
         /* Main Wrapper - Invisible, handles centering */
@@ -27,17 +38,17 @@ const Sidecar: React.FC = () => {
             <div
                 className="glass-panel"
                 style={{
-                    /* Fixed Visual Dimensions */
-                    width: '68px',
-                    height: '220px',
+                    /* Configured Dimensions */
+                    width: `${SidecarConfig.visual.width}px`,
+                    height: `${SidecarConfig.visual.height}px`,
                     boxSizing: 'border-box',
-                    borderRadius: '34px',
+                    borderRadius: `${SidecarConfig.visual.borderRadius}px`,
 
                     /* Visual Style */
-                    backdropFilter: 'blur(16px)',
-                    background: 'rgba(12, 16, 24, 0.85)',
-                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.5)', // Enhanced shadow
-                    border: '1px solid rgba(255,255,255,0.1)',
+                    backdropFilter: `blur(${SidecarConfig.theme.blurIntensity}px)`,
+                    background: SidecarConfig.theme.backgroundColor,
+                    boxShadow: SidecarConfig.theme.shadow.enabled ? SidecarConfig.theme.shadow.size + ' ' + SidecarConfig.theme.shadow.color : 'none',
+                    border: `1px solid ${SidecarConfig.theme.borderColor}`,
 
                     /* Layout */
                     display: 'flex',
@@ -45,7 +56,10 @@ const Sidecar: React.FC = () => {
                     alignItems: 'center',
                     padding: '16px 0',
                     gap: '0',
-                    overflow: 'hidden'
+                    overflow: 'hidden',
+
+                    /* Draggable Region */
+                    ...dragStyle
                 }}
             >
                 {/* 1. Status Indicator (Top) */}
@@ -55,7 +69,8 @@ const Sidecar: React.FC = () => {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        width: '100%'
+                        width: '100%',
+                        ...noDragStyle // Ensure status is clickable if needed, or just consistent
                     }}
                     title="Axora Connecté"
                 >
@@ -79,6 +94,7 @@ const Sidecar: React.FC = () => {
                         alignItems: 'center',
                         width: '100%',
                         transition: 'transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1)', // Bouncy scale
+                        ...noDragStyle // CRITICAL: clickable buttons must be no-drag
                     }}
                     onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
                     onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
@@ -110,7 +126,8 @@ const Sidecar: React.FC = () => {
                         justifyContent: 'center',
                         width: '100%',
                         opacity: 0.8,
-                        transition: 'all 0.2s'
+                        transition: 'all 0.2s',
+                        ...noDragStyle
                     }}
                 >
                     <span>+</span>

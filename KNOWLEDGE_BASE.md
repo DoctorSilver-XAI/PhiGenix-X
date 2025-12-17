@@ -14,6 +14,7 @@ PhiGenix X/
 ├── Axora/                       # 🎯 APPLICATION PRINCIPALE À DÉVELOPPER
 │   └── (projet Electron/React)
 └── Lab/                         # Base de connaissances et ressources
+    ├── lab_explorer/            # 🧪 SANDBOX / BAC À SABLE (Expérimentation & Analyse)
     ├── documentation/           # Rapports et cahiers des charges
     │   ├── Rapport Officine 4.0
     │   └── Cahier des Charges Axora ⭐
@@ -492,3 +493,4 @@ async function askAI(question, context) {
 | 2024-12-17 | Création initiale - Cartographie des ressources Lab/ |
 | 2024-12-17 | Enrichissement avec le rapport Officine 4.0 |
 | 2024-12-17 | **Ajout complet des spécifications Axora** : 4 modules, stack technique, workflows, UI dual-mode |
+| 2024-12-17 | **Définition Sandbox** : Ajout du dossier `lab_explorer` pour l'isolation et l'analyse de fichiers |

@@ -1,10 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ToolCard } from '../components/ui/ToolCard';
 import { GlassCard } from '../components/ui/GlassCard';
 import { StatusDot } from '../components/ui/StatusDot';
 import { motion } from 'framer-motion';
 
 export function Pharmacy() {
+    const navigate = useNavigate();
     return (
         <div className="p-8 h-full overflow-y-auto">
             <header className="mb-8">
@@ -28,7 +30,7 @@ export function Pharmacy() {
                     icon="📋"
                     colorVar="var(--mint)"
                     status="beta"
-                    onClick={() => console.log('Open PPP')}
+                    onClick={() => navigate('/ppp')}
                 />
                 <ToolCard
                     title="TROD Angine"

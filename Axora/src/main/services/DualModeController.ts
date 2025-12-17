@@ -1,4 +1,5 @@
 import { BrowserWindow, screen, ipcMain } from 'electron';
+import { SidecarConfig } from '../../config/sidecar.config';
 
 export type ViewMode = 'compact' | 'hub' | 'hidden';
 
@@ -54,18 +55,34 @@ export class DualModeController {
 
   private setCompactMode() {
     const { width, height } = screen.getPrimaryDisplay().workAreaSize;
-    // Sidecar: Larger than content to allow for heavy shadows (content is fixed ~68x220)
-    // 150x300 ensures the 32px blur shadow is not clipped
-    const SIDEBAR_WIDTH = 150;
-    const SIDEBAR_HEIGHT = 300;
+
+    // Use configured window dimensions
+    const SIDEBAR_WIDTH = SidecarConfig.window.width;
+    const SIDEBAR_HEIGHT = SidecarConfig.window.height;
 
     this.mainWindow.setSize(SIDEBAR_WIDTH, SIDEBAR_HEIGHT);
-    // Center vertically on the right edge
-    const yPos = Math.floor((height - SIDEBAR_HEIGHT) / 2);
-    this.mainWindow.setPosition(width - SIDEBAR_WIDTH, yPos);
+
+    // Position based on configuration
+    let yPos;
+    const { yAxisAlign, margins } = SidecarConfig.position;
+
+    if (yAxisAlign === 'top') {
+      yPos = margins.top;
+    } else if (yAxisAlign === 'bottom') {
+      yPos = height - SIDEBAR_HEIGHT - margins.bottom;
+    } else if (yAxisAlign === 'upper-quarter') {
+      // Position centrée autour du premier quart (25% du haut)
+      yPos = Math.floor((height * 0.25) - (SIDEBAR_HEIGHT / 2));
+    } else {
+      // Default: center
+      yPos = Math.floor((height - SIDEBAR_HEIGHT) / 2);
+    }
+
+    const xPos = width - SIDEBAR_WIDTH - margins.right;
+    this.mainWindow.setPosition(xPos, yPos);
 
     this.mainWindow.setAlwaysOnTop(true, 'floating');
-    this.mainWindow.setOpacity(1.0);
+    this.mainWindow.setOpacity(1.0); // Window itself is full opacity, content handles transparency
 
     // Default: Ignore mouse (click-through) until hovered
     // content failure causes user to be unable to interact if this is true

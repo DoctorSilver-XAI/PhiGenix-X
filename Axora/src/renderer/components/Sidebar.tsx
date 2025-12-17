@@ -62,29 +62,7 @@ export function Sidebar() {
                 ))}
             </nav>
 
-            {/* External AI Links Section */}
-            <div className="px-4 py-2 space-y-2 mb-4">
-                <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider px-2 mb-2">
-                    Accès IA
-                </div>
-                {[
-                    { name: 'OpenAI', url: 'https://chatgpt.com', color: 'text-green-400', bg: 'bg-green-400/10 hover:bg-green-400/20' },
-                    { name: 'Gemini', url: 'https://gemini.google.com', color: 'text-blue-400', bg: 'bg-blue-400/10 hover:bg-blue-400/20' },
-                    { name: 'Perplexity', url: 'https://www.perplexity.ai', color: 'text-teal-400', bg: 'bg-teal-400/10 hover:bg-teal-400/20' },
-                    { name: 'Mistral', url: 'https://chat.mistral.ai', color: 'text-orange-400', bg: 'bg-orange-400/10 hover:bg-orange-400/20' },
-                ].map((ai) => (
-                    <a
-                        key={ai.name}
-                        href={ai.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`flex items-center justify-between px-3 py-2 rounded-lg transition-all duration-200 group ${ai.bg}`}
-                    >
-                        <span className={`text-sm font-medium ${ai.color}`}>{ai.name}</span>
-                        <div className={`w-1.5 h-1.5 rounded-full ${ai.color.replace('text-', 'bg-')} opacity-50 group-hover:opacity-100`} />
-                    </a>
-                ))}
-            </div>
+
 
             <nav className="flex-1 px-4 py-4 space-y-2 hidden"> {/* Spacer or keeping nav structure if needed */}
             </nav>

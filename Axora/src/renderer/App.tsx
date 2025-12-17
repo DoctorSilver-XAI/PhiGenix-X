@@ -7,6 +7,7 @@ import Sidecar from './components/Sidecar';
 import { DashboardLayout } from './layouts/DashboardLayout';
 import { Home } from './pages/Home';
 import { Pharmacy } from './pages/Pharmacy';
+import { PreventionPlan } from './pages/PreventionPlan';
 
 function AppContent() {
   const [mode, setMode] = useState<'compact' | 'hub' | 'hidden'>('compact');
@@ -40,6 +41,7 @@ function AppContent() {
       <Route element={<DashboardLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/pharma" element={<Pharmacy />} />
+        <Route path="/ppp" element={<PreventionPlan />} />
         {/* Fallback or other routes */}
         <Route path="*" element={<Home />} />
       </Route>
