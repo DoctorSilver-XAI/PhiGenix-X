@@ -53,7 +53,7 @@ export const SidecarConfig = {
      * NOTE : La fenêtre doit être plus grande que le visuel pour afficher l'ombre sans coupure.
      */
     window: {
-        width: 80,   // Largeur réduite: 68px (visuel) + 12px de marge pour l'ombre
+        width: 100,   // Largeur augmentée: 68px (visuel) + marge sure pour l'ombre
         height: 300, // Hauteur totale de la fenêtre invisible (doit être > visual.height)
     },
 
