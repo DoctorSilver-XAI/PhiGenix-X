@@ -2,6 +2,7 @@ import { desktopCapturer, ipcMain, BrowserWindow, screen } from 'electron';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as os from 'os';
+import { logCaptureSession } from './PhiVisionLogger';
 
 // Mock Data for the 3 Scenarios
 const MOCK_SCENARIOS = {
@@ -277,6 +278,14 @@ async function analyzeWithMistral(base64Image: string): Promise<any> {
     console.log(`- Chips: ${analysis.chips?.length || 0} items`);
 
     // --- ARCHIVING / TRACEABILITY ---
+    // Use the new PhiVisionLogger for field testing
+    try {
+      await logCaptureSession(base64Image, ocrText, analysis);
+    } catch (logError) {
+      console.error('PhiVision: Failed to log capture session', logError);
+    }
+
+    // Legacy log (keep for backward compat)
     try {
 
       const logEntry = `

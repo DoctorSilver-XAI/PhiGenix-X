@@ -1,10 +1,13 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import { GlassCard } from './ui/GlassCard';
 import { NeonButton } from './ui/NeonButton';
 import { StatusDot } from './ui/StatusDot';
 import { ToolCard } from './ui/ToolCard';
+import { VisualTuner } from './ui/VisualTuner';
 
 const Hub: React.FC = () => {
+    const [showTuner, setShowTuner] = useState(false);
+
     const closeHub = useCallback(() => {
         window.axora?.setMode('compact');
     }, []);
@@ -71,7 +74,10 @@ const Hub: React.FC = () => {
                         </div>
                     </div>
 
-                    <div className="no-drag">
+                    <div className="no-drag" style={{ display: 'flex', gap: '10px' }}>
+                        <NeonButton variant="ghost" onClick={() => setShowTuner(true)}>
+                            🎨 Tuner
+                        </NeonButton>
                         <NeonButton variant="ghost" onClick={closeHub}>
                             Fermer (Echap)
                         </NeonButton>
@@ -193,6 +199,9 @@ const Hub: React.FC = () => {
 
                 </div>
             </GlassCard>
+
+            {/* Visual Tuner Modal */}
+            {showTuner && <VisualTuner onClose={() => setShowTuner(false)} />}
         </div>
     );
 };
