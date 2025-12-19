@@ -72,9 +72,9 @@ export const SidecarConfig = {
 
         // Marges (espace entre le Sidecar et le bord de l'écran)
         margins: {
-            left: 0,    // Espace depuis le bord gauche
-            right: 0,   // Espace depuis le bord droit (0 = collé au bord)
-            top: 0,     // Espace depuis le haut (0 = collé au bord)
+            left: 5,    // Espace depuis le bord gauche
+            right: 5,   // Espace depuis le bord droit (5px = sécurité pour l'ombre)
+            top: 5,     // Espace depuis le haut (5px = sécurité)
             bottom: 20, // Espace depuis le bas (utilisé si yAxisAlign = 'bottom')
         }
     },

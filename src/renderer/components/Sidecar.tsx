@@ -105,12 +105,10 @@ const Sidecar: React.FC<SidecarProps> = ({ mode = 'compact' }) => {
         }
 
         // Determine horizontal alignment based on config
-        let justifyContent: 'flex-start' | 'center' | 'flex-end' = 'center';
-        if (xAxisAlign === 'left') {
-            justifyContent = 'flex-start';
-        } else if (xAxisAlign === 'right') {
-            justifyContent = 'flex-end';
-        }
+        // Note: We use 'center' even for left/right alignment because the Window (80px) is wider than the Visual (68px).
+        // Centering ensures the shadow (approx 6px on sides) is not clipped by the window usage.
+        // The *Window itself* is positioned at the screen edge by DualModeController.
+        const justifyContent = 'center';
 
         return {
             width: '100vw',
