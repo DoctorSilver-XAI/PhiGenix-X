@@ -29,15 +29,20 @@ const electronHandler = {
 };
 
 const axoraHandler = {
-  setMode: (mode: 'compact' | 'hub' | 'hidden') =>
+  setMode: (mode: 'compact' | 'hub' | 'hidden' | 'phivision') =>
     ipcRenderer.invoke('axora:set-mode', mode),
   getMode: () => ipcRenderer.invoke('axora:get-mode'),
-  onModeChanged: (callback: (mode: 'compact' | 'hub' | 'hidden') => void) => {
-    const subscription = (_event: IpcRendererEvent, mode: 'compact' | 'hub' | 'hidden') => callback(mode);
+  onModeChanged: (callback: (mode: 'compact' | 'hub' | 'hidden' | 'phivision') => void) => {
+    const subscription = (_event: IpcRendererEvent, mode: 'compact' | 'hub' | 'hidden' | 'phivision') => callback(mode);
     ipcRenderer.on('axora:mode-changed', subscription);
     return () => ipcRenderer.removeListener('axora:mode-changed', subscription);
   },
   setIgnoreMouse: (ignore: boolean) => ipcRenderer.invoke('axora:set-ignore-mouse', ignore),
+  onTriggerPhiVision: (callback: () => void) => {
+    const subscription = (_event: IpcRendererEvent) => callback();
+    ipcRenderer.on('axora:trigger-phivision', subscription);
+    return () => ipcRenderer.removeListener('axora:trigger-phivision', subscription);
+  },
 };
 
 contextBridge.exposeInMainWorld('electron', electronHandler);

@@ -1,20 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StatusDot } from './ui/StatusDot';
 import { AxoraLogo } from './AxoraLogo';
 import { SidecarConfig } from '../../config/sidecar.config';
+import { usePhiVision } from '../services/PhiVisionContext';
 
-const Sidecar: React.FC = () => {
-    const switchMode = (mode: 'hub' | 'compact') => {
-        window.axora?.setMode(mode);
+interface SidecarProps {
+    mode?: 'compact' | 'hub' | 'phivision'; // 'hub' is rarely used here but kept for types
+}
+
+const Sidecar: React.FC<SidecarProps> = ({ mode = 'compact' }) => {
+    const { triggerAnalysis, isAnalyzing, isActive, closePhiVision } = usePhiVision();
+
+    const switchMode = (newMode: 'hub' | 'compact') => {
+        window.axora?.setMode(newMode);
     };
 
-    // Ensure we start in INTERACTIVE mode
-    React.useEffect(() => {
-        window.axora?.setIgnoreMouse(false);
-    }, []);
+    // Ensure we start in INTERACTIVE mode for compact/hub, 
+    // but for phivision, DualModeController sets it to ignored by default.
+    useEffect(() => {
+        if (mode === 'compact') {
+            window.axora?.setIgnoreMouse(false);
+        }
+    }, [mode]);
 
-    // Drag style if enabled
-    const dragStyle = SidecarConfig.behavior.isDraggable ? {
+    const handleMouseEnter = () => {
+        // In phivision mode, we must explicitly enable mouse when hovering the tool
+        if (mode === 'phivision') {
+            window.axora?.setIgnoreMouse(false);
+        }
+    };
+
+    const handleMouseLeave = () => {
+        // In phivision mode, revert to ignore when leaving the tool
+        if (mode === 'phivision') {
+            window.axora?.setIgnoreMouse(true);
+        }
+    };
+
+    const handlePhiVisionClick = () => {
+        if (isActive) {
+            closePhiVision();
+        } else {
+            triggerAnalysis();
+        }
+    };
+
+    // Drag style if enabled (only in compact mode usually)
+    const canDrag = SidecarConfig.behavior.isDraggable && mode === 'compact';
+    const dragStyle = canDrag ? {
         WebkitAppRegion: 'drag',
     } as React.CSSProperties : {};
 
@@ -23,17 +56,46 @@ const Sidecar: React.FC = () => {
         WebkitAppRegion: 'no-drag',
     } as React.CSSProperties;
 
+    // Layout Style Helper
+    const getContainerStyle = (): React.CSSProperties => {
+        if (mode === 'phivision') {
+            // Fullscreen overlay mode: Position absolutely to mimic the compact position
+            // We use fixed to ensure it stays in place relative to the viewport
+            const { height: h, width: w } = SidecarConfig.visual;
+            const { margins } = SidecarConfig.position;
+
+            // Calculate Top based on config (Approximate for now based on 'upper-quarter')
+            // 'upper-quarter' = 25% of screen height - half sidecar height
+            const topCalc = `calc(25vh - ${h / 2}px)`;
+
+            return {
+                position: 'fixed',
+                right: margins.right + 'px',
+                top: topCalc,
+                width: `${w}px`,
+                height: `${h}px`,
+                // Ensure z-index is above the overlay background
+                zIndex: 10001,
+            };
+        }
+
+        // Compact Mode: Centered in its own transparent window
+        return {
+            width: '100vw',
+            height: '100vh',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            background: 'transparent'
+        };
+    };
+
     return (
-        /* Main Wrapper - Invisible, handles centering */
+        /* Main Wrapper */
         <div
-            style={{
-                width: '100vw',
-                height: '100vh',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                background: 'transparent'
-            }}
+            style={getContainerStyle()}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
         >
             <div
                 className="glass-panel"
@@ -70,11 +132,11 @@ const Sidecar: React.FC = () => {
                         alignItems: 'center',
                         justifyContent: 'center',
                         width: '100%',
-                        ...noDragStyle // Ensure status is clickable if needed, or just consistent
+                        ...noDragStyle
                     }}
                     title="Axora Connecté"
                 >
-                    <StatusDot status="connected" size={12} />
+                    <StatusDot status={isAnalyzing ? 'busy' : 'connected'} size={12} />
                 </div>
 
                 {/* 2. Main Action: Search/Hub (Center-Top) - NOW LOGO */}
@@ -86,15 +148,15 @@ const Sidecar: React.FC = () => {
                         background: 'transparent',
                         border: 'none',
                         cursor: 'pointer',
-                        padding: '4px', // Reduced padding for logo
+                        padding: '4px',
                         borderRadius: '12px',
                         marginBottom: '16px',
                         display: 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',
                         width: '100%',
-                        transition: 'transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1)', // Bouncy scale
-                        ...noDragStyle // CRITICAL: clickable buttons must be no-drag
+                        transition: 'transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                        ...noDragStyle
                     }}
                     onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
                     onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
@@ -110,27 +172,45 @@ const Sidecar: React.FC = () => {
                     marginBottom: '16px'
                 }} />
 
-                {/* 4. New Action (Plus) */}
+                {/* 4. PhiVision Trigger (Modernized v2.0) */}
                 <button
-                    className="icon-button"
-                    aria-label="Nouvelle Action"
+                    id="btn-vision"
+                    onClick={handlePhiVisionClick}
+                    className={`phivision-btn group relative outline-none ring-0 border-none focus:outline-none focus:ring-0 ${isAnalyzing ? 'animate-pulse' : ''}`}
+                    disabled={isAnalyzing}
                     style={{
                         background: 'transparent',
                         border: 'none',
-                        cursor: 'pointer',
-                        fontSize: '24px',
-                        color: 'var(--text-secondary)',
-                        padding: '4px',
-                        marginBottom: '10px',
+                        padding: 0,
+                        width: '100%',
                         display: 'flex',
                         justifyContent: 'center',
-                        width: '100%',
-                        opacity: 0.8,
-                        transition: 'all 0.2s',
+                        marginBottom: '10px',
+                        cursor: isAnalyzing ? 'wait' : 'pointer',
                         ...noDragStyle
                     }}
                 >
-                    <span>+</span>
+                    <div className="relative w-[38px] h-[38px] flex items-center justify-center">
+                        {/* HUD Ring */}
+                        <div
+                            className="absolute inset-0 rounded-full border border-dashed border-cyan-500/30 w-full h-full"
+                            style={{ animation: 'hud-spin 12s linear infinite' }}
+                        />
+                        {/* Lens */}
+                        <div className="relative w-[28px] h-[28px] rounded-full bg-[#050b14] shadow-inner flex items-center justify-center border border-cyan-500/20 overflow-hidden group-hover:border-cyan-400/50 transition-colors duration-300">
+                            <div className="eye-iris w-[16px] h-[16px] rounded-full border border-cyan-500/50 bg-gradient-to-br from-cyan-900 to-indigo-900 flex items-center justify-center relative shadow-[0_0_10px_rgba(6,182,212,0.4)] transition-all duration-300">
+                                <div
+                                    className="absolute w-full h-[1px] bg-cyan-400 blur-[0.5px] shadow-[0_0_5px_cyan]"
+                                    style={{ animation: 'scan-line 2s ease-in-out infinite' }}
+                                />
+                                <div className="eye-pupil w-[5px] h-[5px] bg-cyan-100 rounded-sm shadow-[0_0_8px_rgba(255,255,255,0.9)] transition-all duration-300"></div>
+                            </div>
+                        </div>
+                    </div>
+                    {/* Tooltip */}
+                    <div className="absolute left-16 top-1/2 -translate-y-1/2 bg-gray-900/90 backdrop-blur-md text-xs font-medium px-3 py-1.5 rounded-lg border border-white/10 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0 pointer-events-none whitespace-nowrap z-30 shadow-xl text-cyan-100">
+                        {isAnalyzing ? "Analyse..." : "PhiVision v2.5"}
+                    </div>
                 </button>
 
 

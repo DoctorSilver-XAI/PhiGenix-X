@@ -1,7 +1,7 @@
-import { BrowserWindow, screen, ipcMain } from 'electron';
+import { BrowserWindow, screen, ipcMain, globalShortcut } from 'electron';
 import { SidecarConfig } from '../../config/sidecar.config';
 
-export type ViewMode = 'compact' | 'hub' | 'hidden';
+export type ViewMode = 'compact' | 'hub' | 'hidden' | 'phivision';
 
 export class DualModeController {
   private mainWindow: BrowserWindow;
@@ -14,7 +14,29 @@ export class DualModeController {
 
   private init() {
     this.setupListeners();
+    this.registerShortcuts();
     this.setCompactMode(); // Default start
+  }
+
+  private registerShortcuts() {
+    // Register Global Shortcut for PhiVision (requested by user)
+    // Mac: Cmd+Shift+P, Windows: Ctrl+Shift+P
+    const ret = globalShortcut.register('CommandOrControl+Shift+P', () => {
+      console.log('PhiVision Shortcut Triggered');
+
+      // 1. Ensure we are in PhiVision Mode (Fullscreen, Top)
+      if (this.currentMode !== 'phivision') {
+        this.switchMode('phivision');
+      }
+
+      // 2. Trigger the analysis logic in the Renderer
+      // This allows the Renderer to handle the lifecycle (spinner, calling capture, showing results)
+      this.mainWindow.webContents.send('axora:trigger-phivision');
+    });
+
+    if (!ret) {
+      console.error('PhiVision global shortcut registration failed');
+    }
   }
 
   private setupListeners() {
@@ -28,7 +50,9 @@ export class DualModeController {
 
     // Handle mouse interactivity toggling
     ipcMain.handle('axora:set-ignore-mouse', (_, ignore: boolean) => {
-      if (this.currentMode === 'compact') {
+      // In phivision mode, we might want fine-grained control, but generally 
+      // the renderer will tell us when the mouse is over an interactive element
+      if (this.currentMode === 'compact' || this.currentMode === 'phivision') {
         // forward: true lets the hover events pass through to the webview even if ignored
         this.mainWindow.setIgnoreMouseEvents(ignore, { forward: true });
       }
@@ -46,6 +70,9 @@ export class DualModeController {
         break;
       case 'hub':
         this.setHubMode();
+        break;
+      case 'phivision':
+        this.setPhiVisionMode();
         break;
       case 'hidden':
         this.mainWindow.hide();
@@ -84,8 +111,8 @@ export class DualModeController {
     this.mainWindow.setAlwaysOnTop(true, 'floating');
     this.mainWindow.setOpacity(1.0); // Window itself is full opacity, content handles transparency
 
-    // Default: Ignore mouse (click-through) until hovered
-    // content failure causes user to be unable to interact if this is true
+    // Reset mouse behavior to default for compact (usually relying on renderer to set ignore or not)
+    // but ensure we are not in a weird state
     // this.mainWindow.setIgnoreMouseEvents(true, { forward: true });
 
     this.mainWindow.show();
@@ -107,5 +134,25 @@ export class DualModeController {
     this.mainWindow.setAlwaysOnTop(true, 'modal-panel');
     this.mainWindow.show();
     this.mainWindow.focus();
+  }
+
+  private setPhiVisionMode() {
+    const { width, height } = screen.getPrimaryDisplay().workAreaSize;
+
+    // Fullscreen Overlay
+    this.mainWindow.setSize(width, height);
+    this.mainWindow.setPosition(0, 0);
+
+    // Transparent & Top
+    this.mainWindow.setAlwaysOnTop(true, 'screen-saver'); // Higher than floating
+    this.mainWindow.setOpacity(1.0);
+
+    // Default to ignoring mouse events (click-through) so the user can click on the underlying app
+    // The Renderer will explicitly setIgnoreMouse(false) when hovering over:
+    // 1. The Sidecar (which is still visible)
+    // 2. The Interactive Bricks/Results
+    this.mainWindow.setIgnoreMouseEvents(true, { forward: true });
+
+    this.mainWindow.show();
   }
 }

@@ -31,6 +31,12 @@ button {
   transition: all var(--transition-fast);
   cursor: pointer;
   -webkit-app-region: no-drag;
+  outline: none !important;
+}
+
+button:focus {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 button:hover {
@@ -73,7 +79,39 @@ a {
   transition: opacity 0.2s, filter 0.2s;
 }
 
+
 .focus-active .pgx-panel:hover {
   opacity: 1;
   filter: none;
+}
+
+/* === PhiVision Animations === */
+@keyframes hud-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes scan-line {
+  0% {
+    top: 0%;
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 1;
+  }
+
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
 }

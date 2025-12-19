@@ -1,11 +1,28 @@
 import { NavLink } from 'react-router-dom';
 import { MessageSquare, GraduationCap, Pill, Settings } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { AxoraLogo } from './AxoraLogo';
 
+import { Eye } from 'lucide-react';
+import { usePhiVision } from '../services/PhiVisionContext';
+
 export function Sidebar() {
+    const { togglePhiVision, triggerAnalysis, isActive, isAnalyzing } = usePhiVision();
     const [showUserMenu, setShowUserMenu] = useState(false);
+
+    // Keyboard Shortcut: Cmd+Shift+P to Trigger PhiVision
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if ((e.metaKey || e.ctrlKey) && e.shiftKey && e.key === 'P') {
+                if (!isActive) togglePhiVision();
+                triggerAnalysis();
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [isActive, togglePhiVision, triggerAnalysis]);
 
     const mainLinks = [
         { to: '/', icon: MessageSquare, label: 'Assistant' },
@@ -36,6 +53,26 @@ export function Sidebar() {
                         PHIGENIX 6.0
                     </span>
                 </div>
+            </div>
+
+            <div className="px-4 mb-4">
+                <button
+                    onClick={() => {
+                        if (!isActive) togglePhiVision();
+                        triggerAnalysis(); // Triggers default (Free Sale) or random
+                    }}
+                    className={`
+                        w-full flex items-center justify-center gap-2 p-3 rounded-xl 
+                        font-bold text-sm transition-all duration-300 shadow-lg
+                        ${isActive
+                            ? 'bg-gradient-to-r from-red-500 to-pink-600 text-white shadow-red-500/20'
+                            : 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-cyan-500/20 hover:shadow-cyan-500/40 hover:scale-[1.02]'
+                        }
+                    `}
+                >
+                    <Eye size={18} className={isAnalyzing ? 'animate-pulse' : ''} />
+                    {isAnalyzing ? 'Analyse...' : (isActive ? 'Arrêter PhiVision' : 'Activer PhiVision')}
+                </button>
             </div>
 
             <nav className="flex-1 px-4 py-4 space-y-2">

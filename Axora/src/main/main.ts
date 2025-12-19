@@ -15,6 +15,9 @@ import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 import { DualModeController } from './services/DualModeController';
+import { setupPhiVisionHandlers } from './services/phiVisionService';
+
+setupPhiVisionHandlers();
 
 class AppUpdater {
   constructor() {

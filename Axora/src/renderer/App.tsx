@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
+import 'tailwindcss/tailwind.css';
 import './variables.css';
 import './components.css';
 import './App.css';
@@ -8,9 +9,13 @@ import { DashboardLayout } from './layouts/DashboardLayout';
 import { Home } from './pages/Home';
 import { Pharmacy } from './pages/Pharmacy';
 import { PreventionPlan } from './pages/PreventionPlan';
+import Settings from './pages/Settings';
+import Lab from './pages/Lab';
+import { PhiVisionProvider } from './services/PhiVisionContext';
+import { PhiVisionOverlay } from './components/PhiVision/PhiVisionOverlay';
 
 function AppContent() {
-  const [mode, setMode] = useState<'compact' | 'hub' | 'hidden'>('compact');
+  const [mode, setMode] = useState<'compact' | 'hub' | 'hidden' | 'phivision'>('compact');
 
   useEffect(() => {
     // Initial fetch
@@ -28,7 +33,17 @@ function AppContent() {
   }, []);
 
   if (mode === 'compact') {
-    return <Sidecar />;
+    return <Sidecar mode="compact" />;
+  }
+
+  if (mode === 'phivision') {
+    return (
+      <>
+        {/* Pass mode to Sidecar so it can position itself correctly in fullscreen */}
+        <Sidecar mode="phivision" />
+        <PhiVisionOverlay />
+      </>
+    );
   }
 
   if (mode === 'hidden') {
@@ -37,22 +52,30 @@ function AppContent() {
 
   // mode === 'hub'
   return (
-    <Routes>
-      <Route element={<DashboardLayout />}>
-        <Route path="/" element={<Home />} />
-        <Route path="/pharma" element={<Pharmacy />} />
-        <Route path="/ppp" element={<PreventionPlan />} />
-        {/* Fallback or other routes */}
-        <Route path="*" element={<Home />} />
-      </Route>
-    </Routes>
+    <>
+      <Routes>
+        <Route element={<DashboardLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/pharma" element={<Pharmacy />} />
+          <Route path="/ppp" element={<PreventionPlan />} />
+          <Route path="/lab" element={<Lab />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="*" element={<Home />} />
+        </Route>
+      </Routes>
+      {/* Kept here just in case, but PhiVision is mostly for sidecar mode */}
+      <PhiVisionOverlay />
+    </>
   );
 }
 
 export default function App() {
   return (
-    <Router>
-      <AppContent />
-    </Router>
+    <PhiVisionProvider>
+      <Router>
+        <AppContent />
+      </Router>
+    </PhiVisionProvider>
   );
 }
+
