@@ -84,6 +84,11 @@ export class DualModeController {
         this.mainWindow.setIgnoreMouseEvents(ignore, { forward: true });
       }
     });
+
+    // Handle Minimize Request from Renderer
+    ipcMain.handle('axora:minimize-phivision', () => {
+      this.minimizePhiVision();
+    });
   }
 
   public switchMode(mode: ViewMode) {
@@ -147,11 +152,14 @@ export class DualModeController {
     xPos = Math.max(0, Math.min(xPos, screenWidth - SIDEBAR_WIDTH));
     yPos = Math.max(0, Math.min(yPos, screenHeight - SIDEBAR_HEIGHT));
 
-    const finalX = workAreaX + xPos;
-    const finalY = workAreaY + yPos;
-
     // Add workArea offset (accounts for taskbar position)
-    this.mainWindow.setPosition(finalX, finalY);
+    const rawX = workAreaX + xPos;
+    const rawY = workAreaY + yPos;
+
+    // Apply strict bounds safety
+    const { x: safeX, y: safeY } = this.ensureSafeBounds(rawX, rawY, SIDEBAR_WIDTH, SIDEBAR_HEIGHT);
+
+    this.mainWindow.setPosition(safeX, safeY);
 
     this.mainWindow.setAlwaysOnTop(true, 'floating');
     this.mainWindow.setOpacity(1.0);
@@ -167,21 +175,66 @@ export class DualModeController {
     const { width: screenWidth, height: screenHeight } = display.workAreaSize;
     const { x: workAreaX, y: workAreaY } = display.workArea;
 
-    // Hub: Central overlay, 80% width/height
-    const HUB_WIDTH = Math.floor(screenWidth * 0.8);
-    const HUB_HEIGHT = Math.floor(screenHeight * 0.8);
-    const x = Math.floor((screenWidth - HUB_WIDTH) / 2);
-    const y = Math.floor((screenHeight - HUB_HEIGHT) / 2);
+    // Responsive Hub Sizing
+    // If screen is smaller (laptop/tablet), take up more space (90% - safer than 94%)
+    // Otherwise standard 80%
+    const isSmallScreen = screenWidth <= 1366;
+    const widthRatio = isSmallScreen ? 0.90 : 0.8;
+    const heightRatio = isSmallScreen ? 0.90 : 0.8;
 
-    // Disable ignoring mouse events for Hub
-    this.mainWindow.setIgnoreMouseEvents(false);
+    const HUB_WIDTH = Math.floor(screenWidth * widthRatio);
+    const HUB_HEIGHT = Math.floor(screenHeight * heightRatio);
 
-    // First set size, then position (order matters for proper window placement)
+    // First set size
     this.mainWindow.setSize(HUB_WIDTH, HUB_HEIGHT);
-    this.mainWindow.setPosition(workAreaX + x, workAreaY + y);
+
+    // Calculate Raw Center Positions
+    const rawX = workAreaX + Math.floor((screenWidth - HUB_WIDTH) / 2);
+    const rawY = workAreaY + Math.floor((screenHeight - HUB_HEIGHT) / 2);
+
+    // Apply strict bounds safety
+    const { x: safeX, y: safeY } = this.ensureSafeBounds(rawX, rawY, HUB_WIDTH, HUB_HEIGHT);
+
+    this.mainWindow.setPosition(safeX, safeY);
     this.mainWindow.setAlwaysOnTop(true, 'modal-panel');
     this.mainWindow.show();
     this.mainWindow.focus();
+  }
+
+  public minimizePhiVision() {
+    // 1. Switch state to compact to get the visual style
+    this.currentMode = 'compact';
+    this.mainWindow.webContents.send('axora:mode-changed', 'compact');
+
+    // 2. But Force Position to Bottom-Right Corner (The "Mini Tab" feel)
+    const display = screen.getPrimaryDisplay();
+    const { width: screenWidth, height: screenHeight } = display.workAreaSize;
+    const { x: workAreaX, y: workAreaY } = display.workArea;
+
+    // Use standard window size but optimized for compact content to avoid dead zones
+    const SIDEBAR_WIDTH = SidecarConfig.window.width;
+    // Tighter height: Visual height + some padding (e.g., 40px)
+    // This prevents the invisible window (300px) from blocking clicks below the visual pill (220px)
+    const TIGHT_HEIGHT = SidecarConfig.visual.height + 15;
+
+    // Safety check
+    const FINAL_HEIGHT = Math.min(TIGHT_HEIGHT, screenHeight);
+
+    this.mainWindow.setSize(SIDEBAR_WIDTH, FINAL_HEIGHT);
+
+    // Position: Bottom Right with slight padding
+    const margin = 20;
+    const rawX = workAreaX + (screenWidth - SIDEBAR_WIDTH - margin);
+    const rawY = workAreaY + (screenHeight - FINAL_HEIGHT - margin);
+
+    // Apply strict bounds safety
+    const { x: safeX, y: safeY } = this.ensureSafeBounds(rawX, rawY, SIDEBAR_WIDTH, FINAL_HEIGHT);
+
+    this.mainWindow.setPosition(safeX, safeY);
+    this.mainWindow.setAlwaysOnTop(true, 'floating');
+    this.mainWindow.setOpacity(1.0);
+    this.mainWindow.setIgnoreMouseEvents(false);
+    this.mainWindow.show();
   }
 
   private setPhiVisionMode() {
@@ -204,5 +257,30 @@ export class DualModeController {
     this.mainWindow.setIgnoreMouseEvents(true, { forward: true });
 
     this.mainWindow.show();
+    this.mainWindow.show();
+  }
+
+  /**
+   * Calculates safe coordinates ensuring the window stays strictly within the Work Area.
+   * Prevents the "blocked window" issue where parts of the app are off-screen.
+   */
+  private ensureSafeBounds(x: number, y: number, width: number, height: number): { x: number, y: number } {
+    // 1. Find which display this rectangle belongs to (or nearest)
+    const display = screen.getDisplayMatching({ x, y, width, height });
+    const workArea = display.workArea;
+
+    // 2. Clamp X (Horizontal)
+    // Cannot be left of WorkArea
+    let safeX = Math.max(workArea.x, x);
+    // Cannot be right of WorkArea (RightEdge - WindowWidth)
+    safeX = Math.min(safeX, workArea.x + workArea.width - width);
+
+    // 3. Clamp Y (Vertical)
+    // Cannot be above WorkArea
+    let safeY = Math.max(workArea.y, y);
+    // Cannot be below WorkArea (BottomEdge - WindowHeight)
+    safeY = Math.min(safeY, workArea.y + workArea.height - height);
+
+    return { x: safeX, y: safeY };
   }
 }

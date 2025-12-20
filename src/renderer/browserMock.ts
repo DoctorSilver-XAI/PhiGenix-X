@@ -10,6 +10,7 @@ type ViewMode = 'compact' | 'hub' | 'hidden';
 interface MockAxoraHandler {
     setMode: (mode: ViewMode) => Promise<void>;
     getMode: () => Promise<ViewMode>;
+    minimizePhiVision: () => Promise<void>;
     _currentMode: ViewMode;
     _isMock: boolean;
 }
@@ -48,6 +49,11 @@ const mockAxoraHandler: MockAxoraHandler = {
     getMode: async (): Promise<ViewMode> => {
         console.log(`%c[BROWSER MOCK] getMode: ${mockCurrentMode}`, 'color: #00f2ff;');
         return Promise.resolve(mockCurrentMode);
+    },
+
+    minimizePhiVision: async (): Promise<void> => {
+        console.log('%c[BROWSER MOCK] minimizePhiVision', 'color: #bc13fe; font-weight: bold;');
+        return Promise.resolve();
     }
 };
 

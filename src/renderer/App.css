@@ -54,6 +54,10 @@ a {
   -webkit-app-region: no-drag;
 }
 
+.draggable {
+  -webkit-app-region: drag;
+}
+
 /* Scrollbar Customization */
 ::-webkit-scrollbar {
   width: 6px;

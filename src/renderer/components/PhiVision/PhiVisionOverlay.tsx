@@ -51,6 +51,17 @@ export const PhiVisionOverlay: React.FC = () => {
     const { isActive, isAnalyzing, result } = usePhiVision();
     const [fontSize, setFontSize] = useState(1); // 1 = normal, 1.2 = large, 1.4 = extra large
 
+    // Listen for Escape to minimize
+    React.useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') {
+                window.axora?.minimizePhiVision?.();
+            }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, []);
+
     if (!isActive) return null;
     const data = result as PhiVisionResult;
 
@@ -77,7 +88,7 @@ export const PhiVisionOverlay: React.FC = () => {
             {!isAnalyzing && data && (
                 <>
                     {/* --- HEADER (AXORA GLASSMORPHISM v2.4) --- */}
-                    <div className="flex items-center justify-between pointer-events-auto select-none mb-1 shrink-0 bg-[#0b1220]/80 border-b border-cyan-500/20 backdrop-blur-xl -mx-4 -mt-4 px-4 py-3 shadow-[0_10px_30px_rgba(0,0,0,0.5)] z-40 relative overflow-hidden">
+                    <div className="draggable flex items-center justify-between pointer-events-auto select-none mb-1 shrink-0 bg-[#0b1220]/80 border-b border-cyan-500/20 backdrop-blur-xl -mx-4 -mt-4 px-4 py-3 shadow-[0_10px_30px_rgba(0,0,0,0.5)] z-40 relative overflow-hidden">
                         {/* Ambient Glow */}
                         <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent" />
 
@@ -114,7 +125,18 @@ export const PhiVisionOverlay: React.FC = () => {
                             )}
                         </div>
 
-                        {/* Zone 3: Utilities (REMOVED for simplicity) */}
+                        {/* Zone 3: Utilities - Minimize/Close */}
+                        <div className="flex items-center gap-2 relative z-50">
+                            <button
+                                onClick={() => window.axora?.minimizePhiVision()}
+                                className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-all border border-transparent hover:border-white/10"
+                                title="Réduire en bas à droite (Echap)"
+                            >
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M7 17L17 7M17 17H7V7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                            </button>
+                        </div>
                     </div>
 
                     {/* --- MAIN CONTENT (Scrollable if needed, but intended to fit single screen) --- */}

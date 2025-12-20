@@ -97,6 +97,22 @@ export const PhiVisionProvider = ({ children }: { children: ReactNode }) => {
         return cleanup;
     }, [triggerAnalysis]);
 
+    // Safety: Listen for external mode changes to keep state in sync (e.g. Minimize via Esc)
+    React.useEffect(() => {
+        if (!window.axora?.onModeChanged) return;
+
+        const cleanup = window.axora.onModeChanged((mode) => {
+            if (mode === 'compact' && isActive) {
+                console.log('PhiVision: Mode changed to compact externally - Resetting active state');
+                setIsActive(false);
+            }
+        });
+
+        return () => {
+            cleanup();
+        };
+    }, [isActive]);
+
     const closePhiVision = () => {
         setIsActive(false);
         setResult(null);

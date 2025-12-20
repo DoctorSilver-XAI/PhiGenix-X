@@ -88,7 +88,7 @@ const Hub: React.FC = () => {
                 <div style={{ flex: 1, padding: '30px', display: 'flex', gap: '30px' }}>
 
                     {/* Left Area: Assistant */}
-                    <GlassCard style={{ width: '380px', display: 'flex', flexDirection: 'column', background: 'rgba(255,255,255,0.02)' }}>
+                    <GlassCard style={{ flexBasis: '340px', minWidth: '300px', flexGrow: 1, maxWidth: '400px', display: 'flex', flexDirection: 'column', background: 'rgba(255,255,255,0.02)' }}>
                         <h2 style={{ marginTop: 0, display: 'flex', alignItems: 'center', gap: '10px', fontSize: '1.1rem', letterSpacing: '0.05em' }}>
                             <span style={{ color: 'var(--neon-violet)' }}>✦</span> ASSISTANT CLINIQUE
                         </h2>
@@ -134,7 +134,7 @@ const Hub: React.FC = () => {
                     </GlassCard>
 
                     {/* Right Area: Apps Grid */}
-                    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                    <div style={{ flex: 2, display: 'flex', flexDirection: 'column', gap: '20px' }}>
                         <div>
                             <h2 style={{ marginTop: 0, marginBottom: '15px', fontSize: '1.1rem', letterSpacing: '0.05em', color: 'var(--text)' }}>
                                 OUTILS OFFICINE

@@ -42,7 +42,10 @@ const axoraHandler = {
     const subscription = (_event: IpcRendererEvent) => callback();
     ipcRenderer.on('axora:trigger-phivision', subscription);
     return () => ipcRenderer.removeListener('axora:trigger-phivision', subscription);
+    ipcRenderer.on('axora:trigger-phivision', subscription);
+    return () => ipcRenderer.removeListener('axora:trigger-phivision', subscription);
   },
+  minimizePhiVision: () => ipcRenderer.invoke('axora:minimize-phivision'),
 };
 
 contextBridge.exposeInMainWorld('electron', electronHandler);

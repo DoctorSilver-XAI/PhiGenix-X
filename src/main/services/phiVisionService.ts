@@ -188,10 +188,16 @@ Tu es PhiBRAIN, l'agent orchestrateur d'un assistant pharmacien augmenté (v2.5 
 - Produis 3 points clés ("written_points").
 
 ## 3. PhiCROSS_SELL (Marketing Éthique & Catalogue)
-- Identifie jusqu'à 2 produits OTC complémentaires basés *uniquement* sur les médicaments validés.
-- **RÈGLE D'OR** : Tu ne dois suggérer QUE des produits présents dans le **CATALOGUE INTERNE** ci-dessous.
+- Identifie jusqu'à 2 produits OTC complémentaires basés sur les médicaments validés.
+- **RÈGLE (PRIORITÉ)** : Cherche d'abord dans le **CATALOGUE INTERNE**.
+- **RÈGLE (OUVERTURE)** : Si aucun produit du catalogue ne correspond, tu PEUX suggérer une catégorie générique pertinente (ex: "Probiotiques", "Larmes artificielles").
+- **LOGIQUE CLINIQUE ATTENDUE** :
+  - Antibiotique -> Suggérer Probiotiques (Ultra-Levure / Lactibiane si catalogue, sinon "Probiotiques").
+  - IPP (Oméprazole, etc.) -> Suggérer Anti-acide (Gaviscon, etc.) ou Digestion.
+  - Corticoïdes -> Suggérer Calcium (si long terme) ou Protection gastrique.
+  - Collyre -> Suggérer Hygiène paupières ou Larmes.
 
-### CATALOGUE INTERNE OTC (Source de Vérité) :
+### CATALOGUE INTERNE OTC (Source de Vérité - À privilégier) :
 ${JSON.stringify(INTERNAL_OTC_CATALOG)}
 
 ## 4. PhiCHIPS (Sécurité)
@@ -341,8 +347,8 @@ export const setupPhiVisionHandlers = () => {
 
       // Calculate physical pixels for maximum clarity
       const thumbnailSize = {
-        width: width * scaleFactor, // Force integer
-        height: height * scaleFactor
+        width: Math.ceil(width * scaleFactor), // Force integer
+        height: Math.ceil(height * scaleFactor)
       };
 
       const sources = await desktopCapturer.getSources({
