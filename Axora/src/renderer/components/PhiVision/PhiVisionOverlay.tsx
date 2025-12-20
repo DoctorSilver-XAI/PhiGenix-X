@@ -50,14 +50,80 @@ const FooterBadge = ({ label }: { label: string }) => {
 export const PhiVisionOverlay: React.FC = () => {
     const { isActive, isAnalyzing, result } = usePhiVision();
     const [fontSize, setFontSize] = useState(1); // 1 = normal, 1.2 = large, 1.4 = extra large
+    const [isMinimized, setIsMinimized] = useState(false);
+
+    // --- Keyboard Shortcuts ---
+    React.useEffect(() => {
+        if (!isActive) return;
+
+        const handleKeyDown = (e: KeyboardEvent) => {
+            // ESCAPE -> Minimize
+            if (e.key === 'Escape') {
+                setIsMinimized(true);
+            }
+            // Ctrl/Cmd + M -> Toggle Minimize
+            if ((e.metaKey || e.ctrlKey) && e.key === 'm') {
+                e.preventDefault();
+                setIsMinimized(prev => !prev);
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [isActive]);
 
     if (!isActive) return null;
     const data = result as PhiVisionResult;
 
+    // --- MINIMIZED VIEW (Capsule) ---
+    if (isMinimized && data && !isAnalyzing) {
+        return (
+            <div className={`fixed bottom-4 right-4 z-[9999] pointer-events-auto flex flex-col items-end gap-2 animate-in slide-in-from-bottom-4 duration-300`}>
+
+                {/* Restore Button / Capsule */}
+                <div
+                    onClick={() => setIsMinimized(false)}
+                    className="cursor-pointer group flex items-center gap-3 bg-[#0b1220]/90 border border-cyan-500/30 backdrop-blur-xl pl-2 pr-4 py-2 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.5)] hover:border-cyan-400 hover:shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all"
+                >
+                    {/* Pulsing Dot */}
+                    <div className="relative w-3 h-3">
+                        <span className="absolute inset-0 rounded-full bg-cyan-500 animate-ping opacity-75"></span>
+                        <span className="relative block w-3 h-3 rounded-full bg-cyan-400"></span>
+                    </div>
+
+                    <div className="flex flex-col">
+                        <span className="text-[10px] font-bold text-cyan-100 uppercase tracking-widest leading-none">
+                            Analyse Prête
+                        </span>
+                        <span className="text-[9px] text-cyan-500/80 font-mono leading-none mt-1">
+                            {data.meds?.length || 0} détectés • Cliquer pour ouvrir
+                        </span>
+                    </div>
+
+                    {/* Mini Preview Icons (Optional) */}
+                    <div className="w-px h-6 bg-white/10 mx-1" />
+                    <div className="flex -space-x-1">
+                        {data.is_minor && (
+                            <div className="w-5 h-5 rounded-full bg-amber-500/20 border border-amber-500 flex items-center justify-center text-[8px] text-amber-500 font-bold" title="Patient Mineur">!</div>
+                        )}
+                        <div className="w-5 h-5 rounded-full bg-cyan-900/40 border border-cyan-500/40 flex items-center justify-center text-[8px] text-cyan-300">
+                            👁️
+                        </div>
+                    </div>
+                </div>
+
+                {/* Keyboard Hint */}
+                <span className="text-[9px] text-white/30 font-mono mr-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                    Appuyez sur 'M' ou cliquez pour agrandir
+                </span>
+            </div>
+        );
+    }
+
     return (
-        <div className="fixed inset-0 z-[9999] pointer-events-none font-sans text-gray-100 p-4 flex flex-col gap-2 select-none">
+        <div className={`fixed inset-0 z-[9999] pointer-events-none font-sans text-gray-100 p-4 flex flex-col gap-2 select-none transition-opacity duration-200 ${isMinimized ? 'opacity-0' : 'opacity-100'}`}>
             {/* Background */}
-            <div className="absolute inset-0 bg-[#050910]/90 backdrop-blur-md -z-10" />
+            <div className="absolute inset-0 bg-[#050910]/95 backdrop-blur-md -z-10" />
 
             {/* ERROR / MOCK STATUS */}
             {data?.isMock && !data.error && (
@@ -114,7 +180,22 @@ export const PhiVisionOverlay: React.FC = () => {
                             )}
                         </div>
 
-                        {/* Zone 3: Utilities (REMOVED for simplicity) */}
+                        {/* Zone 3: Utilities & Controls */}
+                        <div className="flex items-center gap-2 relative z-10 pl-4 border-l border-white/10">
+                            {/* Minimize Button */}
+                            <button
+                                onClick={() => setIsMinimized(true)}
+                                className="p-2 hover:bg-white/10 rounded-lg transition-colors group relative"
+                                title="Réduire (Echap)"
+                            >
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-gray-400 group-hover:text-white transition-colors">
+                                    <path d="M4 14h6v6" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M20 10h-6V4" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M14 10l7-7" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M3 21l7-7" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                            </button>
+                        </div>
                     </div>
 
                     {/* --- MAIN CONTENT (Scrollable if needed, but intended to fit single screen) --- */}
@@ -194,6 +275,14 @@ export const PhiVisionOverlay: React.FC = () => {
                         {data.analysis_context && <FooterBadge label={data.analysis_context} />}
                         {data.is_minor && <FooterBadge label="Patient Mineur" />}
                         {data.chips?.map((badge, i) => <FooterBadge key={i} label={badge} />)}
+
+                        <div className="flex-1" /> {/* Spacer */}
+
+                        <div className="flex items-center gap-2 text-[9px] text-gray-500 font-mono">
+                            <span>ESPACE = Confirmer</span>
+                            <span>•</span>
+                            <span>ECHAP = Réduire</span>
+                        </div>
                     </div>
 
                     {/* Vision Input Feed (Fixed & Floating on top) */}

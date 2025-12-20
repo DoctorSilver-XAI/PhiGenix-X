@@ -100,7 +100,6 @@
     "@electron/notarize": "^3.0.0",
     "@emotion/is-prop-valid": "^1.4.0",
     "@pokusew/pcsclite": "^0.6.0",
-    "better-sqlite3": "^12.5.0",
     "electron-debug": "^4.1.0",
     "electron-log": "^5.3.2",
     "electron-updater": "^6.3.9",
