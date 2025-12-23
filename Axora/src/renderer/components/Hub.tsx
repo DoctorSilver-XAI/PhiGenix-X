@@ -178,7 +178,7 @@ const Hub: React.FC = () => {
                             </div>
                         </div>
 
-                        {/* Recent Activity / Context */}
+                        {/* Recent Activity / Context - DISABLED MODULE
                         <div style={{ marginTop: 'auto' }}>
                             <GlassCard variant="default" style={{
                                 borderColor: 'rgba(255,255,255,0.08)',
@@ -195,6 +195,7 @@ const Hub: React.FC = () => {
                                 <StatusDot status="busy" size={10} />
                             </GlassCard>
                         </div>
+                        */}
                     </div>
 
                 </div>

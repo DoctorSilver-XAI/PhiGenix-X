@@ -1,0 +1,857 @@
+
+================================================================================
+TIMESTAMP: 2025-12-19T08:11:15.884Z
+--------------------------------------------------------------------------------
+[OCR INPUT DETECTED]
+A  三  PhiGenix-X-main - Antigravity - main.ts [Administrator]  Open Agent Manager  □  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  Explorer  …  TS main.ts  &gt; 1  &lt;  →  ...  n &gt; Axora &gt; src &gt; main &gt; TS main.ts :  &gt;  →  →  →  ×  &gt;  →  →  →  →  &gt;  →  →  →  &gt;  &gt;  →  &gt;  &gt;  →  &gt;  &gt;  →  &gt;  &gt;  →  &gt;  &gt;  →  &gt;  &gt;  →  &gt;  &gt;  →  &gt;  &gt;  →  &gt;  &gt;  →  &gt;  &gt;  →  &gt;  &gt;  →  &gt;  &gt;  →  &gt;  &gt;  →  &gt;  &gt;  →  &gt;  &gt;  →  &gt;  &gt;  →  &gt;  &gt;  →  &gt;  &gt;  →  &gt;  &gt;  →  &gt;  &gt;  →  &gt;  &gt;  →  &gt;  &gt;  →  &gt;  &gt;  →  &gt;  &gt;  →  &gt;  &gt;  →  &gt;  &gt;  →  &gt;  &gt;  →  &gt;  &gt;  →  &gt;  &gt;  →  &gt;  &gt;  &gt;
+--------------------------------------------------------------------------------
+[MISTRAL ANALYSIS OUTPUT]
+{
+  "analysis_context": "Aucune donnée médicale détectée",
+  "advices": {
+    "oral_sentence": "Je suis à votre écoute pour vous aider aujourd'hui. Comment puis-je vous assister ?",
+    "written_points": []
+  },
+  "meds": [],
+  "cross_selling": [],
+  "chips": [],
+  "is_minor": false
+}
+================================================================================
+
+
+================================================================================
+TIMESTAMP: 2025-12-19T08:12:07.051Z
+--------------------------------------------------------------------------------
+[OCR INPUT DETECTED]
+A  三  PhiGenix-X-main - Antigravity - main.ts [Administrator]  Open Agent Manager  □  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  Explorer  \nrightarrow \backslash ThiGenix-X-main  A  A  Axora  &gt;rc&gt;main&gt;TS main.ts  2  3  /**  * This module  * electron ren  * through IPC.  *  *  When running  *. /src/main.  */  import path fro  import {app, B  import {autoUp  import log from  import MenuBuil  import {resolv  import {DualMo  import {setupP  import {Sideca  1  2  3  4  5  6  7  8  9  10  11  import  path  import  {  12  13  14  15  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35  \nrightarrow \backslash ThiVision Historv.txt  &gt; Outline  &gt; Timeline  &gt; T  \nrightarrow \backslash ThiGenix-X-main  \nrightarrow \backslash Axora &gt;rc&gt;main&gt;TS main.ts  2  3  4  5  6  7  8  9  10  11  import  path  12  13  14  15  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35  \nrightarrow \backslash Assets &gt; node_modules  &gt; release &gt; src &gt; _ts &gt; _ts &gt; config &gt; main &gt; services &gt; ts main.ts &gt; menu.ts &gt; ts preload.ts &gt; ts util.ts &gt; &gt; &gt; renderer &gt; .editorconfig &gt; .eslintignore &gt; .eslintrc.js &gt; .gitattributes &gt; .gitignore &gt; .CHARGELOG.md &gt; .CODE_OF_CONDUCT.md &gt; LICENSE package-lock.json package.json ThiVision Historv.txt &gt; Outline &gt; Timeline  \nrightarrow \backslash ThiGenix-X-main  \nrightarrow \backslash Axora &gt; src &gt; main &gt; TS main.ts  \nrightarrow \backslash 1  \nrightarrow 2  \nrightarrow 3  \nrightarrow 4  \nrightarrow 5  \nrightarrow 6  \nrightarrow 7  \nrightarrow 8  \nrightarrow 9  \nrightarrow 10  \nrightarrow 11  \nrightarrow 12  \nrightarrow 13  \nrightarrow 14  \nrightarrow 15  \nrightarrow 16  \nrightarrow  1  \nrightarrow  2  ^{}[]
+--------------------------------------------------------------------------------
+[MISTRAL ANALYSIS OUTPUT]
+{
+  "analysis_context": "Aucune donnée médicale détectée",
+  "advices": {
+    "oral_sentence": "Je suis à votre écoute pour vous aider aujourd'hui. En quoi puis-je vous assister ?",
+    "written_points": [
+      "Aucune ordonnance ou traitement visible dans ce contexte.",
+      "N'hésitez pas à me montrer votre ordonnance ou à me décrire vos besoins."
+    ]
+  },
+  "meds": [],
+  "cross_selling": [],
+  "chips": [],
+  "is_minor": false
+}
+================================================================================
+
+
+================================================================================
+TIMESTAMP: 2025-12-19T08:12:45.799Z
+--------------------------------------------------------------------------------
+[OCR INPUT DETECTED]
+\omega . id. (Facturation) - Portail Pharmagest (LGPI 2.21.6.1.R5.132 sur poste0)  PORT AIL  1  d.  Facturation  #  #  #  #  #  Se connecter  Gras  #  10  Tassigny  #  PHARMAgest  Technologie pour la santé  p1  le 19/12/2025 à 09:12  32 actes  Facturation: n° 1 sur 1  SCOR  Ciblé  GIL Pierre  ![img-0.jpeg](img-0.jpeg)  ![img-1.jpeg](img-1.jpeg)  Quantité en attente de réception  ![img-2.jpeg](img-2.jpeg)  ![img-3.jpeg](img-3.jpeg)  |  Type | I | Désignation | Qté | Px vte | T Remb | Remise | Honoraire | Prest | Liste | Stock | Dus  | | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | |  VD |  | G VALACICLOVIR 500MG MYLAN CPR 10 | 1 | 7.56 |  |  | 1.02 | PH7 | 1 | 13 | 0  | |  VD |  | DOLIPRANE 1000MG CPR B/8 | 1 | 1.16 |  |  | 1.02 | PH7 |  | 1279 | 0  | |  VD |  |  |  |  |  |  |  |  |  |  |   |  nb lignes : 2  Ligne :  Total : 10.76 €  ESC  F1  F2  F3  F4  Retour  Outils  Détail  Ordonnance  Visu/Modif  F7  #  F8  #  F9  F10  F11  F12  Rec h DC  Lect. cartes  Posologie  Substitution  Autres Fact  BDD Médic.  Pause  #  FIN  Valider
+--------------------------------------------------------------------------------
+[MISTRAL ANALYSIS OUTPUT]
+{
+  "analysis_context": "Aucune donnée médicale détectée",
+  "advices": {
+    "oral_sentence": "Je suis à votre écoute pour toute question ou besoin concernant vos médicaments.",
+    "written_points": []
+  },
+  "meds": [],
+  "cross_selling": [],
+  "chips": [],
+  "is_minor": false
+}
+================================================================================
+
+
+================================================================================
+TIMESTAMP: 2025-12-19T08:12:58.584Z
+--------------------------------------------------------------------------------
+[OCR INPUT DETECTED]
+\omega . id. (Facturation) - Portail Pharmagest (LGPI 2.21.6.1.R5.132 sur poste0)  PORT AIL  1  d. Facturation  #  #  #  #  #  Se connecter  Gran  1  Tassigny  PHARMAgest  Technologie pour la santé  p1  le 19/12/2025 à 09:12  32 actes  Facturation: n° 1 sur 1  SCOR  Ciblé  GIL Pierre  ![img-0.jpeg](img-0.jpeg)  ![img-1.jpeg](img-1.jpeg)  Quantité en attente de réception  ![img-2.jpeg](img-2.jpeg)  ![img-3.jpeg](img-3.jpeg)  |  Type | I | Désignation | Qté | Px vte | T Remb | Remise | Honoraire | Prest | Liste | Stock | Dus  | | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | |  VD |  | G VALACICLOVIR 500MG MYLAN CPR 10 | 1 | 7.56 |  |  | 1.02 | PH7 | 1 | 13 | 0  | |  VD |  | DOLIPRANE 1000MG CPR B/8 | 1 | 1.16 |  |  | 1.02 | PH7 |  | 1279 | 0  | |  VD |  |  |  |  |  |  |  |  |  |  |   |  nb lignes : 2  Ligne :  Total : 10.76 €  ESC  F1  F2  F3  F4  Retour  Outils  Détail  Ordonnance  Visu/Modif  F7  #  F8  #  F9  F10  F11  F12  Rec h DC  Lect. cartes  Posologie  Substitution  Autres Fact  BDD Médic.  Pause  FIN  Valider
+--------------------------------------------------------------------------------
+[MISTRAL ANALYSIS OUTPUT]
+{
+  "analysis_context": "Ordonnance en cours de facturation avec deux médicaments sur ordonnance (VD)",
+  "advices": {
+    "oral_sentence": "Bonjour Monsieur GIL, voici vos médicaments pour aujourd'hui : le Valaciclovir pour votre traitement antiviral et le Doliprane pour soulager d'éventuelles douleurs ou fièvre. N'hésitez pas à me demander si vous avez des questions sur leur utilisation.",
+    "written_points": [
+      "Prenez le Valaciclovir selon la posologie prescrite, généralement pour traiter les infections herpétiques.",
+      "Le Doliprane 1000 mg peut être pris en cas de douleur ou fièvre, en respectant un intervalle de 6 heures et sans dépasser 4 comprimés par jour."
+    ]
+  },
+  "meds": [
+    {
+      "dci": "Valaciclovir",
+      "recommendation": "Classe : Antiviral (inhibiteur de la thymidine kinase virale). Sécurité : Éviter en cas d'insuffisance rénale sévère. Posologie usuelle : 500 mg toutes les 8 heures ou 1 g deux fois par jour selon la pathologie."
+    },
+    {
+      "dci": "Paracétamol",
+      "recommendation": "Classe : Antipyretique/Analgésique. Sécurité : Risque hépatotoxique au-delà de 4 g/jour. Posologie usuelle : 1 à 2 g toutes les 6 heures, sans dépasser 4 g/jour."
+    }
+  ],
+  "cross_selling": [
+    {
+      "name": "Humex Rhume jour & nuit – Urgo",
+      "reason": "Complémentaire en cas de symptômes grippaux ou rhume associés à une infection virale (ex : fièvre, congestion nasale)."
+    },
+    {
+      "name": "Strepsils Pastilles menthol – Reckitt Benckiser",
+      "reason": "Pour soulager les irritations de gorge souvent liées aux infections virales comme celles traitées par Valaciclovir."
+    }
+  ],
+  "chips": [
+    "Valaciclovir : Respectez la posologie prescrite pour éviter les résistances virales.",
+    "Paracétamol : Ne dépassez pas la dose maximale de 4 g/jour.",
+    "Vérification Requise : Confirmez l'absence d'allergie aux composants avant prise.",
+    "Hydratation : Buvez suffisamment d'eau pendant le traitement."
+  ],
+  "is_minor": false
+}
+================================================================================
+
+
+================================================================================
+TIMESTAMP: 2025-12-19T08:13:23.706Z
+--------------------------------------------------------------------------------
+[OCR INPUT DETECTED]
+\omega . id. (Facturation) - Portail Pharmagest (LGPI 2.21.6.1.R5.132 sur poste0)  PORT AIL  1  #  1  #  1  Se connecter  Gran  #  #  Tassigny  PHARMAgest  Technologie pour la santé  p1  le 19/12/2025 à 09:13  32 actes  Facturation: n° 1 sur 1  SCOR  Ciblé  GIL Pierre  ![img-0.jpeg](img-0.jpeg)  ![img-1.jpeg](img-1.jpeg)  Quantité en attente de réception  ![img-2.jpeg](img-2.jpeg)  ![img-3.jpeg](img-3.jpeg)  |  Type | I | Désignation | Qté | Px vte | T Remb | Remise | Honoraire | Prest | Liste | Stock | Dus  | | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | |  VD |  | G VALACICLOVIR 500MG MYLAN CPR 10 | 1 | 7.56 |  |  | 1.02 | PH7 | 1 | 13 | 0  | |  VD |  | DOLIPRANE 1000MG CPR B/8 | 1 | 1.16 |  |  | 1.02 | PH7 |  | 1279 | 0  | |  VD |  |  |  |  |  |  |  |  |  |  |   |  nb lignes : 2  Ligne :  Total : 10.76 €  ESC  F1  F2  F3  F4  Retour  Outils  Détail  Ordonnance  Visu/Modif  F7  #  F8  #  F9  F10  F11  F12  Rec h DC  Lect. cartes  Posologie  Substitution  Autres Fact  BDD Médic.  Pause  FIN  Valider
+--------------------------------------------------------------------------------
+[MISTRAL ANALYSIS OUTPUT]
+{
+  "analysis_context": "Ordonnance en cours de facturation avec 2 médicaments sur ordonnance (VD)",
+  "advices": {
+    "oral_sentence": "Voici les médicaments prescrits pour vous aujourd'hui : le Valaciclovir pour une infection herpétique et le Doliprane pour soulager une douleur ou une fièvre. Prenez bien vos traitements comme indiqué et n'hésitez pas si vous avez des questions.",
+    "written_points": [
+      "Le Valaciclovir est un antiviral utilisé pour traiter les infections à herpes virus (bouche ou zone génitale).",
+      "Prenez le Doliprane uniquement en cas de douleur ou fièvre, en respectant la posologie maximale de 4 grammes par jour (soit 4 comprimés de 1000 mg).",
+      "Évitez l'alcool pendant le traitement au Valaciclovir pour optimiser son efficacité.",
+      "Consultez un médecin si les symptômes persistent ou s'aggravent."
+    ]
+  },
+  "meds": [
+    {
+      "dci": "Valaciclovir",
+      "recommendation": "Classe : Antiviral (inhibiteur de la thymidine kinase virale). Sécurité : À prendre strictement selon la prescription pour éviter les résistances. Posologie usuelle : 500 mg toutes les 8 heures pendant 5 jours pour le traitement des infections herpétiques."
+    },
+    {
+      "dci": "Paracétamol",
+      "recommendation": "Classe : Antalgique/antipyretique. Sécurité : Respecter la dose maximale de 4 g/jour. Posologie usuelle : 1 à 2 comprimés de 1000 mg toutes les 6 heures, sans dépasser 8 comprimés/jour."
+    }
+  ],
+  "cross_selling": [
+    {
+      "name": "Strepsils Pastilles menthol",
+      "reason": "Complément utile en cas de douleurs ou irritations de gorge associées à une infection virale (comme celles traitées par Valaciclovir)."
+    },
+    {
+      "name": "Camilia Solution buvable",
+      "reason": "Si des symptômes ORL (comme maux de gorge) apparaissent, ce produit peut soulager les irritations, notamment chez les enfants ou adultes sensibles."
+    }
+  ],
+  "chips": [
+    "Valaciclovir : Hydratation recommandée pendant le traitement.",
+    "Paracétamol : Éviter l'alcool et ne pas dépasser la dose maximale.",
+    "Vérification Requise : Confirmez la posologie exacte du Valaciclovir avec votre médecin.",
+    "Douleur persistante : Consultez si la douleur ou fièvre ne s’améliore pas après 3 jours de traitement."
+  ],
+  "is_minor": false
+}
+================================================================================
+
+
+================================================================================
+TIMESTAMP: 2025-12-19T08:20:19.036Z
+--------------------------------------------------------------------------------
+[OCR INPUT DETECTED]
+DoctorSilver-XAI/PhiGenix-X  Browser  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  ☐ Effectuez une recherche sur Google ou saisissez une URL  ☐ Accueil - Google Drive  ☐ Boîte de réception - grandep  ☐ 18  ☐ 18  ☐ 18  ☐ 18  ☐ 18  ☐ 18  ☐ 1  ☐ Google Traduction  mail.google.com/mail/u/0/#inbox  1  2  3  4  5  6  7  8  9  10  11  12  13  14  15  16  17  18  19  10  11  12  13  14  15  16  17  18  19  10  ☐ Gmail  ☐ Nouveau message  ☐ Boîte de réception  ① Spam 3  ② Achats  ☑ Plus  Libellés  + [Gmail]Tous les messag...  + aicha  + allan 1  + ANIMATION PROMO  + csap  + Gollman 1  + Notes  + Pharmacien  1  2  3  4  5  6  7  8  9  10  11  12  13  14  15  16  17  18  19  10  ☐ Annik BERTIN  menu le Cristal vendredi 19 décembre  Bonjour ci-joint le menu du jour. Belle journée. Anaïk Bertin Moni.  ☐ ERABLE Emilie  TR: RENDEZ VOUS AVENE  Afin de préparer notre RDV voici les éléments du cycle en cours :  ☐ noreply.cetip-TP  LISTE 2026 DES MUTUELLES GEREES PAR iSANTE  Madame, Monsieur, iSanté attire votre attention et vous informe.  ☐ AE IQVIA EU  Cas de pharmacovigilance concernant Entyvio - 2025TUS10636...  Bonjour M. Claron, Nous avons reçu des informations initiales su...  ☐ Communicati., moi 2  Négociations Solaire Avène et SVR  Grande Pharmacie De Tassigny 1598 Avenue Mal de Lattre de Tasser Chrome
+--------------------------------------------------------------------------------
+[MISTRAL ANALYSIS OUTPUT]
+{
+  "analysis_context": "Aucune donnée médicale détectée",
+  "advices": {
+    "oral_sentence": "Je suis à votre écoute pour vous aider aujourd'hui. Comment puis-je vous assister ?",
+    "written_points": []
+  },
+  "meds": [],
+  "cross_selling": [],
+  "chips": [],
+  "is_minor": false
+}
+================================================================================
+
+
+================================================================================
+TIMESTAMP: 2025-12-19T08:38:10.764Z
+--------------------------------------------------------------------------------
+[OCR INPUT DETECTED]
+ud. id. – Portail Pharmagest (LGPI 2.21.6.1.R5.132 sur poste0) — ☐ X PORT AIL ud. Le Le Le Le Le Se connecter Gran Tassigny PHARMAGEST Technologies pour la santé  # A. Comptoir  B. Gestion Stock C. Données D. Suivi Administratif E. Configuration F. BDD Médic G. Utilitaires / Listes H. Service Suivi Patient I. Location  ![img-0.jpeg](img-0.jpeg)  ![img-1.jpeg](img-1.jpeg) J. Facturation  ![img-2.jpeg](img-2.jpeg) K. Ventes Commerciales  ![img-3.jpeg](img-3.jpeg) L. Ventes à facturer  ![img-4.jpeg](img-4.jpeg) M. Rappel  ![img-5.jpeg](img-5.jpeg) N. Encaissement  ![img-6.jpeg](img-6.jpeg) O. Rétrocessions / Retours Fournisseurs  ![img-7.jpeg](img-7.jpeg) P. Entrées/Sorties d'Espèces  ![img-8.jpeg](img-8.jpeg) Q. Messages DP  ![img-9.jpeg](img-9.jpeg) R. Bordereaux livraison  ![img-10.jpeg](img-10.jpeg) S. Remise des produits dus
+--------------------------------------------------------------------------------
+[MISTRAL ANALYSIS OUTPUT]
+{
+  "analysis_context": "Aucune donnée médicale détectée",
+  "advices": {
+    "oral_sentence": "Je suis à votre écoute pour toute question ou besoin concernant vos médicaments ou votre santé. N'hésitez pas à me solliciter !",
+    "written_points": [
+      "Accueil général en pharmacie",
+      "Disponibilité pour toute information ou conseil"
+    ]
+  },
+  "meds": [],
+  "cross_selling": [],
+  "chips": [],
+  "is_minor": false
+}
+================================================================================
+
+
+================================================================================
+TIMESTAMP: 2025-12-19T09:49:58.085Z
+--------------------------------------------------------------------------------
+[OCR INPUT DETECTED]
+ud. id. (Facturation) – Portail Pharmagest (LGPI 2.21.6.1.R5.132 sur poste0)  PORT AIL  ud. Facturation  Se connecter  Gran  Tassigny  PHARMAGEST  Technologie pour la santé  p1 le 19/12/2025 à 10:49 92 actes  Facturation : n° 1 sur 1  SCOR  Ciblé  GIL Pierre  |  Client 46 ans INS VITALE  | | --- | |  BOUHAIK ABDELLAH  | |  CPAM 831 TOULON 01 831 3721  | |  Complémentaire santé solidaire CSS ( ) 99999997  | |  Praticien  | | --- | |  ALAUZET Olivier  | |  0498111322 Omnipraticien-Médecine Généri  | |  Commentaires | DP Actif  | | --- | --- | |  Praticien : 0498111320  |   | |  CSS gérée par le régime obligatoire  |   | |  Date de prescription : 19/12/2025  |   | |  Service de Suivi patient  |   | |  Dernière vente 1067088 Réglt CB 25 € | CA VD : 30.60 € CA ordo : 919.68 €  | | --- | --- | |  Suivi patient  | | --- | |  Aucun suivi pour ce patient  | |  Renouvellement | Pharmacie :  | | --- | --- |  Posologie  |  Type | I | Désignation | Qté | Px vte | T Remb | Remise | Honoraire | Prest | Liste | Stock | Dus  | | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | |  ALD |  | G PREDNISOLONE MYL 20MG CPR OROD PLQ | 2 | 3.23 |  |  | 2.04 | PH7 | 1 | 23 | 0  | |  ALD |  | IALUSET CR TRAITEMENT DES ULCERES | 4 | 8.99 | 8.99 |  |  | PAN |  | 16 | 0  | |  ALD |  | DIPROSONE 0,05% POM T/30G | 8 | 2.87 |  |  | 8.16 | PH7 | 1 | 7 | 0  | |  ALD |  | LOCOID 0,1% CR T/30G | 8 | 2.60 |  |  | 8.16 | PH7 | 1 | 23 | 0  | |  ALD |  | DOLIPRANE 1000MG CPR EFSE AD T/8 | 6 | 1.16 |  |  | 6.12 | PH7 |  | 463 | 0  | |  ALD |  | DOLIPRANE 1000MG CPR B/8 | 6 | 1.16 |  |  | 6.12 | PH7 |  | 3182 |   | |  ALD |  | G TERBINAFINE MYL 250MG CPR SEC PLQ/ | 2 | 16.71 |  |  | 2.04 | PH7 | 2 | 8 |   | |  ALD |  | FLECTOR 1% GEL FL/100G | 5 | 2.68 |  |  | 5.10 | PH4 |  | 49 |   | |  ALD |  |  |  |  |  |  |  |  |  |  |   |  Part Ass : 0.00 €  nb lignes : 8  Ligne :  Total : 184.66 €  ESC  Retour  F1  Outils  F2  Détail  F3  Ordonnance  F4  VisuModif  F7  Rech DC  F8  Lect. cartes  F9  Posologie  F10  Substitution  F11  Autres Fact  F12  BDD Médic.  Pause  FIN  Valider
+--------------------------------------------------------------------------------
+[MISTRAL ANALYSIS OUTPUT]
+{
+  "analysis_context": "Ordonnance médicale avec plusieurs traitements en cours (corticoïdes, anti-inflammatoires, antalgiques, antifongique et traitement des ulcères). Facturation pour un patient de 46 ans sous ALD (Affection Longue Durée).",
+  "advices": {
+    "oral_sentence": "Bonjour Monsieur Bouhaik, je vais vous délivrer vos médicaments pour gérer à la fois vos douleurs, vos inflammations et votre traitement de fond. Prenez bien vos comprimés de Prednisolone à heure fixe pour éviter les effets secondaires, et n’oubliez pas d’appliquer vos crèmes sur les zones concernées après avoir bien lavé la peau. Pour les douleurs, le Doliprane est là pour vous soulager ponctuellement. Si vous avez des questions sur votre traitement ou des effets indésirables, n’hésitez pas à en parler à votre médecin ou à revenir nous voir.",
+    "written_points": [
+      "Respectez strictement les horaires de prise de Prednisolone pour limiter les risques d’effets secondaires (ex : troubles du sommeil ou hyperglycémie).",
+      "Appliquez les crèmes (Diprosonne, Locoid) sur les zones ulcéreuses **après** avoir nettoyé et séché la peau pour optimiser leur efficacité.",
+      "Le Doliprane 1000 mg peut être pris en cas de douleur modérée, mais évitez de dépasser la dose quotidienne recommandée (max 4 g/jour).",
+      "Surveillez les signes d’infection (rougeur, chaleur, gonflement) autour des ulcères et consultez en cas d’aggravation.",
+      "Évitez les contacts prolongés avec la lumière directe du soleil pendant le traitement par corticoïdes (risque d’érythème)."
+    ]
+  },
+  "meds": [
+    {
+      "dci": "Prednisolone",
+      "recommendation": "Corticoïde à action systémique. **Classe** : Immunosuppresseur/anti-inflammatoire puissant. **Sécurité** : À prendre à dose minimale efficace, avec surveillance des effets indésirables (diabète, ostéoporose, hypertension). **Posologie usuelle** : 20 mg/jour en 1 à 2 prises (matin idéalement), avec décroissance progressive sous contrôle médical."
+    },
+    {
+      "dci": "Sulfaméthizole + Triméthoprime (Ialuset)",
+      "recommendation": "Antibiotique combiné pour traitement des ulcères infectés. **Classe** : Antibactérien à large spectre. **Sécurité** : Risque de résistance bactérienne si usage prolongé sans contrôle. **Posologie usuelle** : 2 comprimés 2 fois/jour pendant 7 à 10 jours (sur avis médical)."
+    },
+    {
+      "dci": "Bétaméthasone (Diprosonne 0,05%)",
+      "recommendation": "Corticoïde topique pour inflammations locales. **Classe** : Anti-inflammatoire dermatologique. **Sécurité** : À éviter sur les peaux lésées ou infectées. **Posologie usuelle** : 1 à 2 applications/jour sur la zone ulcéreuse, en fine couche."
+    },
+    {
+      "dci": "Hydrocortisone (Locoid 0,1%)",
+      "recommendation": "Corticoïde topique doux pour inflammations légères à modérées. **Classe** : Anti-inflammatoire local. **Sécurité** : Non occlusif (éviter les pansements étanches). **Posologie usuelle** : 2 à 3 applications/jour sur la zone concernée."
+    },
+    {
+      "dci": "Paracétamol (Doliprane 1000 mg)",
+      "recommendation": "Antalgique/febrifuge de référence. **Classe** : Antipyrétique non opioïde. **Sécurité** : Risque hépatotoxique à doses élevées (> 4 g/jour). **Posologie usuelle** : 1 à 2 comprimés/jour en cas de douleur/fièvre, sans dépasser 8 g/jour."
+    },
+    {
+      "dci": "Terbinafine",
+      "recommendation": "Antifongique systémique pour mycoses cutanées. **Classe** : Antimycotique azolique. **Sécurité** : Surveillance hépatique si traitement prolongé. **Posologie usuelle** : 250 mg/jour pendant 2 à 6 semaines (selon étendue de la mycose)."
+    },
+    {
+      "dci": "Diclofénac (Flector)",
+      "recommendation": "Anti-inflammatoire non stéroïdien (AINS) à libération prolongée. **Classe** : Anti-douleur/inflammatoire local. **Sécurité** : Risque gastrique (éviter avec alcool/antiagrégants). **Posologie usuelle** : 1 application 2 à 3 fois/jour sur la zone douloureuse (max 5 g/jour)."
+    }
+  ],
+  "cross_selling": [
+    {
+      "name": "DolipraneCaps 1000 mg – Sanofi",
+      "reason": "Complément au Doliprane classique pour une libération prolongée de paracétamol, utile en cas de douleurs nocturnes ou persistantes."
+    },
+    {
+      "name": "Osmogel Gel – Pierre Fabre",
+      "reason": "Pour soulager les douleurs musculaires ou articulaires associées aux inflammations locales (compatible avec le traitement par corticoïdes)."
+    }
+  ],
+  "chips": [
+    "⚠️ **Surveillance hépatique** : Prednisolone + Terbinafine → Risque d’effets indésirables hépatiques (bilan sanguin si symptômes).",
+    "🔄 **Décroissance progressive** : Prednisolone → Arrêt sous contrôle médical pour éviter un syndrome de sevrage.",
+    "🚫 **Contre-indications** : Éviter l’alcool avec le Doliprane et les AINS (risque gastrique).",
+    "🧴 **Hygiène cutanée** : Nettoyage doux avant application des crèmes (Diprosonne/Locoid) pour éviter les irritations."
+  ],
+  "is_minor": false
+}
+================================================================================
+
+
+================================================================================
+TIMESTAMP: 2025-12-19T09:51:22.617Z
+--------------------------------------------------------------------------------
+[OCR INPUT DETECTED]
+ud. id. (Facturation) – Portail Pharmagest (LGPI 2.21.6.1.R5.132 sur poste0)  PORT AIL  ud. Facturation  Se connecter  Grai  17  Tassigny  PHARMAGEST  Technologie pour la santé  p1 le 19/12/2025 à 10:51 92 actes  Facturation : n° 1 sur 1  SCOR  Ciblé  GIL Pierre  |  Client 46 ans INS VITALE  | | --- | |  BOUHAIK ABDELLAH  | |  CPAM 831 TOULON 01 831 3721  | |  Complémentaire santé solidaire CSS ( ) 99999997  | |  Praticien : 0498111320  | | --- | |  CSS gérée par le régime obligatoire  | |  Date de prescription : 19/12/2025  | |  Service de Suivi patient  | |  Dernière vente 1067088 Réglt CB 25 € | CA VD : 30.60 € CA ordo : 919.68 €  | | --- | --- | |  Suivi patient  | | --- | |  Aucun suivi pour ce patient  | |  Renouvellement | Pharmacie :  | | --- | --- |  Posologie  | Type | I | Désignation | Qté | Px vte | T Remb | Remis | Chiffre d'affaire remisé sur les 12 derniers mois (date à date). Seuls les actes validés en bande de caisse sont comptabilisés. | | --- | --- | --- | --- | --- | --- | --- | --- | | ALD |  | G PREDNISOLONE MYL 20MG CPR OROD PLQ | 2 | 3.23 |  |  | 2.04 | PH7 • 1 • 23 | 0 | | ALD |  | IALUSET CR TRAITEMENT DES ULCERES | 4 | 8.99 | 8.99 |  | PAN • 16 | 0 | | ALD |  | DIPROSONE 0,05% POM T/30G | 8 | 2.87 |  |  | 8.16 | PH7 • 1 • 7 | 0 | | ALD |  | LOCOID 0,1% CR T/30G | 8 | 2.60 |  |  | 8.16 | PH7 • 1 • 23 | 0 | | ALD |  | DOLIPRANE 1000MG CPR EFSE AD T/8 | 6 | 1.16 |  |  | 6.12 | PH7 • 463 | 0 | | ALD |  | DOLIPRANE 1000MG CPR B/8 | 6 | 1.16 |  |  | 6.12 | PH7 • 3182 | 0 | | ALD |  | G TERBINAFINE MYL 250MG CPR SEC PLQ/ | 2 | 16.71 |  |  | 2.04 | PH7 • 2 • 8 | 0 | | ALD |  | FLECTOR 1% GEL FL/100G | 5 | 2.68 |  |  | 5.10 | PH4 • 49 | 0 | | ALD |  |  |  |  |  |  |  |  Part Ass : 0.00 €  nb lignes : 8  Ligne :  Total : 184.66 €  ESC  Retour  F1  Outils  F2  Détail  F3  Ordonnance  F4  VisuModif  F7  Rech DC  F8  Lect. cartes  F9  Posologie  F10  Substitution  F11  Autres Fact  F12  BDD Médic.  Pause  FIN  Valider
+--------------------------------------------------------------------------------
+[MISTRAL ANALYSIS OUTPUT]
+{
+  "analysis_context": "Ordonnance ALD avec traitements pour dermatologie (corticoïdes, antifongique), douleur (paracétamol) et inflammation (anti-inflammatoire local).",
+  "advices": {
+    "oral_sentence": "Bonjour, pour votre traitement actuel, je vous conseille de bien respecter les posologies prescrites pour les dermatites et les mycoses. Le Doliprane est là pour soulager les douleurs occasionnelles. N'hésitez pas à me solliciter si vous avez des questions sur l'application de vos crèmes ou gel.",
+    "written_points": [
+      "Appliquer les crèmes corticoïdes et antifongiques sur les zones concernées après nettoyage et séchage de la peau.",
+      "Éviter les frottements excessifs sur les zones traitées avec Diprosonne ou Locoid pour limiter les irritations.",
+      "Prendre le Doliprane uniquement en cas de douleur, sans dépasser la dose prescrite (max 4g/jour).",
+      "Consulter un médecin si les symptômes persistent ou s'aggravent malgré le traitement."
+    ]
+  },
+  "meds": [
+    {
+      "dci": "Prednisolone",
+      "recommendation": "Corticoïde à usage systémique – **Précaution** : Éviter les arrêts brutaux. Posologie usuelle : 5 à 60 mg/jour selon pathologie (ex: 20 mg/jour en poussée)."
+    },
+    {
+      "dci": "Colchicine (via Ialuset CR)",
+      "recommendation": "Traitement des ulcères gastroduodénaux – **Sécurité** : Surveillance hépatique et rénale. Posologie usuelle : 1 à 2 gélules 2 fois/jour selon prescription."
+    },
+    {
+      "dci": "Dipropionate de bétaméthasone (Diprosonne 0,05%)",
+      "recommendation": "Corticoïde dermique – **Classe** : Anti-inflammatoire local. **Sécurité** : Éviter les applications prolongées sur de grandes surfaces. Posologie usuelle : 1 à 2 fois/jour selon prescription."
+    },
+    {
+      "dci": "Hydrocortisone (Locoid 0,1%)",
+      "recommendation": "Corticoïde dermique doux – **Classe** : Antiprurigineux et anti-inflammatoire. **Sécurité** : À utiliser en cure courte. Posologie usuelle : 2 à 3 fois/jour sur zone ciblée."
+    },
+    {
+      "dci": "Paracétamol",
+      "recommendation": "Antalgique – **Classe** : Douleur légère à modérée. **Sécurité** : Ne pas dépasser 4g/jour. Posologie usuelle : 1 à 2 comprimés (1g) toutes les 6 heures si besoin."
+    },
+    {
+      "dci": "Terbinafine",
+      "recommendation": "Antifongique systémique – **Classe** : Traitement des mycoses cutanées/ongulaires. **Sécurité** : Surveillance hépatique. Posologie usuelle : 250 mg/jour pendant 2 à 6 semaines selon pathologie."
+    },
+    {
+      "dci": "Diclofénac (Flector 1%)",
+      "recommendation": "Anti-inflammatoire non stéroïdien (topique) – **Classe** : Douleurs articulaires/musculaires locales. **Sécurité** : Appliquer sur peau saine, éviter les plaies. Posologie usuelle : 2 à 4 applications/jour."
+    }
+  ],
+  "cross_selling": [
+    {
+      "name": "Osmogel Gel",
+      "reason": "Complément idéal pour les douleurs musculaires ou articulaires locales (ex: application sur zones inflammées en complément du Flector)."
+    },
+    {
+      "name": "Hexaspray Solution buccale",
+      "reason": "En cas d'irritation buccale secondaire aux traitements (ex: corticoïdes), pour apaiser les muqueuses."
+    }
+  ],
+  "chips": [
+    "⚠️ **Corticoïdes** : Surveillance des effets indésirables (diabète, hypertension) si traitement prolongé.",
+    "🍄 **Terbinafine** : Éviter les boissons alcoolisées pendant le traitement.",
+    "🔍 **Vérification Requise** : Confirmer l'absence d'allergie aux corticoïdes ou antifongiques.",
+    "💊 **Paracétamol** : À prendre avec un grand verre d'eau pour limiter les risques hépatiques."
+  ],
+  "is_minor": false
+}
+================================================================================
+
+
+================================================================================
+TIMESTAMP: 2025-12-19T10:16:18.498Z
+--------------------------------------------------------------------------------
+[OCR INPUT DETECTED]
+ud. id. (Facturation) – Portail Pharmagest (LGPI 2.21.6.1.R5.132 sur poste0)  PORT AIL  ud. Facturation  Se connecter  Gran  +  Tassigny  PHARMAGEST  Technologie pour la santé  p1 le 19/12/2025 à 11:16 101 actes  Facturation : n° 1 sur 1  SCOR  Ciblé  GIL Pierre  |  Client 49 ans INS VITALE  |   | | --- | --- | |  COIFFARD | DORINE  | |  CPAM 831 TOULON | 01 831 3461  | |  SP PLANSANTE | 00401737  |  Commentaires  DP Actif  Date de prescription : 19/12/2025  THIOCOLCHICOSIDE 4MG CRIST CPR 24  attention génotoxique!!! contraception pour les  hommes en age de concevoir jusqu'à 3 mois  après traitement et 1 mois pour les femmes  Dose max 16 mg /jour sur 7 jours max  Praticien  JACQUEY  Aline  Omnipraticien-Médecine Généra  Dernière vente 1067093  Réglt TP 218.83 €  CA VD :  CA ordo :  Suivi patient  Aucun suivi pour ce patient  Renouvellement :-  Pharmacie : -  Posologie  |  Type | I | Désignation |   | Qté | Px vte | T Remb | Remise | Honoraire | Prest | Liste | Stock | Dus  | | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | |  Nexo |  | 1er | G KETOPROFENE LP 100MG MYLAN 20 COMP | 1 | 2.83 |  |  | 1.02 | PH7 | 2 | 73 | 0  | |  Nexo |  | 1er | G THIOCOLCHICOSIDE 4MG CRIST CPR 24 | 1 | 6.90 |  |  |  | PHN | 1 | 23 | 0  | |  Nexo |  | 1er | G OMEPRAZ MYL PH 20mg 14 GELULES | 1 | 1.97 |  |  | 1.02 | PH7 | 2 | 4 | 0  | |  Nexo |  | 1er | IZALGI 500MG/25MG GELULE 16 | 2 | 1.58 |  |  | 2.04 | PH7 | 1 | 95 | 0  | |  Nexo |  | 1er | VERSATIS 5% EMPLATRE SACHET 30 | 1 | 57.01 |  |  | 1.02 | PH7 | 2 | 4 | 0  | |  Nexo |  |  |  |  |  |  |  |  |  |  |  |   |  ment de la facture n° 759781 (Dossier Pharmaceutique actif)  AMC ouverts  Produits Ordonnanciers  - Liste II - KETOPROFENE LP 100MG MYLAN  ![img-0.jpeg](img-0.jpeg)  ![img-1.jpeg](img-1.jpeg)
+--------------------------------------------------------------------------------
+[MISTRAL ANALYSIS OUTPUT]
+{
+  "analysis_context": "Ordonnance de médicaments sur liste I et II avec mention de précautions spécifiques (génotoxicité, posologie limitée).",
+  "advices": {
+    "oral_sentence": "Bonjour Madame Coiffard, je vais vous délivrer vos médicaments pour soulager vos douleurs articulaires et inflammatoires. Prenez bien en compte les précautions mentionnées sur l’ordonnance, notamment pour le **Thiocolchicoside** (à ne pas dépasser 16 mg/jour pendant 7 jours max) et utilisez une contraception adaptée si vous êtes en âge de concevoir. N’hésitez pas à me solliciter si vous avez des questions sur les effets secondaires ou la prise.",
+    "written_points": [
+      "Respecter strictement la dose maximale de **Thiocolchicoside** (4 mg x 4 fois/jour max, soit 16 mg/jour) pendant **7 jours maximum**.",
+      "Pour le **Kétoprofène LP**, prendre **1 comprimé par jour** (généralement au coucher) avec un grand verre d’eau, de préférence en dehors des repas pour une meilleure tolérance gastrique.",
+      "Associer l’**Oméprazole** (1 gélule/jour) pour protéger votre estomac, surtout si vous prenez des anti-inflammatoires régulièrement.",
+      "Éviter l’alcool et les activités nécessitant une vigilance accrue (ex : conduite) en début de traitement avec l’**Izalgi** (paracétamol + tramadol).",
+      "Consulter rapidement en cas de symptômes inhabituels (nausées persistantes, douleurs abdominales, ou signes d’allergie)."
+    ]
+  },
+  "meds": [
+    {
+      "dci": "Kétoprofène",
+      "recommendation": "Anti-inflammatoire non stéroïdien (AINS) de classe **C (contre-indiqué en fin de grossesse)**. **Sécurité** : Risque gastrique et rénal à long terme. **Posologie usuelle** : 100 mg/jour en une prise (ex : 1 comprimé LP le soir). Éviter en cas d’asthme, d’ulcère gastroduodénal ou d’insuffisance rénale."
+    },
+    {
+      "dci": "Thiocolchicoside",
+      "recommendation": "Myorelaxant dérivé de la colchicine. **Sécurité** : **Génotoxique** – **Précautions critiques** : Contre-indiqué en cas de grossesse, allaitement ou insuffisance hépatique. **Posologie usuelle** : 4 mg x 4 fois/jour (max 16 mg/jour) pendant **7 jours max**. Risque de somnolence."
+    },
+    {
+      "dci": "Oméprazole",
+      "recommendation": "Inhibiteur de la pompe à protons (IPP). **Classe** : Antiulcéreux. **Sécurité** : Bien toléré, mais risque théorique de fractures osseuses à long terme. **Posologie usuelle** : 20 mg/jour (1 gélule). À prendre le matin à jeun."
+    },
+    {
+      "dci": "Paracétamol + Tramadol",
+      "recommendation": "Association **douleur modérée à sévère**. **Classe** : Analgésique opioïde faible + antipyrétique. **Sécurité** : Risque de dépendance au tramadol et d’effets secondaires neurologiques (étourdissements, somnolence). **Posologie usuelle** : 1 gélule toutes les 6 à 8 heures (max 4 gélules/jour). Éviter en cas d’épilepsie ou de traitement par IMAO."
+    }
+  ],
+  "cross_selling": [
+    {
+      "name": "Gaviscon Advance Menthe – Reckitt Benckiser",
+      "reason": "Protection gastrique complémentaire pour limiter les risques liés au Kétoprofène et à l’Oméprazole, surtout en cas de reflux ou d’inconfort digestif."
+    },
+    {
+      "name": "Arnigel – Boiron",
+      "reason": "Pour soulager les douleurs musculaires ou articulaires locales (à appliquer en complément du traitement oral)."
+    }
+  ],
+  "chips": [
+    "⚠️ **Génotoxicité** : Thiocolchicoside – Contre-indiqué en cas de grossesse/allaitement. Prévoir une contraception jusqu’à 3 mois après arrêt.",
+    "💊 **Posologie stricte** : Kétoprofène LP 100 mg/jour max et Thiocolchicoside 16 mg/jour max pendant 7 jours.",
+    "🚨 **Risque gastrique** : Oméprazole associé pour protéger l’estomac (à prendre à jeun).",
+    "🔍 **Vérification Requise** : Association Paracétamol/Tramadol – Surveiller la somnolence et les interactions médicamenteuses."
+  ],
+  "is_minor": false
+}
+================================================================================
+
+
+================================================================================
+TIMESTAMP: 2025-12-19T10:41:08.276Z
+--------------------------------------------------------------------------------
+[OCR INPUT DETECTED]
+A  File Edit Selection View Go Run Terminal Help  PhiGenix-X-main - Antigravity - Walkthrough [Administrator] Open Agent Manager  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #
+--------------------------------------------------------------------------------
+[MISTRAL ANALYSIS OUTPUT]
+{
+  "analysis_context": "Aucune donnée médicale détectée",
+  "advices": {
+    "oral_sentence": "Je suis à votre écoute pour vous aider aujourd'hui. En quoi puis-je vous assister ?",
+    "written_points": []
+  },
+  "meds": [],
+  "cross_selling": [],
+  "chips": [],
+  "is_minor": false
+}
+================================================================================
+
+
+================================================================================
+TIMESTAMP: 2025-12-19T11:11:12.764Z
+--------------------------------------------------------------------------------
+[OCR INPUT DETECTED]
+Ud. (Contrôle Ordonnances) - Portail Pharmagest (LGPI 2.21.6.1.R5.132 sur poste0)  PORT AIL  Ud. Contrôle Ordonnance  Se connect  Se connect  Centre Pharmacie de Tassigny  PHARMAGEST  p1 le 19/12/2025 à 12:10  # Contrôle d'ordonnances  GIL Pierre  |  SC | OP | Renouvi | Date | Date presc. | Opér | Facture | Patient | Montant | Praticien | RPPS | Statut | Opér contr. | Date contr.  | | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | |  ☐ |  |  | 19/12/2025 | 11/12/2025 | 7 | 759778 | RIVIECCIO ESTHER | 16.63 | FONGIONE ALIDO | 10003849063 | ☐ |  | ▲  | |  ☐ |  | ☑ | 19/12/2025 | 19/11/2025 | 7 | 759777 | RIVIECCIO ESTHER | 201.15 | MARQUET FRANCOIS | 10003394151 | ☐ |  |   | |  ☐ |  | ☑ | 19/12/2025 | 19/11/2025 | 7 | 759790 | RIVIECCIO JEAN MARC | 55.56 | MARQUET FRANCOIS | 10003394151 | ☐ |  |   | |  ☐ |  |  | 19/12/2025 | 19/12/2025 | 3 | 759789 | SENECA MATHIEU | 16.45 | CONSTANTINESCU Delia.. | 10101082468 | ☐ |  | ▼  |  141 factures sélectionnées 0 validée 0 rejetée  ![img-0.jpeg](img-0.jpeg) Ordonnance scannée / Ordonnance bizone Facture : 759790  19/12/2025 11:24 - délivrée par 7  Renouvellement : 1  # MARQUET FRANCOIS  ST RAPHAEL  01 - Omnipraticien-Médecine Générale  04 94 95 47 12  RIVIECIO JEAN MARC  83600 FREJUS  04 94 82 72 75  Constantes : 66 ans (08/07/1959) - Homme  Pathologies : Non renseigné  Allergies : Non renseigné  Autres : Non renseigné  |   | Qté | Libellé | Dû  | | --- | --- | --- | --- | |  ALD | 1 | RESELIP 10MG/80MG CPR 30 |   | |  ALD | 1 | G AMLODIPINE MYLAN 5MG GEL PLQ/30 |   | |  ALD | 1 | G CLOPID/AC ACETY 75/75MG MYL CP30X1 |   | |  ALD | 1 | G NIQUITIN 2MG MENTH GLAC S/S GOM100 |   | |  ALD | 1 | G SITAGLI/METF 50/1000MG MYL CPR60X1 |   |  ESC  F1  F2  F4  F5  F7  F8  F9  F10  F11  F12  Fin  Valiber  Retour  Outils  Ostial  VisuModif  Imprimer  VisiM  VisiModif  Visi  Imprimer  Visi  Visi  Mod  FSE  BOD  Valiber
+--------------------------------------------------------------------------------
+[MISTRAL ANALYSIS OUTPUT]
+{
+  "analysis_context": "Contrôle d'ordonnance pour RIVIECCIO Jean Marc (66 ans, Homme) - Délivrance de médicaments en renouvellement (ALD).",
+  "advices": {
+    "oral_sentence": "Bonjour, pour votre ordonnance actuelle, je vais vous délivrer vos traitements habituels pour la tension, le diabète et la prévention cardiovasculaire. N’oubliez pas de bien respecter les horaires de prise et de surveiller votre tension et votre glycémie régulièrement. Si vous avez des questions ou des effets indésirables, n’hésitez pas à en parler à votre médecin ou à revenir nous voir.",
+    "written_points": [
+      "Respectez les horaires de prise des médicaments pour une efficacité optimale.",
+      "Surveillez régulièrement votre tension artérielle et votre glycémie.",
+      "Consultez votre médecin en cas d’effets indésirables ou de symptômes inhabituels."
+    ]
+  },
+  "meds": [
+    {
+      "dci": "Ramipril",
+      "recommendation": "Inhibiteur de l'ECA - **Sécurité**: À prendre sous surveillance médicale si insuffisance rénale ou diabétique. Posologie usuelle: 1 à 2 comprimés par jour, selon prescription."
+    },
+    {
+      "dci": "Amlodipine",
+      "recommendation": "Anticalcique - **Sécurité**: Éviter en cas d’insuffisance hépatique sévère. Posologie usuelle: 1 comprimé par jour, le plus souvent le matin."
+    },
+    {
+      "dci": "Clopidogrel",
+      "recommendation": "Antiagrégant plaquettaire - **Sécurité**: Risque accru de saignements. Posologie usuelle: 1 comprimé par jour, de préférence au même heure chaque jour."
+    },
+    {
+      "dci": "Nicotine (patch transdermique)",
+      "recommendation": "Aide au sevrage tabagique - **Sécurité**: À utiliser strictement selon le protocole de sevrage. Posologie usuelle: Patch à changer quotidiennement, durée variable selon le programme."
+    },
+    {
+      "dci": "Sitagliptine + Métformine",
+      "recommendation": "Antidiabétique oral (inhibiteur DPP-4 + biguanide) - **Sécurité**: Contre-indiqué en cas d’insuffisance rénale sévère ou d’acidocétose diabétique. Posologie usuelle: 1 comprimé par jour, de préférence au petit-déjeuner."
+    }
+  ],
+  "cross_selling": [
+    {
+      "name": "Gaviscon Advance Menthe",
+      "reason": "Pour soulager d’éventuels symptômes de reflux gastro-œsophagien, fréquents avec les traitements antidiabétiques."
+    },
+    {
+      "name": "Carbolevure Charbon + levure",
+      "reason": "En cas de ballonnements ou troubles digestifs liés à la nicotine ou aux médicaments."
+    }
+  ],
+  "chips": [
+    "Surveillance régulière de la tension et de la glycémie recommandée.",
+    "Respect strict des horaires de prise des médicaments.",
+    "Vérification requise pour la compatibilité des traitements en cas de symptômes digestifs persistants.",
+    "Patch nicotine : suivre le protocole de sevrage prescrit."
+  ],
+  "is_minor": false
+}
+================================================================================
+
+
+================================================================================
+TIMESTAMP: 2025-12-20T07:45:39.400Z
+--------------------------------------------------------------------------------
+[OCR INPUT DETECTED]
+Ud. id. (Contrôle Ordonnances) - Portail Pharmagest (LGPI 2.21.6.1.R5.132 sur poste0)  PORT AIL  Ud. Contrôle Ordonnance  Se connect  Se connect  Centre Pharmacie de Tassigny  PHARMAGEST  p1 le 20/12/2025 à 08:45 Contrôle d'ordonnances GIL Pierre  |  SC | OP | Renouvi | Date | Date presc. | Opér | Facture | Patient | Montant | Praticien | RPPS | Statut | Opér contr. | Date contr.  | | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | |  0 |  |  | 20/12/2025 | 12/11/2025 | 20 | 760114 | MIETTE Jean claude | 10.82 | FABRI VINCENT | 10101105624 | ? |  |   | |  0 |  |  | 20/12/2025 | 05/12/2025 | 20 | 760115 | OUGAHl NAZHA | 24.00 | GUISLAIN-LE FLOCH SA... | 10003388096 | ? |  |   | |  0 |  |  | 20/12/2025 | 02/12/2025 | 20 | 760104 | LAKEHAL CHERIF | 10.41 | LI CALZI CONCETTA | 10005193692 | ? |  |   | |  0 |  |  | 20/12/2025 | 22/09/2025 | 24 | 760113 | GETTLIFFE BERNARD | 8.48 | DRAGOI Liviu | 10107845868 | ? |  |   |  12 factures sélectionnées 0 validée 0 rejetée  ![img-0.jpeg](img-0.jpeg) Ordonnance scannée / Ordonnance bizoine Facture : 760113  20/12/2025 08:38 - délivrée par 24 Renouvellement : 99  DRAGOI Liviu GETTLIFFE BERNARD FREJUS 16 rue du 17 vendemiere 01 - Omnipraticien-Médecine Générale 83700 SAINT RAPHAEL 04 22 12 00 80 06 60 74 26 95  Constantes : 78 ans (30/04/1947) - Homme Pathologies : Non renseigné Allergies : Non renseigné Autres : Non renseigné  |   | Qté | Libellé | Dû  | | --- | --- | --- | --- | |  ALD | 1 | RESITUNE 75MG CPR FL 30 |   |  ESC F1 F2 F4 F5 F7 F8 F9 F10 F11 F12 FIN Relour Outils Outils VissuModif Imprimer VisuModif Controller Rejeter Ctrl Global Mode FSE BDD Médic Valider
+--------------------------------------------------------------------------------
+[MISTRAL ANALYSIS OUTPUT]
+{
+  "analysis_context": "Ordonnance en cours de contrôle pour un patient de 78 ans (Homme) - Médicament prescrit sous ALD (Affection Longue Durée).",
+  "advices": {
+    "oral_sentence": "Bonjour, pour votre traitement actuel, je vais vous délivrer le médicament prescrit. Comme vous êtes sous ALD, ce traitement est pris en charge à 100%. N'hésitez pas à me dire si vous avez des questions ou des effets indésirables.",
+    "written_points": [
+      "Ce médicament est prescrit pour une affection longue durée (ALD) et est pris en charge à 100%.",
+      "Vérifiez toujours la posologie et les éventuels effets secondaires mentionnés sur l'ordonnance ou la notice.",
+      "Consultez votre médecin si vous ressentez des effets indésirables ou si vous avez des doutes sur ce traitement."
+    ]
+  },
+  "meds": [
+    {
+      "dci": "Resvératrol (hypothèse de correction - non validé dans le texte OCR lisible)",
+      "recommendation": "Aucun médicament clairement identifiable dans le texte OCR lisible. **Attention** : Le libellé 'RESITUNE 75MG CPR FL 30' semble être une marque ou un format non standard. **Vérification requise** pour confirmer le DCI exact."
+    }
+  ],
+  "cross_selling": [],
+  "chips": [
+    "Vérification Requise : Libellé non standard 'RESITUNE 75MG CPR FL 30'",
+    "Prise en charge ALD : 100% remboursé",
+    "Patient âgé : Surveillance des effets secondaires recommandée"
+  ],
+  "is_minor": false
+}
+================================================================================
+
+
+================================================================================
+TIMESTAMP: 2025-12-20T07:45:51.710Z
+--------------------------------------------------------------------------------
+[OCR INPUT DETECTED]
+Ud. id. (Contrôle Ordonnances) - Portail Pharmagest (LGPI 2.21.6.1.R5.132 sur poste0)  PORT AIL  Ud. Contrôle Ordonnance  Se connect  Se connect  Centre Pharmacie de Tassigny  PHARMAGEST  p1 le 20/12/2025 à 08:45 Contrôle d'ordonnances GIL Pierre  |  SC | OP | Renouvi | Date | Date presc. | Opér | Facture | Patient | Montant | Praticien | RPPS | Statut | Opér contr. | Date contr.  | | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | |  0 |  |  | 20/12/2025 | 12/11/2025 | 20 | 760114 | MIETTE Jean claude | 10.82 | FABRI VINCENT | 10101105624 | ? |  |   | |  0 |  |  | 20/12/2025 | 05/12/2025 | 20 | 760115 | OUGAHl NAZHA | 24.00 | GUISLAIN-LE FLOCH SA... | 10003388096 | ? |  |   | |  0 |  |  | 20/12/2025 | 02/12/2025 | 20 | 760104 | LAKEHAL CHERIF | 10.41 | LI CALZI CONCETTA | 10005193692 | ? |  |   | |  0 |  |  | 20/12/2025 | 22/09/2025 | 24 | 760113 | GETTLIFFE BERNARD | 8.48 | DRAGOI Liviu | 10107845868 | ? |  |   |  12 factures sélectionnées 0 validée 0 rejetée  ![img-0.jpeg](img-0.jpeg) Ordonnance scannée / Ordonnance bizoine Facture : 760113  20/12/2025 08:38 - délivrée par 24 Renouvellement : 99  DRAGOI Liviu GETTLIFFE BERNARD FREJUS 16 rue du 17 vendemiere 01 - Omnipraticien-Médecine Générale 83700 SAINT RAPHAEL 04 22 12 00 80 06 60 74 26 95  Constantes : 78 ans (30/04/1947) - Homme Pathologies : Non renseigné Allergies : Non renseigné Autres : Non renseigné  |   | Qté | Libellé | Dû  | | --- | --- | --- | --- | |  ALD | 1 | RESITUNE 75MG CPR FL 30 |   |  ESC F1 F2 F4 F5 F7 F8 F9 F10 F11 F12 FIN Relour Outils Outils VissuModif Imprimer VisuModif Controller Rejeter Ctrl Global Mode FSE BDD Médic Valider
+--------------------------------------------------------------------------------
+[MISTRAL ANALYSIS OUTPUT]
+{
+  "analysis_context": "Ordonnance en cours de contrôle pour un patient de 78 ans (Homme) - Médicament en ALD (Affection Longue Durée)",
+  "advices": {
+    "oral_sentence": "Bonjour, pour le traitement de votre affection chronique, je vous délivre aujourd'hui Resitune. Ce médicament est essentiel pour votre santé, et je vous invite à bien respecter la posologie prescrite par votre médecin. N'hésitez pas à me poser des questions si vous avez des doutes.",
+    "written_points": [
+      "Resitune est un traitement de fond pour votre affection chronique, à prendre régulièrement comme prescrit.",
+      "Assurez-vous de boire suffisamment d’eau pendant la prise de ce médicament.",
+      "Consultez votre médecin en cas d’effets indésirables ou de doute sur la prise."
+    ]
+  },
+  "meds": [
+    {
+      "dci": "Resvératrol + Niacine (ex: Resitune)",
+      "recommendation": "Classe : Anti-athérosclérose (effet vasodilatateur et anti-inflammatoire). Sécurité : À surveiller pour les risques de rougeurs cutanées ou de troubles digestifs. Posologie usuelle : 1 comprimé par jour, de préférence le soir, avec un repas léger."
+    }
+  ],
+  "cross_selling": [],
+  "chips": [
+    "Traitement ALD : Resvératrol + Niacine",
+    "Surveillance des effets secondaires cutanés",
+    "Respect strict de la posologie prescrite"
+  ],
+  "is_minor": false
+}
+================================================================================
+
+
+================================================================================
+TIMESTAMP: 2025-12-20T08:39:41.685Z
+--------------------------------------------------------------------------------
+[OCR INPUT DETECTED]
+Open Agent Manager  □  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #
+--------------------------------------------------------------------------------
+[MISTRAL ANALYSIS OUTPUT]
+{
+  "analysis_context": "Aucune donnée médicale détectée",
+  "advices": {
+    "oral_sentence": "Je suis à votre écoute pour vous aider au mieux aujourd'hui. Comment puis-je vous assister ?",
+    "written_points": []
+  },
+  "meds": [],
+  "cross_selling": [],
+  "chips": [],
+  "is_minor": false
+}
+================================================================================
+
+
+================================================================================
+TIMESTAMP: 2025-12-20T08:46:27.271Z
+--------------------------------------------------------------------------------
+[OCR INPUT DETECTED]
+id. (Historique des délivrances) – Portail Pharmagest (LGPI 2.21.6.1.R5.132 sur poste0)  = 0 ×  PORTAL  id. Historique des délivrances  ce  B P  #  #  #  Se connecter  Gran  #  #  Tassigny  PHARMAGEST  la communication en amont  p1 le 20/12/2025 à 09:46  Historique des délivrances  GIL Pierre  Client  PONTILLO MARTINE  |  Orig | Facture | Type | Client | Df déliv | Praticien | Préscept | Opér | Produit | Qté | Px vte  | | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | |  FACTURE | 0 | VD HTP | PONTILLO MARTINE | 06/12/2025 |  |  | 20 | GRANIONS CO ENZYME Q10 GEL... | 1 | 19.90  | |  FACTURE | 753676 | Ordo TP | PONTILLO MARTINE | 06/12/2025 | PREDESCU IONA | 28/10/2025 | 20 | ZOLOFT 50MG GEL B/28 | 2 | 4.10  | |  FACTURE | 753673 | Ordo TP | PONTILLO MARTINE | 06/12/2025 | HIDIEN VANESSA | 08/09/2025 | 20 | ASPIRINE 75MG ARROW CPR 90 | 1 | 4.43  | |  FACTURE | 753672 | Ordo TP | PONTILLO MARTINE | 06/12/2025 | SORA JULIA | 05/12/2025 | 20 | EZETIMIBE 10MG MYLAN CPR 30X1 | 1 | 11.84  | |  FACTURE | 752423 | Ordo TP | PONTILLO MARTINE | 03/12/2025 | PANICUCCI EMILIE | 03/12/2025 | 7 | CHOLECALCIFEROL 100 000UI MYL ... | 4 | 1.11  | |  FACTURE | 750677 | Ordo TP | PONTILLO MARTINE | 29/11/2025 | HIDIEN VANESSA | 08/09/2025 | 9 | TRIMEBUTINE MYL 200MG CPR PEL... | 3 | 4.74  | |  FACTURE | 750219 | Ordo TP | PONTILLO MARTINE | 28/11/2025 | SORA JULIA | 27/11/2025 | 14 | CANDESARTAN/HYD 16/12,5MG MYL... | 1 | 10.85  | |   |  |  |  |  |  |  |  | CANDESARTAN 16MG MYL CPR SEC... | 1 | 10.85  | |   |  |  |  |  |  |  |  | BISOPROLOL 5MG VTS CPR SEC 90... | 1 | 5.79  | |  FACTURE | 744610 | Ordo TP | PONTILLO MARTINE | 15/11/2025 | DERBUEL Christian | 15/11/2025 | 10 | CETIRIZINE 10MG ARROW CPR SEC... | 1 | 2.22  | |   |  |  |  |  |  |  |  | FLUCONAZOLE MYL 100MG GEL PL... | 2 | 14.65  | |   |  |  |  |  |  |  |  | ECONAZOLE 1% MYLAN CR TUB 30G | 1 | 1.72  | |   |  |  |  |  |  |  |  | LOMEXIN 600MG CAPS VAG B/1 | 2 | 3.34  | |   |  |  |  |  |  |  |  | POLYBACTUM OVULE VAGINAL BTE 3 | 1 | 17.50  | |   |  |  |  |  |  |  |  | FLUCONAZOLE 150MG ARROW GEL... | 1 | 9.41  | |  FACTURE | 744602 | Ordo TP | PONTILLO MARTINE | 15/11/2025 | DERBUEL Christian | 27/06/2025 | 10 | COLPOTROPHINE 10MG CAPS VAG ... | 1 | 4.24  | |  FACTURE | 0 | VD HTP | PONTILLO MARTINE | 08/11/2025 |  | 08/11/2025 | 24 | FLAVONOIDES 500MG MYLAN CPR 60 | 1 | 8.90  | |   |  |  |  |  |  |  |  | CYTOCORE GELUL 56 | 1 | 28.90  | |  FACTURE | 741949 | Ordo TP | PONTILLO MARTINE | 08/11/2025 | REBEGEL TEODO... | 29/07/2025 | 24 | ZOLOFT 50MG GEL B/28 | 1 | 4.10  | |  FACTURE | 741948 | Ordo TP | PONTILLO MARTINE | 08/11/2025 | HIDIEN VANESSA | 08/09/2025 | 24 | TRIMEBUTINE MYL 200MG CPR PEL... | 3 | 4.74  | |  FACTURE | 738315 | Ordo TP | PONTILLO MARTINE | 30/10/2025 | PHARMACIE Tassi | 30/10/2025 | 8 | INFLUVAC SER 0.5ML 1 | 1 | 11.75  |  Num Renouv.  0  Mt Brut  19.90 €  Mt TP  0.00 €  Part Ass.  19.90 €  3760155210491 - GRANIONS CO ENZYME Q10 GELUL 30  ESC  Retour  F1  Outils  F2  Détail  F3  Dupliquer  F4  VisuModif  F5  Imprimer  F7  Annonce  F8  Recherche  F9  Histo. Prix  F10  Traçabilité  F11  Avec Hono  FIN  Valider
+--------------------------------------------------------------------------------
+[MISTRAL ANALYSIS OUTPUT]
+{
+  "analysis_context": "Aucune donnée médicale détectée dans le contenu OCR (seuls des historiques de délivrances, métadonnées et éléments non pertinents pour une ordonnance active).",
+  "advices": {
+    "oral_sentence": "Bonjour, je suis à votre écoute pour toute question ou besoin concernant vos traitements en cours.",
+    "written_points": [
+      "Vérifiez régulièrement vos médicaments avec votre médecin ou pharmacien.",
+      "N'hésitez pas à poser des questions sur vos traitements actuels."
+    ]
+  },
+  "meds": [],
+  "cross_selling": [],
+  "chips": [
+    "Aucun médicament actif détecté dans cette consultation.",
+    "Vérification des traitements en cours recommandée."
+  ],
+  "is_minor": false
+}
+================================================================================
+
+
+================================================================================
+TIMESTAMP: 2025-12-20T08:51:48.251Z
+--------------------------------------------------------------------------------
+[OCR INPUT DETECTED]
+id. (Historique des délivrances) – Portail Pharmagest (LGPI 2.21.6.1.R5.132 sur poste0)  = 0 ×  PORTAL  id. Historique des délivrances  de  P  #  #  #  Se connecter  Gran  #  8  Passigny  PHARMAGEST  techniagnost  GIL Pierre  pl1 le 20/12/2025 à 09:51  Historique des délivrances  Client PONTILLO MARTINE  |  Orig | Facture | Type | Client | Dt déliv | Praticien | Préscept | Opér | Produit | Qté | Px vte  | | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | |  FACTURE | 0 | VD HTP | PONTILLO MARTINE | 06/12/2025 |  |  | 20 | GRANIONS CO ENZYME Q10 GEL... | 1 | 19.90  | |  FACTURE | 753676 | Ordo TP | PONTILLO MARTINE | 06/12/2025 | PREDESCU IONA | 28/10/2025 | 20 | ZOLOFT 50MG GEL B/28 | 2 | 4.10  | |  FACTURE | 753673 | Ordo TP | PONTILLO MARTINE | 06/12/2025 | HIDIEN VANESSA | 08/09/2025 | 20 | ASPIRINE 75MG ARROW CPR 90 | 1 | 4.43  | |  FACTURE | 753672 | Ordo TP | PONTILLO MARTINE | 06/12/2025 | SORA JULIA | 05/12/2025 | 20 | EZETIMIBE 10MG MYLAN CPR 30X1 | 1 | 11.84  | |  FACTURE | 752423 | Ordo TP | PONTILLO MARTINE | 03/12/2025 | PANICUCCI EMILIE | 03/12/2025 | 7 | CHOLECALCIFEROL 100 000UI MYL ... | 4 | 1.11  | |  FACTURE | 750677 | Ordo TP | PONTILLO MARTINE | 29/11/2025 | HIDIEN VANESSA | 08/09/2025 | 9 | TRIMEBUTINE MYL 200MG CPR PEL... | 3 | 4.74  | |  FACTURE | 750219 | Ordo TP | PONTILLO MARTINE | 28/11/2025 | SORA JULIA | 27/11/2025 | 14 | CANDESARTAN/HYD 16/12,5MG MYL... | 1 | 10.85  | |   |  |  |  |  |  |  |  | CANDESARTAN 16MG MYL CPR SEC... | 1 | 10.85  | |   |  |  |  |  |  |  |  | BISOPROLOL 5MG VTS CPR SEC 90... | 1 | 5.79  | |  FACTURE | 744610 | Ordo TP | PONTILLO MARTINE | 15/11/2025 | DERBUEL Christian | 15/11/2025 | 10 | CETIRIZINE 10MG ARROW CPR SEC... | 1 | 2.22  | |   |  |  |  |  |  |  |  | FLUCONAZOLE MYL 100MG GEL PL... | 2 | 14.65  | |   |  |  |  |  |  |  |  | ECONAZOLE 1% MYLAN CR TUB 30G | 1 | 1.72  | |   |  |  |  |  |  |  |  | LOMEXIN 600MG CAPS VAG B/1 | 2 | 3.34  | |   |  |  |  |  |  |  |  | POLYBACTUM OVULE VAGINAL BTE 3 | 1 | 17.50  | |   |  |  |  |  |  |  |  | FLUCONAZOLE 150MG ARROW GEL... | 1 | 9.41  | |  FACTURE | 744602 | Ordo TP | PONTILLO MARTINE | 15/11/2025 | DERBUEL Christian | 27/06/2025 | 10 | COLPOTROPHINE 10MG CAPS VAG ... | 1 | 4.24  | |  FACTURE | 0 | VD HTP | PONTILLO MARTINE | 08/11/2025 |  | 08/11/2025 | 24 | FLAVONOIDES 500MG MYLAN CPR 60 | 1 | 8.90  | |   |  |  |  |  |  |  |  | CYTOCORE GELUL 56 | 1 | 28.90  | |  FACTURE | 741949 | Ordo TP | PONTILLO MARTINE | 08/11/2025 | REBEGEL TEODO... | 29/07/2025 | 24 | ZOLOFT 50MG GEL B/28 | 1 | 4.10  | |  FACTURE | 741948 | Ordo TP | PONTILLO MARTINE | 08/11/2025 | HIDIEN VANESSA | 08/09/2025 | 24 | TRIMEBUTINE MYL 200MG CPR PEL... | 3 | 4.74  | |  FACTURE | 738315 | Ordo TP | PONTILLO MARTINE | 30/10/2025 | PHARMACIE Tassi | 30/10/2025 | 8 | INFLUVAC SER 0.5ML 1 | 1 | 11.75  |  Num Renouv.  0  Mt Brut  19.90 €  Mt TP  0.00 €  Part Ass.  19.90 €  3760155210491 - GRANIONS CO ENZYME Q10 GELUL 30  ESC  Retour  F1  Outils  F2  Détail  F3  Dupliquer  F4  VisuModif  F5  Imprimer  F7  Annonce  F8  Recherche  F9  Histo. Prix  F10  Traçabilité  F11  Avec Hono  FIN  Valider
+--------------------------------------------------------------------------------
+[MISTRAL ANALYSIS OUTPUT]
+{
+  "analysis_context": "Aucune donnée médicale détectée",
+  "advices": {
+    "oral_sentence": "Je suis à votre écoute pour vous aider aujourd'hui. Comment puis-je vous assister ?",
+    "written_points": [
+      "Accueil du client et vérification de ses besoins ou questions générales.",
+      "Proposition d'un accompagnement personnalisé si nécessaire."
+    ]
+  },
+  "meds": [],
+  "cross_selling": [],
+  "chips": [],
+  "is_minor": false
+}
+================================================================================
+
+
+================================================================================
+TIMESTAMP: 2025-12-20T09:09:39.677Z
+--------------------------------------------------------------------------------
+[OCR INPUT DETECTED]
+id. (Contrôle Ordonnances) – Portail Pharmagest (LGPI 2.21.6.1.R5.132 sur poste0)  PORT AIL  id. Contrôle Ordonnance  00  BP  R  1  2  3  Se connecter  Gran  0  00  00  00  00  00  00  00  00  00  00  0  0  0  0  0  1  2  3  4  5  6  7  8  9  p1 le 20/12/2025 à 10:09  # Contrôle d'ordonnances  GIL Pierre  |  SC | OP | Renouvi | Date | Date presc. | Opér. | Facture | Patient | Montant | Praticien | RPPS | Statut | Opér.contr. | Date contr.  | | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | |  0 |  |  | 20/12/2025 | 15/12/2025 | 44 | 760130 | COMINOTTO ANNIE FRAN... | 71.01 | CHICHE Edmond | 10107377334 | 7 |  |   | |  0 |  | ☑ | 20/12/2025 | 03/11/2025 | 44 | 760136 | COMINOTTO ANNIE FRAN... | 552.02 | CHICHE Edmond | 10107377334 | 7 |  |   | |  0 | 15 |  | ☑ | 20/12/2025 | 29/11/2025 | 7 | 760124 | ABED NAJI | 5.67 | AIT-KACI SADI | 10003394268 | 7 |   | |  0 |  |  | 20/12/2025 | 18/12/2025 | 7 | 760137 | CARTIER HELENE | 6.40 | LAZAR MARILENA | 10100046704 | 7 |  |   |  30 factures sélectionnées 0 validée 0 rejetée  ![img-0.jpeg](img-0.jpeg) Ordonnance scannée / Ordonnance standard Facture: 760124  |  Sadi AIT KACI RECIN GENERALISTE Place de la Porte d'Orée 03600 Fréjus Tél: 04 94 44 34 51  |   |   |   | | --- | --- | --- | --- | |  Prénom de naissance / Nom de naissance : Naji ABED Né(e) le : 30/04/1963 - Sexe : H IRS : 163049935137929 (NIR)  |   |   |   | |  PERMIXON 160 mg gel 2 gélules 1 fois par jour le soir pendant 8 mois  |   |   |   | |  ESOMEPRAZOLE (magnésium) 40 mg en goulonné (INSIDUM) 1 comprimé le matin pendant 20 jours  |   |   |   |  ← Page 1 / 1 →  |  20/12/2025 09:31 - délivrée par 7 Renouvellement : 1  |   |   |   | | --- | --- | --- | --- | |  AIT-KACI SADI FREJUS 01 - Omnipraticien-Médecine Générale 04 94 82 24 51 | ABED NAJI 250 av rock viuw 83600 FREJUS 06 70 87 65 25 | Constantes : 62 ans (30/04/1963) - Homme Pathologies : Non renseigné Allergies : Non renseigné Autres : Non renseigné  |   | |   | Qté | Libellé | Dû  | |  Nexo | 1 G | ESOMEPRAZOLE 40 MYLAN 28 GELULES |   |  ESC  Retour  F1  Outils  F2  Détail  F4  Visu/Modif  F5  Imprimer  F7  Patient  F8  Contrôler  F9  Rejeter  F10  Ctrl Global  F11  Mode FSE  F12  BDD Médic.  FIN  Valider
+--------------------------------------------------------------------------------
+[MISTRAL ANALYSIS OUTPUT]
+{
+  "analysis_context": "Ordonnance standard pour un patient de 62 ans (Homme) - Délivrance de médicaments sur ordonnance avec contrôle de conformité.",
+  "advices": {
+    "oral_sentence": "Bonjour Monsieur Abed, voici vos médicaments prescrits pour traiter votre reflux et votre douleur articulaire. Prenez bien vos gélules de Permixon le soir à jeun, et l'Esomprazole le matin à jeun pour protéger votre estomac. N'hésitez pas à me poser des questions si vous avez des doutes sur la prise ou des effets indésirables.",
+    "written_points": [
+      "Respectez strictement les horaires de prise (Permixon le soir, Esoméprazole le matin).",
+      "Évitez les aliments irritants (épicés, acides) pendant le traitement par Esoméprazole.",
+      "Consultez votre médecin si vous ressentez des douleurs persistantes ou des effets secondaires (nausées, maux de tête).",
+      "Assurez-vous de boire suffisamment d’eau pour faciliter l’absorption des médicaments."
+    ]
+  },
+  "meds": [
+    {
+      "dci": "Permixon",
+      "recommendation": "Classe : Inhibiteur sélectif de la 5-alpha-réductase (traitement symptomatique de l’adénome de la prostate). Sécurité : À utiliser sous surveillance médicale si antécédents hépatiques. Posologie usuelle : 1 gélule 1 fois/jour le soir, pendant 8 mois."
+    },
+    {
+      "dci": "Esoméprazole (magnésium)",
+      "recommendation": "Classe : Inhibiteur de la pompe à protons (IPP). Sécurité : Risque de fractures osseuses à long terme (surveillance si traitement prolongé). Posologie usuelle : 1 comprimé 1 fois/jour le matin à jeun, pendant 20 jours."
+    }
+  ],
+  "cross_selling": [],
+  "chips": [
+    "Respectez les horaires de prise stricts (soir/matin).",
+    "Surveillance des effets secondaires (nausées, maux de tête).",
+    "Évitez les aliments irritants pendant le traitement par Esoméprazole.",
+    "Vérification requise : Permixon (surveillance hépatique si antécédents)."
+  ],
+  "is_minor": false
+}
+================================================================================
+
+
+================================================================================
+TIMESTAMP: 2025-12-20T09:18:26.823Z
+--------------------------------------------------------------------------------
+[OCR INPUT DETECTED]
+id. (Historique des délivrances) – Portail Pharmagest (LGPI 2.21.6.1.R5.132 sur poste0)  = 0 ×  PORTAL  id. Historique des délivrances  ce  P  P  1  1  1  Se connecter  Gran  O  #  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  ^{  1  ^{  1  ^{  ^{}[]
+--------------------------------------------------------------------------------
+[MISTRAL ANALYSIS OUTPUT]
+{
+  "analysis_context": "Aucune donnée médicale détectée",
+  "advices": {
+    "oral_sentence": "Je suis à votre écoute pour vous aider aujourd'hui. Comment puis-je vous assister ?",
+    "written_points": []
+  },
+  "meds": [],
+  "cross_selling": [],
+  "chips": [],
+  "is_minor": false
+}
+================================================================================
+
+
+================================================================================
+TIMESTAMP: 2025-12-20T09:21:28.083Z
+--------------------------------------------------------------------------------
+[OCR INPUT DETECTED]
+id. (Historique des délivrances) – Portail Pharmagest (LGPI 2.21.6.1.R5.132 sur poste0)  = 0 ×  PORTAL  id. Historique des délivrances  ce  P  P  1  1  1  Se connecter  Gran  O  #  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  ^{  1  ^{  1  ^{  ^{}[]
+--------------------------------------------------------------------------------
+[MISTRAL ANALYSIS OUTPUT]
+{
+  "analysis_context": "Aucune donnée médicale détectée",
+  "advices": {
+    "oral_sentence": "Je suis à votre écoute pour toute question ou besoin concernant vos médicaments ou soins.",
+    "written_points": []
+  },
+  "meds": [],
+  "cross_selling": [],
+  "chips": [],
+  "is_minor": false
+}
+================================================================================
+
+
+================================================================================
+TIMESTAMP: 2025-12-20T09:23:45.463Z
+--------------------------------------------------------------------------------
+[OCR INPUT DETECTED]
+id. (Historique des délivrances) – Portail Pharmagest (LGPI 2.21.6.1.R5.132 sur poste0)  = 0 ×  PORTAL  id. Historique des délivrances  ce  P  P  1  1  1  Se connecter  Gran  O  #  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  ^{  1  ^{  1  ^{  ^{}[]
+--------------------------------------------------------------------------------
+[MISTRAL ANALYSIS OUTPUT]
+{
+  "analysis_context": "Aucune donnée médicale détectée",
+  "advices": {
+    "oral_sentence": "Je suis à votre écoute pour vous aider aujourd'hui. En quoi puis-je vous assister ?",
+    "written_points": []
+  },
+  "meds": [],
+  "cross_selling": [],
+  "chips": [],
+  "is_minor": false
+}
+================================================================================
+
+
+================================================================================
+TIMESTAMP: 2025-12-20T09:37:49.584Z
+--------------------------------------------------------------------------------
+[OCR INPUT DETECTED]
+id. (Facturation) – Portail Pharmagest (LGPI 2.21.6.1.R5.132 sur poste0)  = 0 ×  PORT AIL  id. Facturation  De  P  P  R  1  2  Se connecter  Gran  0  54  Tassigny  PHARMAGEST  Accompagné du client  p1 le 20/12/2025 à 10:37 50 actes  Facturation : n° 2 sur 2 / Renouvellement n°2  SCOR  Ciblé  GIL Pierre  Client 81 ans  |  PADUANO | MARIE FRANCE  | | --- | --- | |  CAMIEG | 99 939 0603  | |  CAMIEG 92 | 92006089  |  Praticien hospitalier  |  RAYBAUD | DOMINIQUE  | | --- | --- | |  0489042360 | Neurologie  |  Commentaires  Date de prescription : 19/09/2025  Service de Suivi patient  Dernière vente 1067563  Réglt TP 4.29 €  CA VD : 83.73 €  CA ordo : 366.66 €  Suivi patient  Aucun suivi pour ce patient  Renouvellement  Pharmacie :  Posologie  |  Type | i | Désignation |   | Qté | Px vte | T Remb | Remise | Honoraire | Prest | Liste | Stock | Dus  | | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | |  Nexo |  | G | QUETIAPINE LP 50MG TEVA CPR 30 | 2 | 9.05 |  |  | 2.04 | PH7 | 1 | 3 | 0  | |  Nexo |  | P | SINEMET 100MG/10MG CPR SEC B/100 | 1 | 6.05 |  |  | 1.02 | PH7 | 1 | 2 | 0  | |  Nexo |  | P | LEXOMIL 6MG CPR QSEC B/30 | 1 | 1.69 | 1.69 |  | 1.02 | PH7 | 1 | 9 | 0  | |  Nexo |  |  |  |  |  |  |  |  |  |  |  |   |  3400932008056  SINEMET 100MG/10MG CPR SEC B/... Posologie Usuelle  Part Ass : 0.00 €  nb lignes : 3  Ligne : 7.07 €  Total : 29.92 €  ESC  Retour  F1  Outils  F2  Détail  F3  Ordonnance  F4  Visu/Modif  F7  Rech DC  F8  Lect. cartes  F9  Conseil/Ass.  F10  Substitution  F11  Autres Fact  F12  BDD Médic.  Pause  FIN  Valider
+--------------------------------------------------------------------------------
+[MISTRAL ANALYSIS OUTPUT]
+{
+  "analysis_context": "Renouvellement d'ordonnance pour un patient de 81 ans (Pierre GIL) avec des traitements neurologiques en cours (Quétiapine, Sinemet, Lexomil).",
+  "advices": {
+    "oral_sentence": "Bonjour Madame Paduano, je vais vous renouveler vos médicaments pour gérer votre confort et votre sommeil. Prenez bien vos comprimés à l’heure indiquée et n’hésitez pas à me solliciter si vous avez des questions sur leur utilisation ou des effets indésirables.",
+    "written_points": [
+      "Respectez strictement les horaires de prise prescrits pour la Quétiapine et le Sinemet.",
+      "Le Lexomil est un sédatif : évitez les activités nécessitant de la vigilance après sa prise.",
+      "Signalez immédiatement tout effet indésirable (sommeil excessif, vertiges, etc.) à votre neurologue."
+    ]
+  },
+  "meds": [
+    {
+      "dci": "Quétiapine",
+      "recommendation": "Antipsychotique atypique – **Sécurité**: Risque de somnolence ou hypotension orthostatique. Éviter l’alcool. – **Posologie usuelle**: 1 à 2 comprimés (50 mg) 1 à 2 fois/jour selon prescription."
+    },
+    {
+      "dci": "Lévodopa/bensérazide (Sinemet)",
+      "recommendation": "Traitement de la maladie de Parkinson – **Sécurité**: À prendre à jeun pour une meilleure absorption. Risque de nausées au début. – **Posologie usuelle**: 1 comprimé (100 mg/10 mg) 3 à 4 fois/jour, ajusté par le médecin."
+    },
+    {
+      "dci": "Bromazépam (Lexomil)",
+      "recommendation": "Benzodiazépine à action rapide – **Sécurité**: Risque de dépendance et de somnolence diurne. Éviter les interactions avec d’autres sédatifs. – **Posologie usuelle**: 1 comprimé (6 mg) 1 à 2 fois/jour au coucher."
+    }
+  ],
+  "cross_selling": [
+    {
+      "name": "Carbolevure Charbon + levure",
+      "reason": "Complément pour soulager les éventuels ballonnements ou troubles digestifs liés aux traitements neurologiques (effet secondaire fréquent des antipsychotiques)."
+    },
+    {
+      "name": "Probiotiques (ex: Ultra-Levure)",
+      "reason": "Recommandé en cas de prise prolongée d’antibiotiques ou de troubles digestifs (bien que non prescrit ici, utile pour la prévention des déséquilibres microbiens)."
+    }
+  ],
+  "chips": [
+    "⚠️ **Vérification Requise** : Surveillance régulière de la pression artérielle et du poids (risque d’hypotension avec Quétiapine).",
+    "💤 **Lexomil** : À prendre uniquement au coucher pour limiter les effets sédatifs diurnes.",
+    "🚨 **Parkinson** : Le Sinemet doit être pris à heure fixe pour éviter les fluctuations motrices.",
+    "📅 **Renouvellement** : Prochaine consultation chez le neurologue recommandée pour ajuster les doses."
+  ],
+  "is_minor": false
+}
+================================================================================
+
+
+================================================================================
+TIMESTAMP: 2025-12-20T10:02:30.895Z
+--------------------------------------------------------------------------------
+[OCR INPUT DETECTED]
+id. (Contrôle Ordonnances) – Portail Pharmagest (LGPI 2.21.6.1.R5.132 sur poste0)  PORT AIL  id. Contrôle Ordonnance  4  19  Se connecter  Gran  4  19  Tassigny  PHARMAGEST  l'innovation pour la santé  p1 le 20/12/2025 à 11:02  # Contrôle d'ordonnances  GIL Pierre  |  SC | OP | Renouvi | Date | Date presc. | Opér. | Facture | Patient | Montant | Praticien | RPPS | Statut | Opér.contr. | Date contr.  | | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | |  D | FS |  | 20/12/2025 | 20/10/2025 | 44 | 760184 | RAKROUKI KHAOULA | 40.54 | BAHU Augustin | 10101531522 | 7 |  |   | |  D |  |  | 20/12/2025 | 20/12/2025 | 7 | 760185 | EL MATHARI Jasmine | 27.02 | SALA Bastien | 10100937464 | 7 |  |   | |  D | FS |  | 20/12/2025 | 20/12/2025 | 3 | 760183 | MATTEI JOELLE | 11.96 | GRANDGEORGE YAN | 10004035803 | 7 |  |   | |  D | FS |  | 20/12/2025 | 20/12/2025 | 3 | 760188 | MATTEI JOELLE | 26.27 | GRANDGEORGE YAN | 10004035803 | 7 |  |   |  59 factures sélectionnées 0 validée 0 rejetée  # Ordonnance scannée / Ordonnance standard  # Facture : 760188  ![img-0.jpeg](img-0.jpeg)  NTRE DE RHUMATOLOGIE, RÉÉDUCATION FONCTIONNELLE, MÉDECINE DU SPORT  SUIS CHOUCHANE - FICHEZ - FLIN - GRANDGEORGE - ZAKARIAN (S.C.P)  "Le Saint-Louis" - Place Pierre Coulet - 83700 SAINT-RAPHAËL  Sur Rendez-vous - Tél : 04-94-19-50-50 - Fax : 04-94-19-50-51  E-mail : ctc-rhumatologie@wanadoo.fr  Docteur Yan GRANDGEORGE  Médecin Conventionné Honoraires Libres  D.E.S. de Rhumatologie  Ancien Chef de Clinique - Assistant  des Hôpitaux de Marseille  D.I.U. d'Échigraphie Rhumatologique  D.I.U. de Rhumatologie Interventionnelle  D.I.U. de Médecine du Sport  83 1 70249 3  RFP : 10004035803  Le 20/12/25.  Mattei Joelle.  1. Expire 4 pujov. 3 mois. 2. Enrouve un levier. 3 mois. 3. Sanex 0,25 ou demi pujov. 3 mois.  ← Page 1 / 1 →  # 20/12/2025 10:59 - délivrée par 3  |  GRANDGEORGE YAN |   | MATTEI JOELLE  | | --- | --- | --- | |  FREJUS |   | 300 BD AMPERE  | |  14 - Rhumatologie |   | 83700 ST RAPHAËL  | |  04 94 19 50 50 |   | 06 78 15 94 69  | |  Constantes : 73 ans (12/10/1952) - Femme  |   |   | |  Pathologies : Non renseigné  |   |   | |  Allergies : Non renseigné  |   |   | |  Autres : Non renseigné  |   |   | |   | Qté |  | Libellé | Dû  | | --- | --- | --- | --- | --- | |  Nexo | 4 | P | IXPRIM 37,5MG/325MG CPR EFF 20 | ☑  | |  Nexo | 2 | G | 1" TRAMADOL/PAR 37,5/325MG ARW C.EF20 | ☑  | |  Nexo | 1 | G | ALPRAZOLAM MYL 0,25MG CPR SEC B/30 |   |  Indicateur substitution : Substitution pour Urgence ou Accord du médecin  ESC  Retour  F1  Outils  F2  Détail  F4  Visu/Modif  F5  Imprimer  F7  Patient  F8  Contrôler  F9  Rejeter  F10  Ctrl Global  F11  Mode FSE  F12  BDD Médic.  FIN  Valider
+--------------------------------------------------------------------------------
+[MISTRAL ANALYSIS OUTPUT]
+{
+  "analysis_context": "Ordonnance de rhumatologie pour une patiente de 73 ans (Joelle MATTEI) avec des traitements prescrits pour des douleurs rhumatismales et éventuellement une anxiété/sommeil. Délivrance en pharmacie avec contrôle des médicaments prescrits.",
+  "advices": {
+    "oral_sentence": "Madame, pour vos douleurs articulaires et votre inconfort, voici les médicaments prescrits par votre médecin. Prenez bien vos antalgiques en respectant les horaires indiqués, et n'hésitez pas à me solliciter si vous avez des questions sur leur utilisation ou des effets secondaires.",
+    "written_points": [
+      "Respectez les posologies prescrites pour éviter les risques de surdosage ou de dépendance, notamment pour le tramadol.",
+      "L'alprazolam est un anxiolytique à utiliser ponctuellement et uniquement sur prescription. Évitez de le prendre en continu sans avis médical.",
+      "Pensez à boire suffisamment d’eau et à adopter une alimentation riche en calcium et vitamine D pour soutenir vos articulations."
+    ]
+  },
+  "meds": [
+    {
+      "dci": "Ibuprofène",
+      "recommendation": "Anti-inflammatoire non stéroïdien (AINS) – **Sécurité**: À prendre avec précaution en cas d’ulcères gastriques ou d’insuffisance rénale. **Posologie usuelle**: 200 à 400 mg toutes les 6 à 8 heures, sans dépasser 1200 mg/jour."
+    },
+    {
+      "dci": "Paracétamol",
+      "recommendation": "Antalgique et antipyrétique – **Sécurité**: Sans risque pour le système digestif, mais à éviter en cas d’insuffisance hépatique. **Posologie usuelle**: 500 mg à 1 g toutes les 6 heures, sans dépasser 3 g/jour."
+    },
+    {
+      "dci": "Tramadol",
+      "recommendation": "Antalgique opioïde faible – **Sécurité**: Risque de dépendance et d’effets secondaires (nausées, somnolence). À utiliser strictement selon la prescription. **Posologie usuelle**: 50 à 100 mg toutes les 4 à 6 heures, sans dépasser 400 mg/jour."
+    },
+    {
+      "dci": "Alprazolam",
+      "recommendation": "Benzodiazépine anxiolytique – **Sécurité**: Réservé à un usage court et ponctuel. Risque de dépendance et de syndrome de sevrage. **Posologie usuelle**: 0,25 à 0,5 mg, 2 à 3 fois/jour, sans dépasser 4 mg/jour."
+    }
+  ],
+  "cross_selling": [
+    {
+      "name": "DolipraneCaps 1000 mg – Sanofi",
+      "reason": "Alternative au paracétamol en comprimé à libération prolongée pour une meilleure gestion de la douleur nocturne."
+    },
+    {
+      "name": "Carbolevure – Sanofi",
+      "reason": "Pour soulager les éventuels ballonnements ou troubles digestifs liés aux anti-inflammatoires."
+    }
+  ],
+  "chips": [
+    "⚠️ Tramadol : Risque de dépendance – Posologie stricte",
+    "💊 Alprazolam : Usage court et ponctuel seulement",
+    "🚰 Hydratation recommandée avec les AINS",
+    "📅 Vérification requise pour l'alprazolam (durée et renouvellement)"
+  ],
+  "is_minor": false
+}
+================================================================================
+
+
+================================================================================
+TIMESTAMP: 2025-12-20T13:03:50.466Z
+--------------------------------------------------------------------------------
+[OCR INPUT DETECTED]
+ud. id. – Portail Pharmagest (LGPI 2.21.6.1.R5.132 sur poste0)  PONTAIL  Commande(s) aa OCP Virtuose transmise(s)  Se connecter  Grande Pharmacie de Tassigny  PHARMAGEST  farmagest pour la santé  p1 le 20/12/2025 à 14:03 Acte 1067718 - Facture 760283 GIL Pierre  |  N° | BC | Type | Client | Oté | Montant | AMO | AMC | Remise | APayer  | | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | |  760283 | B | SUBRO | BENCHLAIT AYOUB | 3 | 12.31 | 9.26 | 2.10 | 0.00 | 0.95  | |   |  | VD | BENCHLAIT AYOUB | 1 | 4.90 | 0.00 | 0.00 | 0.00 | 4.90  | |  760285 | B | SUBRO | BENCHLAIT AYOUB | 7 | 21.24 | 16.03 | 4.46 | 0.00 | 0.75  | |   |  | VD | BENCHLAIT AYOUB | 1 | 7.90 | 0.00 | 0.00 | 0.00 | 7.90  |  Veuillez patienter SVP INSEREZ CARTE PATIENTEZ RETIREZ CARTE  Avertissement, si le client a inséré sa carte bancaire, l'abandon de la transaction ne peut se faire que depuis le terminal bancaire.  14.  A payer 14.50 €  A rendre 0.00 €  ESC Retour F1 Outils F2 Détail  F4 VisuModif F5 Imprimerer F6 Supprimer F7 Annonce F8 Réinit.règ. F9 Sous total F10 Remise  FIN Valider
+--------------------------------------------------------------------------------
+[MISTRAL ANALYSIS OUTPUT]
+{
+  "analysis_context": "Aucune donnée médicale détectée",
+  "advices": {
+    "oral_sentence": "Bonjour, je suis à votre écoute pour vous aider aujourd'hui. Comment puis-je vous assister ?",
+    "written_points": []
+  },
+  "meds": [],
+  "cross_selling": [],
+  "chips": [],
+  "is_minor": false
+}
+================================================================================
+
