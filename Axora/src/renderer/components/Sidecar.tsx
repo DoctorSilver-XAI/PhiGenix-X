@@ -101,8 +101,8 @@ const Sidecar: React.FC<SidecarProps> = ({ mode = 'compact' }) => {
                 className="glass-panel"
                 style={{
                     /* Configured Dimensions */
-                    width: `${SidecarConfig.visual.width}px`,
-                    height: `${SidecarConfig.visual.height}px`,
+                    width: '100%',
+                    height: '100%',
                     boxSizing: 'border-box',
                     borderRadius: `${SidecarConfig.visual.borderRadius}px`,
 
@@ -132,7 +132,6 @@ const Sidecar: React.FC<SidecarProps> = ({ mode = 'compact' }) => {
                         alignItems: 'center',
                         justifyContent: 'center',
                         width: '100%',
-                        ...noDragStyle
                     }}
                     title="Axora Connecté"
                 >

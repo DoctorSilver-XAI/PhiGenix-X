@@ -81,7 +81,7 @@ const createWindow = async () => {
     transparent: true, // Transparent background
     hasShadow: false, // No window shadow
     icon: getAssetPath('icon.png'),
-    resizable: false, // Fixed size for sidecar initially
+    resizable: true, // Fixed size for sidecar initially
     webPreferences: {
       preload: app.isPackaged
         ? path.join(__dirname, 'preload.js')
