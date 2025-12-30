@@ -8,6 +8,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { ChatSidebar } from './ChatSidebar';
 import { AIChatMessage } from '../services/ai/types';
+import { AXORA_SYSTEM_PROMPT } from '../data/assistant_prompts';
 
 export function ChatInterface() {
     const navigate = useNavigate();
@@ -202,11 +203,15 @@ export function ChatInterface() {
             // For OpenAI/WebLLM, they will use the array.
             const currentSession = sessions.find(s => s.id === currentSessionId);
             const historyForAI = currentSession ? [...(currentSession.messages || []), userMessage] : [userMessage];
+            // import { AXORA_SYSTEM_PROMPT } from '../data/assistant_prompts';
 
-            const apiMessages: AIChatMessage[] = historyForAI.map(m => ({
-                role: m.role as 'user' | 'assistant' | 'system',
-                content: m.content
-            }));
+            const apiMessages: AIChatMessage[] = [
+                { role: 'system', content: AXORA_SYSTEM_PROMPT },
+                ...historyForAI.map(m => ({
+                    role: m.role as 'user' | 'assistant' | 'system',
+                    content: m.content
+                }))
+            ];
 
             await aiManager.streamResponse(
                 apiMessages,

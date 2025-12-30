@@ -1,49 +1,64 @@
 import { AIService, AIModel, AIResponse, AIChatMessage } from "./types";
 
+// Mistral API Key - same as used in phiVisionService
+const MISTRAL_API_KEY = 'I9V9dMbmD0RYTX9cWZR7kvRbiFaC6hfi';
+
 export class MistralProvider implements AIService {
 
-    // No need for client-side key configuration anymore due to Backend Proxy
-
     async initialize(): Promise<void> {
-        // No-op for now, everything is handled by backend proxy
+        // Direct API calls - no initialization needed
     }
 
-    async generateResponse(_messages: AIChatMessage[], _modelId: string, _options?: { conversationId?: string }): Promise<AIResponse> {
-        // For non-streaming, we just default to streaming and accumulating, or call API
-        // But for MVP we primarily use streaming.
-        return { text: "Not implemented for orchestrator mode, use streaming." };
+    async generateResponse(messages: AIChatMessage[], modelId: string, _options?: { conversationId?: string }): Promise<AIResponse> {
+        try {
+            const response = await fetch('https://api.mistral.ai/v1/chat/completions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${MISTRAL_API_KEY}`
+                },
+                body: JSON.stringify({
+                    model: modelId || 'ministral-8b-latest',
+                    messages: messages.map(m => ({ role: m.role, content: m.content })),
+                }),
+            });
+
+            if (!response.ok) {
+                const error = await response.text();
+                throw new Error(`Mistral API Error: ${response.status} - ${error}`);
+            }
+
+            const data = await response.json();
+            return { text: data.choices[0]?.message?.content || "" };
+        } catch (error) {
+            console.error("MistralProvider generateResponse Error:", error);
+            throw error;
+        }
     }
 
     async streamResponse(
         messages: AIChatMessage[],
         modelId: string,
         onChunk: (chunk: string) => void,
-        options?: { conversationId?: string }
+        _options?: { conversationId?: string }
     ): Promise<void> {
-        // Extract the last user message to send to Orchestrator
-        // The Orchestrator manages history, so we don't send the full array.
-        const lastMessage = messages[messages.length - 1];
-        if (!lastMessage || lastMessage.role !== 'user') {
-            console.error("MistralProvider: No user message found to send to Orchestrator");
-            return;
-        }
-
         try {
-            const response = await fetch('/api/chat', {
+            const response = await fetch('https://api.mistral.ai/v1/chat/completions', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${MISTRAL_API_KEY}`
                 },
                 body: JSON.stringify({
-                    model: modelId || 'mistral-tiny',
-                    message: lastMessage.content,
-                    conversationId: options?.conversationId
+                    model: modelId || 'ministral-8b-latest',
+                    messages: messages.map(m => ({ role: m.role, content: m.content })),
+                    stream: true, // Enable streaming
                 }),
             });
 
             if (!response.ok) {
                 const error = await response.text();
-                throw new Error(`Proxy Logic Error: ${error}`);
+                throw new Error(`Mistral API Error: ${response.status} - ${error}`);
             }
 
             const reader = response.body?.getReader();
@@ -59,27 +74,25 @@ export class MistralProvider implements AIService {
                 const chunk = decoder.decode(value, { stream: true });
                 buffer += chunk;
 
-                // Process SSE lines
+                // Process SSE lines from Mistral API
                 const lines = buffer.split('\n');
-                // Keep the last partial line in the buffer
                 buffer = lines.pop() || "";
 
                 for (const line of lines) {
-                    if (line.trim().startsWith('data: ')) {
-                        const dataStr = line.trim().slice(6);
+                    const trimmedLine = line.trim();
+                    if (trimmedLine.startsWith('data: ')) {
+                        const dataStr = trimmedLine.slice(6);
                         if (dataStr === '[DONE]') continue;
 
                         try {
                             const data = JSON.parse(dataStr);
-                            if (data.content) {
-                                onChunk(data.content);
-                            }
-                            if (data.error) {
-                                console.error("Stream SSE Error:", data.error);
-                                onChunk(`\n[Erreur: ${data.error}]`);
+                            // Mistral streaming format: choices[0].delta.content
+                            const content = data.choices?.[0]?.delta?.content;
+                            if (content) {
+                                onChunk(content);
                             }
                         } catch (e) {
-                            console.warn("Failed to parse SSE data:", dataStr);
+                            // Skip malformed JSON lines (can happen with partial chunks)
                         }
                     }
                 }

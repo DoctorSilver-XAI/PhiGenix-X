@@ -25,8 +25,8 @@ export function Sidebar() {
     }, [isActive, togglePhiVision, triggerAnalysis]);
 
     const mainLinks = [
-        { to: '/', icon: MessageSquare, label: 'Assistant' },
-        { to: '/pharma', icon: Pill, label: 'Outils Pharmacie' },
+        { to: '/assistant', icon: MessageSquare, label: 'Assistant' },
+        { to: '/', icon: Pill, label: 'Outils Pharmacie' },
     ];
 
     const hiddenLinks = [
@@ -92,7 +92,7 @@ export function Sidebar() {
                     >
                         <link.icon size={18} />
                         <span className="font-medium">{link.label}</span>
-                        {link.to === '/pharma' && (
+                        {link.to === '/' && (
                             <span className="ml-auto w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.5)]" />
                         )}
                     </NavLink>

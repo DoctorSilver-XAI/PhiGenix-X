@@ -66,7 +66,8 @@ const Sidecar: React.FC<SidecarProps> = ({ mode = 'compact' }) => {
 
             // Calculate Top based on config (Approximate for now based on 'upper-quarter')
             // 'upper-quarter' = 25% of screen height - half sidecar height
-            const topCalc = `calc(25vh - ${h / 2}px)`;
+            // We use clamp to ensure it never goes off-screen (min 12px from top, max 12px from bottom)
+            const topCalc = `clamp(12px, calc(25vh - ${h / 2}px), calc(100vh - ${h}px - 12px))`;
 
             return {
                 position: 'fixed',
@@ -206,10 +207,7 @@ const Sidecar: React.FC<SidecarProps> = ({ mode = 'compact' }) => {
                             </div>
                         </div>
                     </div>
-                    {/* Tooltip */}
-                    <div className="absolute left-16 top-1/2 -translate-y-1/2 bg-gray-900/90 backdrop-blur-md text-xs font-medium px-3 py-1.5 rounded-lg border border-white/10 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0 pointer-events-none whitespace-nowrap z-30 shadow-xl text-cyan-100">
-                        {isAnalyzing ? "Analyse..." : "PhiVision v2.5"}
-                    </div>
+
                 </button>
 
 

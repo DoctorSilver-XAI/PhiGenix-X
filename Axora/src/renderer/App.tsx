@@ -9,8 +9,10 @@ import { DashboardLayout } from './layouts/DashboardLayout';
 import { Home } from './pages/Home';
 import { Pharmacy } from './pages/Pharmacy';
 import { PreventionPlan } from './pages/PreventionPlan';
+import { CashRegister } from './pages/CashRegister';
 import Settings from './pages/Settings';
 import Lab from './pages/Lab';
+import { DosageCalculator } from './pages/DosageCalculator';
 import { PhiVisionProvider } from './services/PhiVisionContext';
 import { PhiVisionOverlay } from './components/PhiVision/PhiVisionOverlay';
 
@@ -55,16 +57,16 @@ function AppContent() {
     <>
       <Routes>
         <Route element={<DashboardLayout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/pharma" element={<Pharmacy />} />
+          <Route path="/" element={<Pharmacy />} />
+          <Route path="/assistant" element={<Home />} />
           <Route path="/ppp" element={<PreventionPlan />} />
+          <Route path="/caisse" element={<CashRegister />} />
           <Route path="/lab" element={<Lab />} />
+          <Route path="/dosage" element={<DosageCalculator />} />
           <Route path="/settings" element={<Settings />} />
-          <Route path="*" element={<Home />} />
+          <Route path="*" element={<Pharmacy />} />
         </Route>
       </Routes>
-      {/* Kept here just in case, but PhiVision is mostly for sidecar mode */}
-      <PhiVisionOverlay />
     </>
   );
 }

@@ -61,8 +61,16 @@ const installExtensions = async () => {
 };
 
 const createWindow = async () => {
+  console.log('Creating window...');
+
   if (isDebug) {
-    await installExtensions();
+    try {
+      console.log('Installing extensions...');
+      await installExtensions();
+      console.log('Extensions installed.');
+    } catch (e) {
+      console.error('Failed to install extensions:', e);
+    }
   }
 
   const RESOURCES_PATH = app.isPackaged
@@ -74,14 +82,14 @@ const createWindow = async () => {
   };
 
   mainWindow = new BrowserWindow({
-    show: false,
-    width: 300, // Small width for initial sidecar
+    show: true,
+    width: 300,
     height: 800,
-    frame: false, // Frameless for floating effect
-    transparent: true, // Transparent background
-    hasShadow: false, // No window shadow
+    frame: false,
+    transparent: true,
+    hasShadow: false,
     icon: getAssetPath('icon.png'),
-    resizable: true, // Fixed size for sidecar initially
+    resizable: true,
     webPreferences: {
       preload: app.isPackaged
         ? path.join(__dirname, 'preload.js')
@@ -90,11 +98,13 @@ const createWindow = async () => {
   });
 
   mainWindow.loadURL(resolveHtmlPath('index.html'));
+  console.log('Window loaded URL');
 
   // Initialize Dual Mode Controller
   new DualModeController(mainWindow);
 
   mainWindow.on('ready-to-show', () => {
+    console.log('EVENT: ready-to-show fired');
     if (!mainWindow) {
       throw new Error('"mainWindow" is not defined');
     }
@@ -102,6 +112,7 @@ const createWindow = async () => {
       mainWindow.minimize();
     } else {
       mainWindow.show();
+      mainWindow.focus();
     }
   });
 

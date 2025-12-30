@@ -48,20 +48,40 @@ const FooterBadge = ({ label }: { label: string }) => {
 };
 
 export const PhiVisionOverlay: React.FC = () => {
-    const { isActive, isAnalyzing, result } = usePhiVision();
+    const { isActive, isAnalyzing, result, closePhiVision } = usePhiVision();
     const [fontSize, setFontSize] = useState(1); // 1 = normal, 1.2 = large, 1.4 = extra large
     const [isMinimized, setIsMinimized] = useState(false);
+    const [scale, setScale] = useState(1);
 
-    // --- Keyboard Shortcuts ---
+    // --- Auto-Scaling for Small Screens ---
+    React.useEffect(() => {
+        const handleResize = () => {
+            const h = window.innerHeight;
+            // Reference height 900px (Optimized for desktop)
+            // If screen is smaller, we scale down to avoid overflow
+            if (h < 900) {
+                setScale(h / 900);
+            } else {
+                setScale(1);
+            }
+        };
+
+        handleResize(); // Init
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    // --- Keyboard Shortcuts for Quick Exit ---
     React.useEffect(() => {
         if (!isActive) return;
 
         const handleKeyDown = (e: KeyboardEvent) => {
-            // ESCAPE -> Minimize
+            // ESCAPE -> Close completely (quick return to LGO)
             if (e.key === 'Escape') {
-                setIsMinimized(true);
+                e.preventDefault();
+                closePhiVision();
             }
-            // Ctrl/Cmd + M -> Toggle Minimize
+            // Ctrl/Cmd + M -> Toggle Minimize (keep analysis visible but compact)
             if ((e.metaKey || e.ctrlKey) && e.key === 'm') {
                 e.preventDefault();
                 setIsMinimized(prev => !prev);
@@ -70,7 +90,7 @@ export const PhiVisionOverlay: React.FC = () => {
 
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [isActive]);
+    }, [isActive, closePhiVision]);
 
     if (!isActive) return null;
     const data = result as PhiVisionResult;
@@ -122,8 +142,12 @@ export const PhiVisionOverlay: React.FC = () => {
 
     return (
         <div className={`fixed inset-0 z-[9999] pointer-events-none font-sans text-gray-100 p-4 flex flex-col gap-2 select-none transition-opacity duration-200 ${isMinimized ? 'opacity-0' : 'opacity-100'}`}>
-            {/* Background */}
-            <div className="absolute inset-0 bg-[#050910]/95 backdrop-blur-md -z-10" />
+            {/* Clickable Background - Click to close */}
+            <div
+                className="absolute inset-0 bg-[#050910]/95 backdrop-blur-md -z-10 pointer-events-auto cursor-pointer"
+                onClick={closePhiVision}
+                title="Cliquer pour fermer (Echap)"
+            />
 
             {/* ERROR / MOCK STATUS */}
             {data?.isMock && !data.error && (
@@ -141,7 +165,14 @@ export const PhiVisionOverlay: React.FC = () => {
             )}
 
             {!isAnalyzing && data && (
-                <>
+                <div style={{
+                    transform: `scale(${scale})`,
+                    transformOrigin: 'center center',
+                    height: '100%',
+                    width: '100%',
+                    display: 'flex',
+                    flexDirection: 'column'
+                }}>
                     {/* --- HEADER (AXORA GLASSMORPHISM v2.4) --- */}
                     <div className="flex items-center justify-between pointer-events-auto select-none mb-1 shrink-0 bg-[#0b1220]/80 border-b border-cyan-500/20 backdrop-blur-xl -mx-4 -mt-4 px-4 py-3 shadow-[0_10px_30px_rgba(0,0,0,0.5)] z-40 relative overflow-hidden">
                         {/* Ambient Glow */}
@@ -181,12 +212,12 @@ export const PhiVisionOverlay: React.FC = () => {
                         </div>
 
                         {/* Zone 3: Utilities & Controls */}
-                        <div className="flex items-center gap-2 relative z-10 pl-4 border-l border-white/10">
+                        <div className="flex items-center gap-3 relative z-10 pl-4 border-l border-white/10">
                             {/* Minimize Button */}
                             <button
                                 onClick={() => setIsMinimized(true)}
                                 className="p-2 hover:bg-white/10 rounded-lg transition-colors group relative"
-                                title="Réduire (Echap)"
+                                title="Réduire (Ctrl+M)"
                             >
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-gray-400 group-hover:text-white transition-colors">
                                     <path d="M4 14h6v6" strokeLinecap="round" strokeLinejoin="round" />
@@ -194,6 +225,20 @@ export const PhiVisionOverlay: React.FC = () => {
                                     <path d="M14 10l7-7" strokeLinecap="round" strokeLinejoin="round" />
                                     <path d="M3 21l7-7" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
+                            </button>
+
+                            {/* CLOSE BUTTON - Prominent X for quick exit */}
+                            <button
+                                onClick={closePhiVision}
+                                className="p-2 bg-red-500/10 hover:bg-red-500/30 border border-red-500/30 hover:border-red-500 rounded-lg transition-all group relative"
+                                title="Fermer (Echap)"
+                            >
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="text-red-400 group-hover:text-red-300 transition-colors">
+                                    <path d="M18 6L6 18" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M6 6l12 12" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                                {/* Keyboard hint */}
+                                <span className="absolute -bottom-5 left-1/2 -translate-x-1/2 text-[8px] text-red-400/60 font-mono opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">ESC</span>
                             </button>
                         </div>
                     </div>
@@ -279,9 +324,13 @@ export const PhiVisionOverlay: React.FC = () => {
                         <div className="flex-1" /> {/* Spacer */}
 
                         <div className="flex items-center gap-2 text-[9px] text-gray-500 font-mono">
-                            <span>ESPACE = Confirmer</span>
-                            <span>•</span>
-                            <span>ECHAP = Réduire</span>
+                            <span className="px-2 py-1 bg-gray-800/50 rounded border border-gray-700/50">ESC</span>
+                            <span>Fermer</span>
+                            <span className="text-gray-700">•</span>
+                            <span className="px-2 py-1 bg-gray-800/50 rounded border border-gray-700/50">⌘M</span>
+                            <span>Réduire</span>
+                            <span className="text-gray-700">•</span>
+                            <span className="text-gray-600 italic">Cliquer sur le fond pour fermer</span>
                         </div>
                     </div>
 
@@ -301,7 +350,7 @@ export const PhiVisionOverlay: React.FC = () => {
                             </div>
                         </div>
                     )}
-                </>
+                </div>
             )}
         </div>
     );

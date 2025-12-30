@@ -1,19 +1,27 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { GlassCard } from '../components/ui/GlassCard';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Printer, Sparkles, Upload, Eraser, Settings, X, Save, RotateCcw } from 'lucide-react';
-import { AnimatePresence, motion } from 'framer-motion';
-
-// Strict Migration Imports
-import { themes, OPENAI_CONFIG, DEFAULT_AGE_RANGE } from '../data/ppp/config';
+import { OPENAI_CONFIG, DEFAULT_AGE_RANGE, PHARMACISTS, PHARMACY_NAME, themes } from '../data/ppp/config';
 import { templates } from '../data/ppp/templates';
 import { SYSTEM_PROMPT } from '../data/ppp/prompts';
-import { getThemeStyles, detectAgeBucket, sanitizeJson, sanitizeList } from '../utils/pppLogic';
+import { detectAgeBucket, sanitizeJson, sanitizeList } from '../utils/pppLogic';
+import './ppp.css';
 
-// Local Storage Keys
-const PROMPT_STORAGE_KEY = "pppCustomPrompt";
-const API_KEY_STORAGE_KEY = "openaiApiKey";
+// --- HELPER to convert hex to RGB/RGBA ---
+const hexToRgb = (hex: string) => {
+    const normalized = hex.replace("#", "");
+    const bigint = parseInt(normalized.length === 3 ? normalized.split("").map(c => c + c).join("") : normalized, 16);
+    const r = (bigint >> 16) & 255;
+    const g = (bigint >> 8) & 255;
+    const b = bigint & 255;
+    return { r, g, b };
+};
 
+const withAlpha = (hex: string, alpha: number) => {
+    const { r, g, b } = hexToRgb(hex);
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+};
+
+// --- TYPES ---
 interface PPPData {
     priorities: string[];
     freins: string[];
@@ -31,64 +39,193 @@ export function PreventionPlan() {
         priorities: [], freins: [], conseils: [], ressources: [], suivi: []
     });
 
-    // UI State
-    const [loading, setLoading] = useState(false);
+    // UI Logic State
     const [notes, setNotes] = useState('');
-    const [showAssistant, setShowAssistant] = useState(false);
-    const [showSettings, setShowSettings] = useState(false);
+    const [showAssistant, setShowAssistant] = useState(false); // inputSection hidden toggle
     const [previewMode, setPreviewMode] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [progress, setProgress] = useState(0);
 
-    // Settings State
-    const [customSystemPrompt, setCustomSystemPrompt] = useState(SYSTEM_PROMPT);
-    const [customApiKey, setCustomApiKey] = useState('');
+    // Header Info
+    const [patientName, setPatientName] = useState('');
+    const [selectedPharmacist, setSelectedPharmacist] = useState('');
+    const [date, setDate] = useState(new Date().toLocaleDateString('fr-FR'));
 
-    // Refs for scrolling to errors if needed
-    const assistantRef = useRef<HTMLDivElement>(null);
+    // Upload
+    const [imageBase64, setImageBase64] = useState<string | null>(null);
+    const [isDragging, setIsDragging] = useState(false);
 
-    // Load Settings on Mount
+    // Apply Theme CSS Variables properly to the container
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    const applyThemeVariables = (range: string) => {
+        if (!containerRef.current) return;
+        const theme = themes[range] || themes[DEFAULT_AGE_RANGE];
+        const el = containerRef.current;
+
+        el.style.setProperty("--primary-color", theme.primaryColor);
+        el.style.setProperty("--accent-color", theme.accentColor);
+        el.style.setProperty("--bg-color", theme.backgroundColor);
+
+        // Derived vars
+        el.style.setProperty("--accent-shadow", withAlpha(theme.accentColor, 0.2));
+        el.style.setProperty("--dotted", withAlpha(theme.accentColor, 0.55));
+    };
+
     useEffect(() => {
-        const savedPrompt = localStorage.getItem(PROMPT_STORAGE_KEY);
-        const savedKey = localStorage.getItem(API_KEY_STORAGE_KEY);
-        if (savedPrompt) setCustomSystemPrompt(savedPrompt);
-        if (savedKey) setCustomApiKey(savedKey);
-    }, []);
+        applyThemeVariables(ageRange);
+    }, [ageRange]);
 
-    // Save Settings
-    const handleSaveSettings = () => {
-        if (customSystemPrompt.trim()) {
-            localStorage.setItem(PROMPT_STORAGE_KEY, customSystemPrompt);
+    // Handle Image Upload
+    const handleImageDrop = (e: React.DragEvent) => {
+        e.preventDefault();
+        setIsDragging(false);
+        const file = e.dataTransfer.files[0];
+        if (file && file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = (ev) => setImageBase64(ev.target?.result as string);
+            reader.readAsDataURL(file);
+        }
+    };
+
+    // Loader Logic (Phased)
+    useEffect(() => {
+        let timer: any;
+        if (loading) {
+            setProgress(5);
+            const phases = [
+                { target: 35, min: 2, max: 10, delayMin: 250, delayMax: 600 },
+                { target: 65, min: 1, max: 5, delayMin: 350, delayMax: 780 },
+                { target: 92, min: 0.5, max: 4, delayMin: 300, delayMax: 650 }
+            ];
+
+            const step = () => {
+                const phase = phases.find(p => progress < p.target) || phases[phases.length - 1];
+                const increment = phase.min + Math.random() * (phase.max - phase.min);
+                setProgress(prev => Math.min(prev + increment, phase.target));
+
+                if (progress < 92) {
+                    const delay = phase.delayMin + Math.random() * (phase.delayMax - phase.delayMin);
+                    timer = setTimeout(step, delay);
+                }
+            };
+            timer = setTimeout(step, 250);
         } else {
-            localStorage.removeItem(PROMPT_STORAGE_KEY);
-            setCustomSystemPrompt(SYSTEM_PROMPT);
+            if (progress > 0) setProgress(100);
+            setTimeout(() => setProgress(0), 500);
+        }
+        return () => clearTimeout(timer);
+    }, [loading, progress]);
+
+    // API Generation (Mock/Real)
+    const handleGenerate = async () => {
+        if (!notes && !imageBase64) {
+            alert("Ajoutez au moins une note ou une capture.");
+            return;
+        }
+        // Check mandatory fields (Legacy Strict Behavior)
+        const patientNameEl = document.querySelector('.id-value[contenteditable]');
+        const patientNameVal = patientNameEl?.textContent?.trim();
+        const pharmacienEl = document.querySelector('.ppp-select');
+
+        let isValid = true;
+        let firstInvalidEl = null;
+
+        if (!patientNameVal) {
+            isValid = false;
+            patientNameEl?.classList.add("input-error");
+            patientNameEl?.addEventListener("input", () => patientNameEl.classList.remove("input-error"), { once: true });
+            if (!firstInvalidEl) firstInvalidEl = patientNameEl;
         }
 
-        if (customApiKey.trim()) {
-            localStorage.setItem(API_KEY_STORAGE_KEY, customApiKey);
-        } else {
-            localStorage.removeItem(API_KEY_STORAGE_KEY);
+        if (!previewMode && !selectedPharmacist) { // Logic from main.js checks value
+            isValid = false;
+            pharmacienEl?.classList.add("input-error");
+            pharmacienEl?.addEventListener("change", () => pharmacienEl.classList.remove("input-error"), { once: true });
+            if (!firstInvalidEl) firstInvalidEl = pharmacienEl;
         }
-        setShowSettings(false);
-        // Toast logic would go here
-    };
 
-    const handleResetSettings = () => {
-        setCustomSystemPrompt(SYSTEM_PROMPT);
-        localStorage.removeItem(PROMPT_STORAGE_KEY);
-    };
+        if (!isValid) {
+            alert("Veuillez remplir les champs obligatoires (Patient, Pharmacien).");
+            if (firstInvalidEl) (firstInvalidEl as HTMLElement).focus();
+            return;
+        }
 
-    // Auto-detect Age from Notes
-    const handleNotesChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        const value = e.target.value;
-        setNotes(value);
-        const detected = detectAgeBucket(value);
-        if (detected && detected !== ageRange) {
-            setAgeRange(detected);
+        setLoading(true);
+        try {
+            let apiKey = localStorage.getItem("openaiApiKey");
+            if (!apiKey) apiKey = OPENAI_CONFIG.API_KEY;
+            apiKey = apiKey?.trim();
+
+            const systemPrompt = localStorage.getItem("pppCustomPrompt") || SYSTEM_PROMPT;
+
+            if (!apiKey) throw new Error("Clé API manquante");
+
+            const messages: any[] = [{ role: "system", content: systemPrompt }];
+            const userContent = `Tranche d'âge: ${ageRange || "non précisée"}\nNotes d'entretien: ${notes || "Aucune note fournie."}`;
+            if (imageBase64) {
+                messages.push({
+                    role: "user",
+                    content: [
+                        { type: "text", text: userContent },
+                        { type: "image_url", image_url: { url: imageBase64 } }
+                    ]
+                });
+            } else {
+                messages.push({ role: "user", content: userContent });
+            }
+
+            const res = await fetch("https://api.openai.com/v1/chat/completions", {
+                method: "POST",
+                headers: { "Content-Type": "application/json", "Authorization": `Bearer ${apiKey}` },
+                body: JSON.stringify({
+                    model: OPENAI_CONFIG.MODEL,
+                    max_tokens: OPENAI_CONFIG.MAX_TOKENS,
+                    response_format: { type: "json_object" },
+                    messages
+                })
+            });
+
+            if (!res.ok) {
+                const errText = await res.text();
+                throw new Error(`Erreur OpenAI (${res.status}): ${errText}`);
+            }
+
+            const data = await res.json();
+            const content = data.choices?.[0]?.message?.content;
+
+            if (!content) throw new Error("Réponse vide de l'IA");
+
+            const sanitized = sanitizeJson(content);
+            if (!sanitized) throw new Error("Impossible de nettoyer le JSON");
+
+            const parsed = JSON.parse(sanitized);
+
+            if (parsed) {
+                setPPPData({
+                    priorities: sanitizeList([...(parsed.priorities || []), ...(parsed.vaccins_depistages || [])]),
+                    freins: sanitizeList(parsed.freins || []),
+                    conseils: sanitizeList(parsed.conseils || []),
+                    ressources: sanitizeList(parsed.ressources || []),
+                    suivi: sanitizeList(parsed.suivi || [])
+                });
+                setShowAssistant(false);
+            }
+
+        } catch (error: any) {
+            console.error("❌ [PPP] Global Error:", error);
+            alert(`Erreur: ${error.message}`);
+        } finally {
+            setLoading(false);
         }
     };
 
-    // Template Logic (Strict Match)
+    const handlePrint = () => {
+        window.print();
+    };
+
     const fillExample = () => {
-        const tpl = templates[ageRange];
+        const tpl = templates[ageRange as any]; // Cast to any to suppress index error
         if (tpl) {
             setPPPData({
                 priorities: [...tpl.priorities],
@@ -100,406 +237,207 @@ export function PreventionPlan() {
         }
     };
 
-    const clearAll = () => {
-        setPPPData({
-            priorities: [], freins: [], conseils: [], ressources: [], suivi: []
-        });
-    };
-
-    const handlePrint = () => {
-        window.print();
-    };
-
-    // AI Generation Logic (Strict Port from openai.js)
-    const handleGenerate = async () => {
-        if (!notes.trim()) {
-            alert("Veuillez entrer des notes pour générer le bilan.");
-            return;
-        }
-
-        const apiKey = customApiKey || OPENAI_CONFIG.API_KEY;
-        if (!apiKey) {
-            alert("Clé API manquante. Veuillez la configurer dans les paramètres.");
-            setShowSettings(true);
-            return;
-        }
-
-        setLoading(true);
-        try {
-            const userText = `Tranche d'âge: ${ageRange}\nNotes d'entretien: ${notes}`;
-            const messages = [
-                { role: "system", content: customSystemPrompt },
-                { role: "user", content: userText }
-            ];
-
-            const response = await fetch("https://api.openai.com/v1/chat/completions", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${apiKey}`
-                },
-                body: JSON.stringify({
-                    model: OPENAI_CONFIG.MODEL,
-                    max_tokens: OPENAI_CONFIG.MAX_TOKENS,
-                    response_format: { type: "json_object" },
-                    messages
-                })
-            });
-
-            if (!response.ok) throw new Error(`Erreur API: ${response.statusText}`);
-
-            const json = await response.json();
-            const content = json.choices?.[0]?.message?.content;
-            if (!content) throw new Error("Réponse vide");
-
-            const cleanedJson = sanitizeJson(content);
-            if (!cleanedJson) throw new Error("Format JSON invalide");
-            const data = JSON.parse(cleanedJson);
-
-            // Fill Data (Strict Mapping)
-            setPPPData({
-                priorities: sanitizeList([...(data.priorities || []), ...(data.vaccins_depistages || [])]),
-                freins: sanitizeList(data.freins || []),
-                conseils: sanitizeList(data.conseils || []),
-                ressources: sanitizeList(data.ressources || []),
-                suivi: sanitizeList(data.suivi || [])
-            });
-
-            setShowAssistant(false);
-
-        } catch (error) {
-            console.error(error);
-            alert("Erreur lors de la génération. Vérifiez la console.");
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    // Styled Components Helper
-    const themeStyles = getThemeStyles(ageRange);
-
     return (
-        <div
-            className={`h-full flex flex-col ${previewMode ? 'bg-white text-black p-0' : 'p-8 overflow-y-auto'}`}
-            style={themeStyles as any}
-        >
-            {/* CSS Variables Injection for Dynamic Theming */}
-            <style>{`
-                .ppp-theme-text { color: var(--primary-color) !important; }
-                .ppp-theme-bg { background-color: var(--primary-color) !important; }
-                .ppp-theme-border { border-color: var(--primary-color) !important; }
-                .ppp-accent-bg-soft { background-color: var(--accent-shadow) !important; }
-                .ppp-accent-border { border-color: var(--dotted) !important; }
-                .ppp-accent-text { color: var(--accent-color) !important; }
-            `}</style>
+        <div className={`ppp-container ${previewMode ? 'preview-mode-active' : ''}`} ref={containerRef}>
 
-            {/* --- PRINT HEADER (Legacy Format) --- */}
-            <div className={`print-header ${previewMode ? 'block' : 'hidden'} print:block mb-8`}>
-                <div className="flex justify-between items-start mb-6 border-b-2 border-slate-800 pb-4">
-                    <div className="flex items-center gap-4">
-                        {/* Placeholder for Logo */}
-                        <div className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center text-slate-400 text-xs">Logo</div>
-                        <div className="font-bold text-xl uppercase tracking-wider text-slate-800">Grande Pharmacie de Tassigny</div>
-                    </div>
-                    <div className="text-right">
-                        <h1 className="text-2xl font-bold text-slate-900 uppercase tracking-tight">Mon Bilan Prévention</h1>
-                        <div className="text-xl font-medium ppp-theme-text">{ageRange} ans</div>
-                    </div>
-                </div>
-
-                <div className="flex justify-between items-center bg-slate-50 p-4 rounded-lg border border-slate-200 mb-2">
-                    <div className="flex gap-2">
-                        <span className="font-bold text-slate-500 uppercase text-xs tracking-wider">Patient :</span>
-                        <span className="font-semibold text-slate-900 border-b border-dotted border-slate-400 min-w-[200px]" contentEditable suppressContentEditableWarning></span>
-                    </div>
-                    <div className="flex gap-2">
-                        <span className="font-bold text-slate-500 uppercase text-xs tracking-wider">Pharmacien :</span>
-                        <span className="font-semibold text-slate-900">Pierre Gil</span>
-                    </div>
-                    <div className="flex gap-2">
-                        <span className="font-bold text-slate-500 uppercase text-xs tracking-wider">Date :</span>
-                        <span className="font-semibold text-slate-900">{new Date().toLocaleDateString('fr-FR')}</span>
-                    </div>
-                </div>
-            </div>
-
-            {/* --- APP HEADER --- */}
-            <header className={`mb-8 flex items-center justify-between ${previewMode ? 'hidden' : 'print:hidden'}`}>
-                <div className="flex items-center gap-4">
-                    <button onClick={() => navigate(-1)} className="p-2 rounded-xl hover:bg-white/5 text-gray-400 hover:text-white transition-colors">
-                        <ArrowLeft size={20} />
-                    </button>
-                    <div>
-                        <h1 className="text-3xl font-bold flex items-center gap-3">
-                            <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
-                                Mon Bilan Prévention
-                            </span>
-                        </h1>
-                        <p className="text-white/50">Plan Personnalisé de Prévention</p>
-                    </div>
-                </div>
-
-                <div className="flex items-center gap-3">
-                    <select
-                        value={ageRange}
-                        onChange={(e) => setAgeRange(e.target.value)}
-                        className="bg-[#1a1c2e] border border-[#2d323b] rounded-lg px-3 py-2 text-sm text-gray-300 focus:outline-none focus:border-indigo-500"
-                    >
-                        {Object.keys(themes).map(range => (
-                            <option key={range} value={range}>{range} ans</option>
-                        ))}
-                    </select>
-
-                    <button onClick={fillExample} className="flex items-center gap-2 px-3 py-2 rounded-lg bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20 transition-colors">
-                        <Sparkles size={16} /> <span className="text-sm font-medium">Exemple</span>
-                    </button>
-
-                    <button onClick={clearAll} className="flex items-center gap-2 px-3 py-2 rounded-lg bg-red-500/10 text-red-400 hover:bg-red-500/20 transition-colors">
-                        <Eraser size={16} /> <span className="text-sm font-medium">Effacer</span>
-                    </button>
-
-                    <button onClick={handlePrint} className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white/5 text-gray-300 hover:bg-white/10 transition-colors">
-                        <Printer size={16} /> <span className="text-sm font-medium">Imprimer</span>
-                    </button>
-
-                    <button
-                        onClick={() => setShowAssistant(!showAssistant)}
-                        className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all ${showAssistant
-                            ? 'bg-indigo-600/20 text-indigo-400 ring-1 ring-indigo-500/50'
-                            : 'bg-indigo-600 text-white hover:bg-indigo-700 shadow-lg shadow-indigo-500/25'
-                            }`}
-                    >
-                        <Sparkles size={18} className={showAssistant ? "text-indigo-400" : "text-amber-300"} />
-                        <span className="font-semibold">Assistant IA</span>
-                    </button>
-
-                    {/* Settings Trigger */}
-                    <button onClick={() => setShowSettings(!showSettings)} className="p-2 rounded-lg hover:bg-white/5 text-gray-400 hover:text-white transition-colors">
-                        <Settings size={20} />
+            {previewMode && (
+                <div className="preview-controls screen-only" style={{ position: 'fixed', top: 20, right: 20, zIndex: 9999, display: 'flex', gap: '10px' }}>
+                    <button className="btn" onClick={() => window.print()} style={{ background: 'white', border: '1px solid #ccc' }}>🖨️ Lancer l'impression</button>
+                    <button className="btn fill close-preview-btn" onClick={() => setPreviewMode(false)}>
+                        Fermer l'aperçu
                     </button>
                 </div>
-            </header>
+            )}
 
-            {/* --- SETTINGS MODAL (Strict Port) --- */}
-            <AnimatePresence>
-                {showSettings && (
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.95 }}
-                        className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 print:hidden"
-                    >
-                        <GlassCard className="w-full max-w-2xl p-6 bg-[#13141f] border-slate-700">
-                            <div className="flex justify-between items-center mb-6">
-                                <h2 className="text-xl font-bold text-white">Paramètres IA (Prompt)</h2>
-                                <button onClick={() => setShowSettings(false)} className="text-gray-400 hover:text-white">
-                                    <X size={24} />
-                                </button>
-                            </div>
-
-                            <div className="space-y-4">
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-400 mb-2">Clé API OpenAI</label>
-                                    <input
-                                        type="password"
-                                        value={customApiKey}
-                                        onChange={(e) => setCustomApiKey(e.target.value)}
-                                        placeholder="sk-..."
-                                        className="w-full bg-[#1a1c2e] border border-slate-700 rounded-lg p-3 text-white focus:border-indigo-500 outline-none"
-                                    />
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-400 mb-2">Prompt Système</label>
-                                    <textarea
-                                        value={customSystemPrompt}
-                                        onChange={(e) => setCustomSystemPrompt(e.target.value)}
-                                        className="w-full h-64 bg-[#1a1c2e] border border-slate-700 rounded-lg p-3 text-sm text-gray-300 font-mono focus:border-indigo-500 outline-none resize-none"
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="flex justify-end gap-3 mt-6">
-                                <button onClick={handleResetSettings} className="px-4 py-2 rounded-lg bg-white/5 text-gray-300 hover:bg-white/10 flex items-center gap-2">
-                                    <RotateCcw size={16} /> Réinitialiser
-                                </button>
-                                <button onClick={handleSaveSettings} className="px-4 py-2 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 flex items-center gap-2">
-                                    <Save size={16} /> Enregistrer
-                                </button>
-                            </div>
-                        </GlassCard>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-
-            {/* --- ASSISTANT PANEL --- */}
-            <AnimatePresence>
-                {showAssistant && (
-                    <motion.div ref={assistantRef}
-                        initial={{ opacity: 0, height: 0, marginBottom: 0 }}
-                        animate={{ opacity: 1, height: 'auto', marginBottom: 24 }}
-                        exit={{ opacity: 0, height: 0, marginBottom: 0 }}
-                        className="overflow-hidden print:hidden"
-                    >
-                        <GlassCard className="p-6 border-indigo-500/20 bg-indigo-500/5">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-400 mb-2">
-                                        Notes de l'entretien (Détection âge auto)
-                                    </label>
-                                    <textarea
-                                        value={notes}
-                                        onChange={handleNotesChange}
-                                        placeholder="Ex: Patient de 22 ans, sommeil perturbé..."
-                                        className="w-full h-32 bg-[#13141f] border border-[#2d323b] rounded-xl p-3 text-gray-200 placeholder-gray-600 focus:outline-none focus:border-indigo-500 resize-none"
-                                    />
-                                </div>
-                                <div className="space-y-4">
-                                    <div className="border-2 border-dashed border-[#2d323b] rounded-xl p-6 flex flex-col items-center justify-center text-center hover:border-indigo-500/50 hover:bg-[#13141f] transition-all cursor-pointer group">
-                                        <div className="w-12 h-12 rounded-full bg-[#1a1c2e] flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-                                            <Upload className="text-gray-400 group-hover:text-indigo-400" size={24} />
-                                        </div>
-                                        <p className="text-sm text-gray-400 group-hover:text-gray-300">
-                                            Glisser une capture du dossier pharmaceutique
-                                        </p>
-                                    </div>
-                                    <button
-                                        onClick={handleGenerate}
-                                        disabled={loading}
-                                        className="w-full py-3 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold hover:shadow-lg hover:shadow-indigo-500/25 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                                    >
-                                        {loading ? (
-                                            <>
-                                                <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                                                Génération...
-                                            </>
-                                        ) : (
-                                            <>
-                                                <Sparkles size={18} />
-                                                Générer le PPP
-                                            </>
-                                        )}
-                                    </button>
-                                </div>
-                            </div>
-                        </GlassCard>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-
-            {/* --- MAIN GRID (Dynamic Theming) --- */}
-            <div className={`grid grid-cols-4 gap-4 flex-1 ${previewMode ? 'text-black' : ''}`}>
-                {/* Column 1: Priorities */}
-                <div className="flex flex-col gap-2">
-                    <div className="ppp-accent-bg-soft border ppp-accent-border p-3 rounded-t-lg flex items-center gap-2 print:border-slate-300 print:bg-transparent print:border-b-2">
-                        <span className="ppp-theme-text font-bold">★</span>
-                        <h3 className="font-semibold ppp-theme-text uppercase text-sm tracking-wider">Mes priorités santé<sup>1</sup></h3>
-                    </div>
-                    <div className="bg-white/5 border border-white/10 rounded-b-lg p-2 min-h-[400px] flex-1 print:bg-transparent print:border-r print:border-slate-300 rounded-none">
-                        <ul className="space-y-2">
-                            {Array.from({ length: 8 }).map((_, i) => (
-                                <li key={i} className="p-2 border-b border-white/5 print:border-slate-200 min-h-[40px] text-sm text-gray-300 print:text-black focus:outline-none focus:bg-white/5 rounded" contentEditable suppressContentEditableWarning>
-                                    {pppData.priorities[i] || ''}
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                </div>
-
-                {/* Column 2: Freins */}
-                <div className="flex flex-col gap-2">
-                    <div className="ppp-accent-bg-soft border ppp-accent-border p-3 rounded-t-lg flex items-center gap-2 print:border-slate-300 print:bg-transparent print:border-b-2">
-                        <span className="ppp-theme-text font-bold">⚠</span>
-                        <h3 className="font-semibold ppp-theme-text uppercase text-sm tracking-wider">Freins rencontrés</h3>
-                    </div>
-                    <div className="bg-white/5 border border-white/10 rounded-b-lg p-2 min-h-[400px] flex-1 print:bg-transparent print:border-r print:border-slate-300 rounded-none">
-                        <ul className="space-y-2">
-                            {Array.from({ length: 8 }).map((_, i) => (
-                                <li key={i} className="p-2 border-b border-white/5 print:border-slate-200 min-h-[40px] text-sm text-gray-300 print:text-black focus:outline-none focus:bg-white/5 rounded" contentEditable suppressContentEditableWarning>
-                                    {pppData.freins[i] || ''}
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                </div>
-
-                {/* Column 3: Conseils */}
-                <div className="flex flex-col gap-2">
-                    <div className="ppp-accent-bg-soft border ppp-accent-border p-3 rounded-t-lg flex items-center gap-2 print:border-slate-300 print:bg-transparent print:border-b-2">
-                        <span className="ppp-theme-text font-bold">✓</span>
-                        <h3 className="font-semibold ppp-theme-text uppercase text-sm tracking-wider">Conseils, modalités<sup>2</sup></h3>
-                    </div>
-                    <div className="bg-white/5 border border-white/10 rounded-b-lg p-2 min-h-[400px] flex-1 print:bg-transparent print:border-r print:border-slate-300 rounded-none">
-                        <ul className="space-y-2">
-                            {Array.from({ length: 8 }).map((_, i) => (
-                                <li key={i} className="p-2 border-b border-white/5 print:border-slate-200 min-h-[40px] text-sm text-gray-300 print:text-black focus:outline-none focus:bg-white/5 rounded" contentEditable suppressContentEditableWarning>
-                                    {pppData.conseils[i] || ''}
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                </div>
-
-                {/* Column 4: Ressources */}
-                <div className="flex flex-col gap-2">
-                    <div className="ppp-accent-bg-soft border ppp-accent-border p-3 rounded-t-lg flex items-center gap-2 print:border-slate-300 print:bg-transparent print:border-b-2">
-                        <span className="ppp-theme-text font-bold">➜</span>
-                        <h3 className="font-semibold ppp-theme-text uppercase text-sm tracking-wider">Ressources</h3>
-                    </div>
-                    <div className="bg-white/5 border border-white/10 rounded-b-lg p-2 min-h-[400px] flex-1 print:bg-transparent print:border-l print:border-slate-300 rounded-none">
-                        <ul className="space-y-2">
-                            {Array.from({ length: 8 }).map((_, i) => (
-                                <li key={i} className="p-2 border-b border-white/5 print:border-slate-200 min-h-[40px] text-sm text-gray-300 print:text-black focus:outline-none focus:bg-white/5 rounded" contentEditable suppressContentEditableWarning>
-                                    {pppData.ressources[i] || ''}
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            {/* --- LEGAL & FOOTER (Strict Match) --- */}
-            <div className={`mt-8 pt-4 border-t-2 border-slate-800 ${previewMode ? 'block text-black' : 'hidden'} print:block`}>
-                <div className="flex justify-between items-start gap-8">
-                    <div className="flex-1 text-[10px] text-slate-500 leading-tight space-y-1">
-                        <p className="font-bold text-slate-700 uppercase mb-1">Mentions informatives</p>
-                        <ul className="list-disc pl-3 space-y-0.5">
-                            <li>Document à disposition du patient à l'issue du bilan de prévention.</li>
-                            <li>Données issues du dossier pharmaceutique et de l'entretien.</li>
-                            <li>Document pouvant être partagé avec le médecin traitant uniquement après accord du patient.</li>
-                        </ul>
-                        <div className="mt-2 flex items-center gap-2">
-                            <div className="w-4 h-4 border border-slate-400 rounded-sm"></div>
-                            <span>Je m'oppose à ce que ce document soit communiqué à mon médecin traitant.</span>
+            <div className="ppp-page">
+                {/* HEADER */}
+                <header className="ppp-page-header">
+                    <div className="header-top-row">
+                        <div className="pharmacy-branding">
+                            {/* Placeholder Logo */}
+                            <div className="pharmacy-logo" style={{ background: 'linear-gradient(135deg, #1e3a8a, #06b6d4)', borderRadius: '8px' }}></div>
+                            <div className="pharmacy-name" contentEditable>{PHARMACY_NAME}</div>
+                        </div>
+                        <div className="header-right">
+                            <div className="report-title">Mon Bilan Prévention</div>
+                            <div className="age" style={{ color: 'var(--primary-color)' }}>{ageRange} ans</div>
                         </div>
                     </div>
 
-                    <div className="flex-1 text-[10px] text-slate-500 space-y-1">
-                        <p><span className="font-bold mr-1">1</span>Les priorités sont définies avec l'appui du professionnel de santé.</p>
-                        <p><span className="font-bold mr-1">2</span>Exemples : Appeler écoute tabac, consulter un spécialiste...</p>
+                    <div className="header-info-row">
+                        <div className="info-item">
+                            <span className="label">Patient :</span>
+                            <span className="id-value" contentEditable onInput={(e) => setPatientName(e.currentTarget.textContent || "")} />
+                        </div>
+                        <div className="info-item">
+                            <span className="label">Pharmacien :</span>
+                            <select className="ppp-select screen-only" value={selectedPharmacist} onChange={e => setSelectedPharmacist(e.target.value)}>
+                                <option value="" disabled>Sélectionner...</option>
+                                {PHARMACISTS.map(p => <option key={p} value={p}>{p}</option>)}
+                            </select>
+                            <span className="id-value print-only" style={{ borderBottom: 'none' }}>{selectedPharmacist}</span>
+                        </div>
+                        <div className="info-item">
+                            <span className="label">Date :</span>
+                            <span className="id-value" contentEditable>{date}</span>
+                        </div>
                     </div>
 
-                    <div className="flex-1 border border-slate-300 rounded p-2 h-24 flex flex-col justify-between">
-                        <span className="text-[10px] font-bold text-slate-700 uppercase">Cachet et Signature</span>
-                        <div className="self-end text-[10px] text-slate-400 italic">Professionnel de santé</div>
+                    <div className="header-controls screen-only">
+                        <div className="age-select">
+                            <label>Tranche d'âge :</label>
+                            <select className="age-select-input" value={ageRange} onChange={e => setAgeRange(e.target.value)}>
+                                {Object.keys(themes).map(r => <option key={r} value={r}>{r} ans</option>)}
+                            </select>
+                        </div>
+                        <div className="action-buttons">
+                            <button className="btn fill" onClick={fillExample}>📄 Remplir l'exemple</button>
+                            <button className="btn" onClick={() => setPPPData({ priorities: [], freins: [], conseils: [], ressources: [], suivi: [] })}>🧹 Effacer</button>
+                            <button className="btn" onClick={() => setPreviewMode(true)}>👁️ Aperçu</button>
+                            <button className="btn ghost" onClick={handlePrint}>🖨️ Imprimer</button>
+                            <button className="btn ghost" onClick={() => navigate(-1)}>🔙 Sortir</button>
+                        </div>
                     </div>
+                </header>
+
+                {/* ASSISTANT SECTION */}
+                <section className="input-toggle screen-only">
+                    <button className="btn ghost" onClick={() => setShowAssistant(!showAssistant)}>
+                        {showAssistant ? "🔒 Masquer l'assistant PhiGenix 6.0" : "🤖 Ouvrir l'assistant PhiGenix 6.0"}
+                    </button>
+                </section>
+
+                {showAssistant && (
+                    <section className="input-section screen-only">
+                        <div
+                            className={`upload-zone ${isDragging ? 'dragover' : ''}`}
+                            onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
+                            onDragLeave={() => setIsDragging(false)}
+                            onDrop={handleImageDrop}
+                            onClick={() => document.getElementById('ppp-file')?.click()}
+                        >
+                            <input type="file" id="ppp-file" hidden accept="image/*" onChange={e => {
+                                if (e.target.files?.[0]) {
+                                    const r = new FileReader();
+                                    r.onload = (ev) => setImageBase64(ev.target?.result as string);
+                                    r.readAsDataURL(e.target.files[0]);
+                                }
+                            }} />
+                            {imageBase64 ? <img src={imageBase64} alt="Preview" style={{ maxHeight: 200, borderRadius: 8 }} /> : (
+                                <p>📷 Cliquez ou glissez la capture du dossier pharmaceutique</p>
+                            )}
+                        </div>
+
+                        <div className="notes-zone">
+                            <label>Notes de l'entretien :</label>
+                            <textarea rows={4} value={notes} onChange={e => {
+                                setNotes(e.target.value);
+                                const det = detectAgeBucket(e.target.value);
+                                if (det && det !== ageRange) setAgeRange(det);
+                            }} placeholder="Décrivez le déroulé du bilan..."></textarea>
+                        </div>
+
+                        <button className="btn fill" onClick={handleGenerate} disabled={loading}>
+                            {loading ? "Génération en cours..." : "✍️ Finaliser le PPP"}
+                        </button>
+
+                        {loading && (
+                            <div className="loading">
+                                <div className="spinner">
+                                    <div className="dot"></div><div className="dot dot2"></div><div className="dot dot3"></div>
+                                </div>
+                                <div className="loading-progress">
+                                    <div className="loading-progress-fill" style={{ width: `${progress}%` }}></div>
+                                </div>
+                            </div>
+                        )}
+                    </section>
+                )}
+
+                {/* HERO */}
+                <section className="hero">
+                    <h1>Plan Personnalisé de Prévention</h1>
+                    <p>Rédaction partagée (par la personne et le professionnel de santé), à l'issue de l'intervention brève.</p>
+                </section>
+
+                {/* GRID */}
+                <section className="ppp-grid">
+                    <div className="column">
+                        <div className="col-title" data-ico="★">Mes priorités santé<sup>1</sup></div>
+                        <ul className="lines">
+                            {Array.from({ length: 8 }).map((_, i) => (
+                                <li key={i} contentEditable suppressContentEditableWarning>{pppData.priorities[i] || ""}</li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div className="column">
+                        <div className="col-title" data-ico="⚠">Freins rencontrés</div>
+                        <ul className="lines">
+                            {Array.from({ length: 8 }).map((_, i) => (
+                                <li key={i} contentEditable suppressContentEditableWarning>{pppData.freins[i] || ""}</li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div className="column">
+                        <div className="col-title" data-ico="✓">Conseils, modalités<sup>2</sup></div>
+                        <ul className="lines">
+                            {Array.from({ length: 8 }).map((_, i) => (
+                                <li key={i} contentEditable suppressContentEditableWarning>{pppData.conseils[i] || ""}</li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div className="column">
+                        <div className="col-title" data-ico="➜">Ressources</div>
+                        <ul className="lines">
+                            {Array.from({ length: 8 }).map((_, i) => (
+                                <li key={i} contentEditable suppressContentEditableWarning>{pppData.ressources[i] || ""}</li>
+                            ))}
+                        </ul>
+                    </div>
+                </section>
+
+                {/* FOLLOW UP */}
+                <section className="follow-up">
+                    <div className="follow-title">Modalités de suivi</div>
+                    <div className="follow-line" contentEditable suppressContentEditableWarning>{pppData.suivi[0] || ""}</div>
+                    <div className="follow-line" contentEditable suppressContentEditableWarning>{pppData.suivi[1] || ""}</div>
+                </section>
+
+                <div className="separator" style={{ borderBottom: '1px dotted #c5c5c5', margin: '6px 0 10px' }}></div>
+
+                <p className="motivation">
+                    Changer d'habitude n'est pas facile. Échanger avec une ou plusieurs personnes de confiance sur vos objectifs est un facteur de succès important.
+                </p>
+
+                <div className="checkbox-row">
+                    <label className="checkbox-label">
+                        <input type="checkbox" className="checkbox-input" />
+                        <span className="checkbox"></span>
+                        <span style={{ fontSize: '0.75rem' }}>Je m'oppose à ce que ce document soit communiqué à mon médecin traitant.</span>
+                    </label>
                 </div>
-                <div className="text-center mt-4 text-[10px] text-slate-400 uppercase tracking-widest">
-                    © PhiGenix 6.0 — {new Date().getFullYear()}
+
+                <div className="footer-grid">
+                    <section className="legal-mentions">
+                        <div className="legal-title">Mentions informatives</div>
+                        <ul>
+                            <li>Document à disposition du patient à l'issue du bilan.</li>
+                            <li>Données issues du dossier pharmaceutique et de l'entretien.</li>
+                            <li>Partage médecin traitant uniquement après accord.</li>
+                        </ul>
+                    </section>
+
+                    <div className="footer-notes">
+                        <div className="item"><span className="n">1</span>Priorités définies avec l'appui du pro.</div>
+                        <div className="item"><span className="n">2</span>Ex: Appeler ligne écoute, consulter spécialiste...</div>
+                    </div>
+
+                    <div className="signature-block">
+                        <div className="sig-label">Cachet et Signature</div>
+                        <div className="sig-area"></div>
+                    </div>
                 </div>
             </div>
-
-            {/* Print Styles Injection */}
-            <style>{`
-                @media print {
-                    @page { size: A4 landscape !important; margin: 5mm !important; }
-                    body { background: white !important; color: black !important; }
-                    .print\\:block { display: block !important; }
-                    .print\\:hidden, header { display: none !important; }
-                    .p-8, .overflow-y-auto { padding: 0 !important; overflow: visible !important; height: auto !important; }
-                    .text-white\\/50 { color: #666 !important; }
-                    .text-gray-300 { color: black !important; }
-                }
-            `}</style>
         </div>
     );
 }

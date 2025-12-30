@@ -37,16 +37,14 @@ export function Pharmacy() {
                     description="Dépistage angines à streptocoque A. Protocole complet."
                     icon="🌡️"
                     colorVar="var(--cyan)"
-                    status="ready"
-                    onClick={() => console.log('Open TROD')}
+                    status="soon"
                 />
                 <ToolCard
                     title="Prescription Vaccinale"
                     description="Éligibilité et bon de vaccination."
                     icon="💉"
                     colorVar="var(--iris)"
-                    status="ready"
-                    onClick={() => console.log('Open Vaccin')}
+                    status="soon"
                 />
                 <ToolCard
                     title="Ordonnance Sécurisée"
@@ -55,35 +53,26 @@ export function Pharmacy() {
                     colorVar="var(--amber)"
                     status="soon"
                 />
+                <ToolCard
+                    title="Calcul de Caisse"
+                    description="Comptabilité de fin de journée et écarts."
+                    icon="🧮"
+                    colorVar="var(--mint)"
+                    status="ready"
+                    onClick={() => navigate('/caisse')}
+                />
+                <ToolCard
+                    title="Calcul de Doses"
+                    description="Vérification pédiatrique et conseils galéniques."
+                    icon="💊"
+                    colorVar="var(--cyan)"
+                    status="ready"
+                    onClick={() => navigate('/dosage')}
+                />
             </div>
 
             {/* Context Widget */}
-            <div className="mt-12">
-                <h2 className="text-lg font-semibold mb-4 text-white/80">État du système</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <GlassCard variant="default" className="flex items-center justify-between p-4 bg-white/5 border-white/10">
-                        <div className="flex items-center gap-4">
-                            <div className="text-2xl">💳</div>
-                            <div>
-                                <div className="font-semibold text-sm">Lecteur Vitale</div>
-                                <div className="text-xs text-white/50">En attente de carte...</div>
-                            </div>
-                        </div>
-                        <StatusDot status="busy" size={10} />
-                    </GlassCard>
 
-                    <GlassCard variant="default" className="flex items-center justify-between p-4 bg-white/5 border-white/10">
-                        <div className="flex items-center gap-4">
-                            <div className="text-2xl">☁️</div>
-                            <div>
-                                <div className="font-semibold text-sm">Synchronisation Cloud</div>
-                                <div className="text-xs text-white/50">À jour</div>
-                            </div>
-                        </div>
-                        <StatusDot status="connected" size={10} />
-                    </GlassCard>
-                </div>
-            </div>
         </div>
     );
 }

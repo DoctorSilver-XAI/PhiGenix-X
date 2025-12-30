@@ -94,11 +94,16 @@ export const PhiVisionProvider = ({ children }: { children: ReactNode }) => {
             triggerAnalysis();
         });
 
-        return cleanup;
+        // Ensure we return the cleanup function (which returns void) or void explicitly
+        return () => {
+            if (cleanup) cleanup();
+        };
     }, [triggerAnalysis]);
 
     const closePhiVision = () => {
+        console.log('Closing PhiVision -> Forcing Compact Mode');
         setIsActive(false);
+        setIsAnalyzing(false);
         setResult(null);
         window.axora?.setMode('compact');
     };

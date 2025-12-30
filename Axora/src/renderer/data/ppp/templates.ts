@@ -1,4 +1,4 @@
-export const templates: Record<string, { priorities: string[]; freins: string[]; conseils: string[]; ressources: string[]; suivi: string[] }> = {
+export const templates = {
     "18-25": {
         priorities: [
             "Sommeil réparateur (7-8 h, horaires réguliers, hygiène numérique)",
